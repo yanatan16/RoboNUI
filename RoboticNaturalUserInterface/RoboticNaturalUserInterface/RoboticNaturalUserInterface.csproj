@@ -37,18 +37,22 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AngleSet.cs" />
-    <Compile Include="JointAngleTranslator.cs" />
-    <Compile Include="Playback.cs" />
-    <Compile Include="Recorder.cs" />
-    <Compile Include="RoboticAngleProvider.cs" />
-    <Compile Include="RoboticArmServoController.cs" />
-    <Compile Include="RoboticMarionetteServoController.cs" />
-    <Compile Include="SkeletalJointMonitor.cs" />
-    <Compile Include="RoboticAngle.cs" />
-    <Compile Include="IRoboticAngleConsumer.cs" />
-    <Compile Include="StateManager.cs" />
-    <Compile Include="VoiceControlInterpreter.cs" />
+    <Compile Include="RobotAdapter\AngleSet.cs" />
+    <Compile Include="RobotAdapter\SSC32\QueryPulseWidth.cs" />
+    <Compile Include="RobotAdapter\SSC32\ServoCommandGroup.cs" />
+    <Compile Include="Core\JointAngleTranslator.cs" />
+    <Compile Include="RecordPlayback\Playback.cs" />
+    <Compile Include="RecordPlayback\Recorder.cs" />
+    <Compile Include="Core\RoboticAngleProvider.cs" />
+    <Compile Include="RobotAdapter\RoboticArmServoController.cs" />
+    <Compile Include="RobotAdapter\RoboticMarionetteServoController.cs" />
+    <Compile Include="KinectAdapter\SkeletalJointMonitor.cs" />
+    <Compile Include="RobotAdapter\RoboticAngle.cs" />
+    <Compile Include="RobotAdapter\IRoboticAngleConsumer.cs" />
+    <Compile Include="RobotAdapter\SSC32\ServoMovementCommand.cs" />
+    <Compile Include="RobotAdapter\SSC32\QueryMovementStatus.cs" />
+    <Compile Include="Core\StateManager.cs" />
+    <Compile Include="KinectAdapter\VoiceControlInterpreter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
