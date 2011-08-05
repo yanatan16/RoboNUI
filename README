@@ -1,0 +1,24 @@
+****************************************************
+****                                            ****
+****       Robotic Natural User Interface       ****
+****                                            ****
+****                aka RoboNUI                 ****
+****                                            ****
+****************************************************
+
+Authors: 
+  Jon Eisen 		(yanatan16 @ GitHub)
+  Thor Kirkby 		(akirkby @ GitHub)
+
+Description:
+ A natural user interface for controlling robotic 
+manipulator arms and human-like robots. The system
+uses the Microsoft Kinect to interpret the 
+controller's skeletal motion and map that to moving
+the robot's servos.
+
+ The system is implemented in C# and requires the
+platform running the system to have Windows 7 as
+well as the Kinect for Windows drivers installed.
+It must be compiled on Visual Studio 2010 with the 
+Kinect for Windows SDK installed.

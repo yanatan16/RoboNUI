@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 
-using RoboNUI.RobotAdapter.SSC32;
-
 namespace RoboNUI.RobotAdapter.SSC32
 {
     class ServoController

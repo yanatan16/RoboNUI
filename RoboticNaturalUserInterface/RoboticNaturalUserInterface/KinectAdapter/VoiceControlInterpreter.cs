@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI
+using RoboNUI.Core;
+
+namespace RoboNUI.KinectAdapter
 {
     /**
      * Voice Control Interpreter

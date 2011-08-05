@@ -37,7 +37,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RobotAdapter\AngleSet.cs" />
+    <Compile Include="Core\AngleSet.cs" />
+    <Compile Include="RobotAdapter\SSC32\ServoController.cs" />
     <Compile Include="RobotAdapter\SSC32\QueryPulseWidth.cs" />
     <Compile Include="RobotAdapter\SSC32\ServoCommandGroup.cs" />
     <Compile Include="Core\JointAngleTranslator.cs" />
@@ -47,8 +48,8 @@
     <Compile Include="RobotAdapter\RoboticArmServoController.cs" />
     <Compile Include="RobotAdapter\RoboticMarionetteServoController.cs" />
     <Compile Include="KinectAdapter\SkeletalJointMonitor.cs" />
-    <Compile Include="RobotAdapter\RoboticAngle.cs" />
-    <Compile Include="RobotAdapter\IRoboticAngleConsumer.cs" />
+    <Compile Include="Core\RoboticAngle.cs" />
+    <Compile Include="Core\IRoboticAngleConsumer.cs" />
     <Compile Include="RobotAdapter\SSC32\ServoMovementCommand.cs" />
     <Compile Include="RobotAdapter\SSC32\QueryMovementStatus.cs" />
     <Compile Include="Core\StateManager.cs" />

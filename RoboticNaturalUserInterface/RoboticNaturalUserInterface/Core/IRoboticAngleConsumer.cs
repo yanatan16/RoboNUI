@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using RobotNUI.RobotAdapter;
+using RoboNUI.Core;
 
-namespace RoboNUI
+namespace RoboNUI.Core
 {
     /**
      * Robotic Angle Consumer Interface

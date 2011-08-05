@@ -5,6 +5,7 @@ using System.Text;
 using System.IO.Ports;
 
 using RoboNUI.RobotAdapter.SSC32;
+using RoboNUI.Core;
 
 namespace RoboNUI.RobotAdapter
 {
