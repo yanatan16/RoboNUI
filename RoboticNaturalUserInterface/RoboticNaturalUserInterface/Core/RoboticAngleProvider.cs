@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI.Core
+namespace RoboNui.Core
 {
     /**
      * Roboitc Angle Provider Base Class
@@ -38,11 +38,11 @@ namespace RoboNUI.Core
          * 
          * Parameters: angles - the set of angles to send
          */
-        protected void sendAngles(AngleSet angles)
+        protected void SendAngles(AngleSet angles)
         {
             for (List<IRoboticAngleConsumer>.Enumerator en = angleConsumers.GetEnumerator(); en.MoveNext(); )
             {
-                (en.Current as IRoboticAngleConsumer).updateAngles(angles);
+                (en.Current as IRoboticAngleConsumer).UpdateAngles(angles);
             }
         }
     }

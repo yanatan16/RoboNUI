@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using RoboNUI.Core;
+using RoboNui.Core;
 
-namespace RoboNUI.RecordPlayback
+namespace RoboNui.RecordPlayback
 {
     /**
      * Recorder
@@ -17,7 +17,7 @@ namespace RoboNUI.RecordPlayback
      */
     class Recorder : IRoboticAngleConsumer
     {
-        void IRoboticAngleConsumer.updateAngles(AngleSet angles)
+        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             throw new NotImplementedException();
         }

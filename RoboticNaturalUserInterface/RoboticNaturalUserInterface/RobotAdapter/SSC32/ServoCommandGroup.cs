@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI.RobotAdapter.SSC32
+namespace RoboNui.RobotAdapter.SSC32
 {
     /**
      * Servo Command Group
@@ -40,87 +40,27 @@ namespace RoboNUI.RobotAdapter.SSC32
         /**
          * Type of Servo Command
          */
-        private ServoCommandType type_;
-
+        public ServoCommandType ComType { get; private set; }
         /**
          * Number of commands in this command group
          */
-        private uint numCommands_;
+        protected uint NumCommands { get; set; }
 
         /**
          * Length of the response in bytes
          */
-        private uint responseLength_;
+        public uint ResponseLength;
 
         /**
          * Constructor
          * 
          * Parameters: Type, response length, and number of commands
          */
-        protected ServoCommandGroup(ServoCommandType type, uint responseLength = 0, uint numCommands = 0)
+        protected ServoCommandGroup(ServoCommandType type, uint responseLength = 0, uint numCommands = 0) 
         {
-            type_ = type;
-            responseLength_ = responseLength;
-            numCommands_ = numCommands;
-        }
-
-        /**
-         * Getter for numCommands
-         */
-        protected uint getNumCommands()
-        {
-            return numCommands_;
-        }
-
-        /**
-         * Setter for numCommands
-         */
-        protected void setNumCommands(uint numCommands)
-        {
-            numCommands_ = numCommands;
-        }
-
-        /**
-         * Incrementer for numCommands
-         */
-        protected void incrementNumCommands()
-        {
-            numCommands_++;
-        }
-
-
-        /**
-         * Has Response
-         * 
-         * Returns: boolean true if response is expected
-         */
-        public bool hasResponse()
-        {
-            return responseLength_ > 0;
-        }
-
-        /**
-         * Getter for responseLength
-         */
-        public uint getResponseLength()
-        {
-            return responseLength_;
-        }
-
-        /**
-         * Setter for responseLength
-         */
-        public void setResponseLength(uint rl)
-        {
-            responseLength_ = rl;
-        }
-
-        /**
-         * Incrementer for responseLength
-         */
-        public void incrementResponseLength()
-        {
-            responseLength_++;
+            ComType = type;
+            ResponseLength = responseLength;
+            NumCommands = numCommands;
         }
 
         /**
@@ -131,7 +71,7 @@ namespace RoboNUI.RobotAdapter.SSC32
         public string CommandString()
         {
             string ret = string.Empty;
-            for (int i = 0; i < numCommands_; i++)
+            for (int i = 0; i < NumCommands; i++)
             {
                 ret += IncCommandString(i) + " ";
             }

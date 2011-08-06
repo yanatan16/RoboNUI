@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using RoboNUI.Core;
+using RoboNui.Core;
 
-namespace RoboNUI.Core
+namespace RoboNui.Core
 {
     /**
      * Robotic Angle Consumer Interface
@@ -21,6 +21,6 @@ namespace RoboNUI.Core
          * 
          * Parameter: Angle set
          */
-        public void updateAngles(AngleSet angles);
+        public void UpdateAngles(AngleSet angles);
     }
 }

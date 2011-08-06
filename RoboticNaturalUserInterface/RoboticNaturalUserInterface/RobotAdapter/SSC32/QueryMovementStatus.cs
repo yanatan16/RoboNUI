@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI.RobotAdapter.SSC32
+namespace RoboNui.RobotAdapter.SSC32
 {
     /**
      * Query Movement Status

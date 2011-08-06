@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI.RobotAdapter.SSC32
+namespace RoboNui.RobotAdapter.SSC32
 {
     /**
      * Query Pulse Width Servo Command
@@ -19,7 +19,7 @@ namespace RoboNUI.RobotAdapter.SSC32
         /**
          * List of channels to query pulse width
          */
-        private List<uint> channel;
+        private List<uint> Channel;
 
         /**
          * Constructor
@@ -29,7 +29,7 @@ namespace RoboNUI.RobotAdapter.SSC32
         public QueryPulseWidth() :
             base(ServoCommandType.QueryPulseWidth)
         {
-            channel = new List<uint>();
+            Channel = new List<uint>();
         }
 
         /**
@@ -39,9 +39,9 @@ namespace RoboNUI.RobotAdapter.SSC32
          */
         public void addChannel(uint ch)
         {
-            channel.Add(ch);
-            base.incrementNumCommands();
-            base.incrementResponseLength();
+            Channel.Add(ch);
+            NumCommands++;
+            ResponseLength++;
         }
 
         /**
@@ -50,9 +50,9 @@ namespace RoboNUI.RobotAdapter.SSC32
         protected string ServoCommandGroup.IncCommandString(int i)
         {
             if (i == 0)
-                return String.Format("QP %ud", channel[i]);
+                return String.Format("QP %ud", Channel[i]);
             else
-                return String.Format("%ud", channel[i]);
+                return String.Format("%ud", Channel[i]);
         }
 
         /**

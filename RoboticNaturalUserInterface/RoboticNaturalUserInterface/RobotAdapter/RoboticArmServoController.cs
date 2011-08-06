@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 
-using RoboNUI.RobotAdapter.SSC32;
-using RoboNUI.Core;
+using RoboNui.RobotAdapter.SSC32;
+using RoboNui.Core;
 
-namespace RoboNUI.RobotAdapter
+namespace RoboNui.RobotAdapter
 {
     /**
      * Robotic Servo Controller - Arm
@@ -25,12 +25,12 @@ namespace RoboNUI.RobotAdapter
         /**
          * Mapping of RoboNUI.RoboticAngle to SSC-32 servo channels
          */
-        private Dictionary<RoboticAngle, uint> channelMap_;
+        public Dictionary<RoboticAngle, uint> ChannelMap { get; set; }
 
         /**
          * Generic speed for each movement
          */
-        private ulong speed_;
+        public ulong Speed { get; set; }
 
         /**
          * Constructor
@@ -42,19 +42,20 @@ namespace RoboNUI.RobotAdapter
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
             base(portName)
         {
-            channelMap_ = channelMap;
-            speed_ = speed;
+            ChannelMap = channelMap;
+            Speed = speed;
         }
 
         /**
          * (See IRoboticAngleConsumer.updateAngles(AngleSet angles) for comments)
          */
-        public void IRoboticAngleConsumer.updateAngles(AngleSet angles)
+
+        public void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
-            for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.AngleMap.GetEnumerator(); en.MoveNext(); )
+            for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.PulseWidthMap.GetEnumerator(); en.MoveNext(); )
             {
-                command.addServoMovementCommand(channelMap_[en.Current.Key], en.Current.Value, speed_);
+                command.addServoMovementCommand(ChannelMap[en.Current.Key], en.Current.Value, Speed);
             }
 
             sendCommand(command);
@@ -66,19 +67,25 @@ namespace RoboNUI.RobotAdapter
          * Parameter: Joint list - list of joints requesting positions on
          * Returns: Angle set of joint positions
          */
-        public AngleSet getPositions(List<RoboticAngle> jointList)
+        public AngleSet GetAngles(List<RoboticAngle> roboticAngleList)
         {
             QueryPulseWidth command = new QueryPulseWidth();
-            for (List<RoboticAngle>.Enumerator en = jointList.GetEnumerator(); en.MoveNext(); )
+            for (List<RoboticAngle>.Enumerator en = roboticAngleList.GetEnumerator(); en.MoveNext(); )
             {
-                command.addChannel(channelMap_[en.Current]);
+                command.addChannel(ChannelMap[en.Current]);
             }
 
             byte[] response = sendCommand(command);
-            ulong[] angles = QueryPulseWidth.interpretPulseWidths(response);
+            ulong[] pws = QueryPulseWidth.interpretPulseWidths(response);
+
+            Dictionary<RoboticAngle, ulong> pwMap = new Dictionary<RoboticAngle, ulong>();
+            for (int i = 0; i < response.Length; i++)
+            {
+                pwMap[roboticAngleList[i]] = pws[i];
+            }
             
             AngleSet ret = new AngleSet();
-            ret.setMap(jointList.ToArray(), angles);
+            ret.PulseWidthMap = pwMap;
 
             return ret;
         }
@@ -88,7 +95,7 @@ namespace RoboNUI.RobotAdapter
          * 
          * Returns: bool true if movement is finished, false otherwise
          */
-        public bool isMovementFinished()
+        public bool IsMovementFinished()
         {
             QueryMovementStatus command = new QueryMovementStatus();
             byte[] response = sendCommand(command);

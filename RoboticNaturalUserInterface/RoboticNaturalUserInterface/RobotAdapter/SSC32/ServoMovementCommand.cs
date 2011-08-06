@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoboNUI.RobotAdapter.SSC32
+namespace RoboNui.RobotAdapter.SSC32
 {
     /**
      * Servo Movement Command
@@ -20,28 +20,28 @@ namespace RoboNUI.RobotAdapter.SSC32
          * Channel number to command (motor)
          * Range: 0 - 31
          */
-        private List<uint> channel;
+        private List<uint> Channel;
 
         /**
          * Pulse width to command (position)
          * In unites of usec
          * Range: 0 - 3000, 1500 is middle
          */
-        private List<ulong> pulseWidth;
+        private List<ulong> PulseWidth;
 
         /**
          * Movement speed to command, optional
          * In units of usec / sec
          * Only limits speed, may go slower, may go slower if time denotes
          */
-        private List<ulong> moveSpeed; 
+        private List<ulong> MoveSpeed; 
 
         /**
          * Total time for entire movement command group
          * In unites of msec
          * Only limits speed, may go slower if speed denotes
          */
-        private ulong totalTime;
+        public ulong TotalTime { get; set; }
 
         /**
          * Constructor
@@ -51,10 +51,10 @@ namespace RoboNUI.RobotAdapter.SSC32
         public ServoMovementCommand() :
             base(ServoCommandGroup.ServoCommandType.ServoMovement)
         {
-            channel = new List<uint>();
-            pulseWidth = new List<ulong>();
-            moveSpeed = new List<ulong>();
-            totalTime = 0;
+            Channel = new List<uint>();
+            PulseWidth = new List<ulong>();
+            MoveSpeed = new List<ulong>();
+            TotalTime = 0;
         }
 
         /**
@@ -64,22 +64,12 @@ namespace RoboNUI.RobotAdapter.SSC32
          */
         public void addServoMovementCommand(uint ch, ulong pw, ulong ms = 0)
         {
-            base.incrementNumCommands();
-            channel.Add(ch);
-            pulseWidth.Add(pw);
-            moveSpeed.Add(ms);
+            NumCommands++;
+            Channel.Add(ch);
+            PulseWidth.Add(pw);
+            MoveSpeed.Add(ms);
         }
         
-        /**
-         * Set the total time for movement
-         * 
-         * Parameter: total time in ms
-         */
-        public void setTotalTime(ulong tt)
-        {
-            totalTime = tt;
-        }
-
         /**
          * (See ServoCommandGroup.IncCommandString(int i) for comments)
          */
@@ -87,9 +77,9 @@ namespace RoboNUI.RobotAdapter.SSC32
         {
             string ret = string.Empty;
             //Required parameters
-            ret += string.Format("#%ud P%uld", channel[i], pulseWidth[i]);
-            if (moveSpeed[i] > 0)
-                ret += string.Format(" S%uld", moveSpeed[i]);
+            ret += string.Format("#%ud P%uld", Channel[i], PulseWidth[i]);
+            if (MoveSpeed[i] > 0)
+                ret += string.Format(" S%uld", MoveSpeed[i]);
             return ret;
         }
 
@@ -98,8 +88,8 @@ namespace RoboNUI.RobotAdapter.SSC32
          */
         protected string ServoCommandGroup.PostCommandString()
         {
-            if (totalTime > 0)
-                return string.Format("T%uld", totalTime);
+            if (TotalTime > 0)
+                return string.Format("T%uld", TotalTime);
             else
                 return string.Empty;
         }

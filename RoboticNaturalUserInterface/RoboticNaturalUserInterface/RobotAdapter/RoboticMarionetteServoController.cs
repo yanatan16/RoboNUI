@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using RoboNUI.Core;
+using RoboNui.Core;
 
-namespace RoboNUI.RobotAdapter
+namespace RoboNui.RobotAdapter
 {
     /**
      * Robotic Servo Controller - Marionette
@@ -19,7 +19,7 @@ namespace RoboNUI.RobotAdapter
     {
 
 
-        void IRoboticAngleConsumer.updateAngles(AngleSet angles)
+        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             throw new NotImplementedException();
         }

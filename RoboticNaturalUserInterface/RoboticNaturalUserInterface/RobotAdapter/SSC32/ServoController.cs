@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 
-namespace RoboNUI.RobotAdapter.SSC32
+namespace RoboNui.RobotAdapter.SSC32
 {
     /**
      * Servo Controller
@@ -52,10 +52,10 @@ namespace RoboNUI.RobotAdapter.SSC32
         protected byte[] sendCommand(ServoCommandGroup com)
         {
             port.Write(com.CommandString());
-            if (com.hasResponse())
+            if (com.ResponseLength > 0)
             {
-                byte[] buf = new byte[com.getResponseLength()];
-                port.Read(buf, 0, (int) com.getResponseLength());
+                byte[] buf = new byte[com.ResponseLength];
+                port.Read(buf, 0, (int) com.ResponseLength);
                 return buf;
             }
             else
