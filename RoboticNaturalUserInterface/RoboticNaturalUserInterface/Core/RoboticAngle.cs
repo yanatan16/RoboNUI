@@ -5,8 +5,15 @@ using System.Text;
 
 namespace RoboNUI.Core
 {
+    /**
+     * Robotic Angles
+     * 
+     * List of angles possible in this system
+     * Each servo controller will only use a subset of these
+     */
     enum RoboticAngle
     {
+        // Human-like motions
         NeckRotation,
         NeckTilt,
         RightShoulderTilt,
@@ -21,6 +28,10 @@ namespace RoboNUI.Core
         RightKnee,
         LeftKnee,
         RightAnkle,
-        LeftAnkle
+        LeftAnkle,
+
+        //Special motions
+        BaseRotation,
+        CurtainOpen
     }
 }

@@ -6,21 +6,49 @@ using System.IO.Ports;
 
 namespace RoboNUI.RobotAdapter.SSC32
 {
+    /**
+     * Servo Controller
+     * 
+     * Author: Jon Eisen (yanatan16@gmail.com)
+     * 
+     * Base class for communicating commands to an SSC-32 servo controller
+     */
     class ServoController
     {
+        /**
+         * Serial port communicating on
+         */
         private SerialPort port;
         
+        /**
+         * Constructor
+         * 
+         * Construct class with port name and open the port
+         * 
+         * Parameter: port name
+         */
         protected ServoController(string portName)
         {
             port = new SerialPort(portName);
             port.Open();
         }
 
+        /**
+         * Destructor
+         * 
+         * Close the port
+         */
         protected ~ServoController()
         {
             port.Close();
         }
 
+        /**
+         * Send a command to the port
+         * 
+         * Parameter: Command to send
+         * Returns: byte array if command has a response (length equal to com.getResponseLength())
+         */
         protected byte[] sendCommand(ServoCommandGroup com)
         {
             port.Write(com.CommandString());
@@ -31,8 +59,7 @@ namespace RoboNUI.RobotAdapter.SSC32
                 return buf;
             }
             else
-                return null;
-            
+                return null; 
         }
 
     }

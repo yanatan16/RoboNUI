@@ -16,6 +16,11 @@ namespace RoboNUI.Core
      */
     interface IRoboticAngleConsumer
     {
+        /**
+         * Update the angles to this consumer
+         * 
+         * Parameter: Angle set
+         */
         public void updateAngles(AngleSet angles);
     }
 }

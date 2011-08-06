@@ -12,16 +12,33 @@ namespace RoboNUI.RobotAdapter
     /**
      * Robotic Servo Controller - Arm
      * 
+     * Author: Jon Eisen (yanatan16@gmail.com)
+     * 
+     * Base class: ServoController
+     * Interface: IRoboticAngleConsumer
+     * 
      * This class controls the Arm servos based on angles
      * passed in through the IRoboticAngleConsumer interface.
-     * 
-     * Interface: IRoboticAngleConsumer
      */
     class RoboticArmServoController : ServoController, IRoboticAngleConsumer
     {
+        /**
+         * Mapping of RoboNUI.RoboticAngle to SSC-32 servo channels
+         */
         private Dictionary<RoboticAngle, uint> channelMap_;
+
+        /**
+         * Generic speed for each movement
+         */
         private ulong speed_;
 
+        /**
+         * Constructor
+         * 
+         * Construct class with port name, channel map, and default movement speed
+         * 
+         * Parameters: port name, channel map, and speed (usec/sec)
+         */
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
             base(portName)
         {
@@ -29,6 +46,9 @@ namespace RoboNUI.RobotAdapter
             speed_ = speed;
         }
 
+        /**
+         * (See IRoboticAngleConsumer.updateAngles(AngleSet angles) for comments)
+         */
         public void IRoboticAngleConsumer.updateAngles(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();

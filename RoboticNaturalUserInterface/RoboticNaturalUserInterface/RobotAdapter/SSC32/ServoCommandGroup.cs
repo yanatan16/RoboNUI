@@ -5,8 +5,22 @@ using System.Text;
 
 namespace RoboNUI.RobotAdapter.SSC32
 {
+    /**
+     * Servo Command Group
+     * 
+     * Abstract Base Class
+     * Author: Jon Eisen (yanatan16@gmail.com)
+     * 
+     * A representation of a servo command group to be sent to an SSC-32
+     * servo controller
+     */
     abstract class ServoCommandGroup
     {
+        /**
+         * Servo Command Type
+         * 
+         * An enumeration of the 12 commands that can be sent to an SSC-32
+         */
         public enum ServoCommandType
         {
             ServoMovement = 1,
@@ -23,10 +37,26 @@ namespace RoboNUI.RobotAdapter.SSC32
             MiniSSC2Compatibility = 12
         }
 
+        /**
+         * Type of Servo Command
+         */
         private ServoCommandType type_;
+
+        /**
+         * Number of commands in this command group
+         */
         private uint numCommands_;
+
+        /**
+         * Length of the response in bytes
+         */
         private uint responseLength_;
 
+        /**
+         * Constructor
+         * 
+         * Parameters: Type, response length, and number of commands
+         */
         protected ServoCommandGroup(ServoCommandType type, uint responseLength = 0, uint numCommands = 0)
         {
             type_ = type;
@@ -34,46 +64,70 @@ namespace RoboNUI.RobotAdapter.SSC32
             numCommands_ = numCommands;
         }
 
+        /**
+         * Getter for numCommands
+         */
         protected uint getNumCommands()
         {
             return numCommands_;
         }
 
+        /**
+         * Setter for numCommands
+         */
         protected void setNumCommands(uint numCommands)
         {
             numCommands_ = numCommands;
         }
 
+        /**
+         * Incrementer for numCommands
+         */
         protected void incrementNumCommands()
         {
             numCommands_++;
         }
 
+
+        /**
+         * Has Response
+         * 
+         * Returns: boolean true if response is expected
+         */
         public bool hasResponse()
         {
             return responseLength_ > 0;
         }
 
+        /**
+         * Getter for responseLength
+         */
         public uint getResponseLength()
         {
             return responseLength_;
         }
 
+        /**
+         * Setter for responseLength
+         */
         public void setResponseLength(uint rl)
         {
             responseLength_ = rl;
         }
 
+        /**
+         * Incrementer for responseLength
+         */
         public void incrementResponseLength()
         {
             responseLength_++;
         }
 
         /**
-            * Command String
-            * 
-            * Returns: The command string to send to the Servo Controller
-            */
+        * Command String
+        * 
+        * Returns: The command string to send to the Servo Controller
+        */
         public string CommandString()
         {
             string ret = string.Empty;
@@ -87,6 +141,9 @@ namespace RoboNUI.RobotAdapter.SSC32
 
         /**
         * Incremental Command String
+        * Abstract method
+        * 
+        * Get the command string for each individual command
         * 
         * Parameter: Index of command to output
         * Returns: Command string for command index as parameter
@@ -95,6 +152,9 @@ namespace RoboNUI.RobotAdapter.SSC32
 
         /**
         * Post-Command String
+        * Abstract method
+        * 
+        * Get the command string after all individual commands
         * 
         * Returns: String of command after all incremental commands
         */
