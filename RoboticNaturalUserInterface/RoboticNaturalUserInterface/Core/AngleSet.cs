@@ -18,7 +18,7 @@ namespace RoboNUI.Core
          */
         public Dictionary<RoboticAngle, ulong> AngleMap;
 
-        /**
+        /** 
          * Set the map with a list of keys and values
          * 
          * Parameters: key array and val array (must be same size)
