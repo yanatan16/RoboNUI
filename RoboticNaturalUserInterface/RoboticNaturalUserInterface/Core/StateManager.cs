@@ -18,5 +18,7 @@ namespace RoboNui.Core
      */
     class StateManager
     {
+
+        //TODO outline implment
     }
 }

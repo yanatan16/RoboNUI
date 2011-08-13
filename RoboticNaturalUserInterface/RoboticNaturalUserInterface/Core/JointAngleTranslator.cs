@@ -23,7 +23,8 @@ namespace RoboNui.Core
      */
     class JointAngleTranslator : RoboticAngleProvider
     {
-        JointsCollection JointPositions
+        //TODO comment
+        JointSet JointPositions
         {
             public set
             {

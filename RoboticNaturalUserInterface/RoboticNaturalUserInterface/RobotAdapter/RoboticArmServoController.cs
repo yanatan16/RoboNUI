@@ -33,6 +33,11 @@ namespace RoboNui.RobotAdapter
         public ulong Speed { get; set; }
 
         /**
+         * A set of pulse width constants for this consumer to use
+         */
+        protected PulseWidthConstants MyPulseWidthConstants;
+
+        /**
          * Constructor
          * 
          * Construct class with port name, channel map, and default movement speed
@@ -42,6 +47,7 @@ namespace RoboNui.RobotAdapter
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
             base(portName)
         {
+            MyPulseWidthConstants = new PulseWidthConstants(1500 / Math.PI, 1500);
             ChannelMap = channelMap;
             Speed = speed;
         }
@@ -53,7 +59,7 @@ namespace RoboNui.RobotAdapter
         public void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
-            for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.PulseWidthMap.GetEnumerator(); en.MoveNext(); )
+            for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.getPulseWidthMap(MyPulseWidthConstants).GetEnumerator(); en.MoveNext(); )
             {
                 command.addServoMovementCommand(ChannelMap[en.Current.Key], en.Current.Value, Speed);
             }
@@ -85,7 +91,7 @@ namespace RoboNui.RobotAdapter
             }
             
             AngleSet ret = new AngleSet();
-            ret.PulseWidthMap = pwMap;
+            ret.setPulseWidthMap(pwMap, MyPulseWidthConstants);
 
             return ret;
         }

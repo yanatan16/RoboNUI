@@ -6,19 +6,35 @@ using System.Text;
 namespace RoboNui.Core
 {
     /**
-     * Static struct of constants for translating pulse widths to angles and inverse
+     * Struct of constants for translating pulse widths to angles and inverse
      * 
-     * Consider this a global variable set by which servo controller pulse width user is currently on.
+     * Passed in to getPulseWidthMap in AngleSet
      */
     struct PulseWidthConstants
     {
-        public static double Multiplier = 1500 / Math.PI;
-        public static ulong Constant = 1500;
+        /**
+         * Multiplier M for linear function of angle to pulse width: PW = M * A + C
+         */
+        double Multiplier { private get; public set; }
 
+        /**
+         * Constant C for linear function of angle to pulse width: PW = M * A + C
+         */
+        ulong Constant { private get; public set; }
+
+        /**
+         * Constructor
+         */
+        public PulseWidthConstants(double M, ulong C)
+        {
+            Multiplier = M;
+            Constant = C;
+        }
+        
         /**
          * Convert an Angle to a Pulse Width
          */
-        public static ulong AngleToPulseWidth(double a)
+        public ulong AngleToPulseWidth(double a)
         {
             return (ulong)(a * Multiplier) + Constant;
         }
@@ -26,7 +42,7 @@ namespace RoboNui.Core
         /**
          * Convert a Pulse Width to an Angle
          */
-        public static double PulseWidthToAngle(ulong pw)
+        public double PulseWidthToAngle(ulong pw)
         {
             return (pw - Constant) / Multiplier;
         }
@@ -40,31 +56,7 @@ namespace RoboNui.Core
      */
     struct AngleSet
     {
-        /**
-         * Mapping of RoboNUI Robotic Angles to pulse width values
-         * Pulse Width values stored as ulong, range 0 - 2 * PulseWidthConstants.Constant
-         */
-        public Dictionary<RoboticAngle, ulong> PulseWidthMap {
-            get
-            {
-                PulseWidthMap.Clear();
-                for (Dictionary<RoboticAngle, double>.Enumerator eAngle = AngleMap.GetEnumerator(); eAngle.MoveNext(); )
-                {
-                    PulseWidthMap[eAngle.Current.Key] = PulseWidthConstants.AngleToPulseWidth(eAngle.Current.Value);
-                }
-                return PulseWidthMap;
-            }
-
-            set
-            {
-                AngleMap.Clear();
-                for (Dictionary<RoboticAngle, ulong>.Enumerator ePW = PulseWidthMap.GetEnumerator(); ePW.MoveNext(); )
-                {
-                    AngleMap[ePW.Current.Key] = PulseWidthConstants.PulseWidthToAngle(ePW.Current.Value);
-                }
-            }
-        }
-
+        
         /**
          * Angle Map
          * 
@@ -79,34 +71,40 @@ namespace RoboNui.Core
         public AngleSet()
         {
             AngleMap = new Dictionary<RoboticAngle, double>();
-            PulseWidthMap = new Dictionary<RoboticAngle, ulong>();
         }
 
-        /** 
-         * Set the map with a list of keys and values
+        /**
+         * Translate the Angle Map to a pulse width map given a struct of Pulse Width Constants
          * 
-         * Parameters: key array and val array (must be same size)
+         * Parameters:
+         *      Pulse Width Constant for pulse width translation
+         *      
+         * Returns: Pulse Width Dictionary Map
          */
-        public void setMap(RoboticAngle[] keyArray, ulong[] valArray)
+        public Dictionary<RoboticAngle, ulong> getPulseWidthMap(PulseWidthConstants pwc)
         {
-            for (int i = 0; i < keyArray.Length; i++)
-            {
-                PulseWidthMap[keyArray[i]] = valArray[i];
-            }
-        }
-
-        private void translateAngleToPulseWidth()
-        {
-            PulseWidthMap.Clear();
+            Dictionary<RoboticAngle, ulong> PulseWidthMap = new Dictionary<RoboticAngle, ulong>();
             for (Dictionary<RoboticAngle, double>.Enumerator eAngle = AngleMap.GetEnumerator(); eAngle.MoveNext(); )
             {
-                PulseWidthMap[eAngle.Current.Key] = (ulong) (eAngle.Current.Value * PulseWidthMax;
+                PulseWidthMap[eAngle.Current.Key] = pwc.AngleToPulseWidth(eAngle.Current.Value);
             }
+            return PulseWidthMap;
         }
 
-        private void translatePulseWidthToAngle()
+        /**
+         * Set the Angle Map by setting a Pulse Width Map given a struct of Pulse Width Constants
+         * 
+         * Parameters:
+         *      New Angle map in pulse widths
+         *      Pulse Width Constant for pulse width translation
+         */
+        public void setPulseWidthMap(Dictionary<RoboticAngle, ulong> PulseWidthMap, PulseWidthConstants pwc)
         {
-            
+            AngleMap.Clear();
+            for (Dictionary<RoboticAngle, ulong>.Enumerator ePW = PulseWidthMap.GetEnumerator(); ePW.MoveNext(); )
+            {
+                AngleMap[ePW.Current.Key] = pwc.PulseWidthToAngle(ePW.Current.Value);
+            }
         }
 
 

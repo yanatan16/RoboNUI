@@ -16,6 +16,7 @@ namespace RoboNui.Core
      */
     interface IRoboticAngleConsumer
     {
+
         /**
          * Update the angles to this consumer
          * 
