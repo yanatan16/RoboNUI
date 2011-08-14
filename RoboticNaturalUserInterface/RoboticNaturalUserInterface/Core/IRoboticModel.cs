@@ -14,12 +14,12 @@ namespace RoboNui.Core
      */
     interface IRoboticModel
     {
-        /**
-         * Translate between a human Joints model to a Robotic angle model
-         * 
-         * Parameter: Joints Set (human Kinect Model)
-         * Returns: Angle set (robotic model)
-         */
+        ///<summary>
+        ///Translate between a human Joints model to a Robotic angle model
+        ///
+        ///Parameter: Joints Set (human Kinect Model)
+        ///Returns: Angle set (robotic model)
+        ///</summary>
         public AngleSet Translate(JointSet js);
     }
 }
