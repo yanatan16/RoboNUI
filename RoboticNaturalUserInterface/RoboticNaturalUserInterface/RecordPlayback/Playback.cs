@@ -8,12 +8,11 @@ using RoboNui.Core;
 namespace RoboNui.RecordPlayback
 {
     /**
-     * Playback
+     * <summary>
+     * This class reads in stored angle data for robotic servos and forwards them to the <see cref="IRoboticAngleConsumer"/> denoted.
      * 
-     * This class reads in stored angle data for robotic servos and forwards them
-     * to the IRoboticAngleConsumer denoted.
-     * 
-     * Base Class: RoboticAngleProvider
+     * Base Class: <see cref="RoboticAngleProvider"/>
+     * </summary>
      */
     class Playback : RoboticAngleProvider
     {

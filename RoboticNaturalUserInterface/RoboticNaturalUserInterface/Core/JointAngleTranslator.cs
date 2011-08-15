@@ -10,30 +10,97 @@ using Microsoft.Research.Kinect.Nui;
 namespace RoboNui.Core
 {
     /**
-     * Joint-Angle Translator
+     * <summary>
+     * Thrown when the <see cref="JointAngleTranslator"/> has no <see cref="IRoboticModel"/> when its <see cref="JointAngleTranslator.JointPositions"/> is set.
+     * </summary>
      * 
-     * Base Class: RoboticAngleProvider
-     * 
+     * <remarks>
      * Author: Jon Eisen (yanatan16@gmail.com)
+     * </remarks>
      * 
+     * <seealso cref="Exception"/>
+     * <seealso cref="JointAngleTranslator"/>
+     * <seealso cref="IRoboticModel"/>
+     */
+    class NoRoboticModelException : Exception
+    {
+        public NoRoboticModelException() :
+            base("No IRoboticModel provided to the Joint Angle Translator")
+        {
+        }
+    }
+
+    /**
+     * <summary>
      * This component translates between Kinect Joints and Robotic Angles
      * After being called with new Joints' positions, the JAT forwards them
      * to the currently active IRoboticAngleConsumer, which is set by the
      * State Manager.
+     * 
+     * Base Class: <see cref="RoboticAngleProvider"/>
+     * </summary>
+     * <remarks>
+     * Author: Jon Eisen (yanatan16@gmail.com)
+     * </remarks>
+     * 
+     * <seealso cref="RoboticAngleProvider"/>
      */
     class JointAngleTranslator : RoboticAngleProvider
     {
-        //TODO comment
+        /**
+         * <summary>
+         * Setter for the joint positions. 
+         * This will translate the positions to angles through the Robotic Model.
+         * Then it will forward those angles to the Robotic Consumers who are registered.
+         * </summary>
+         * <value>Positions of human controller's joints</value>
+         * <exception cref="NoRoboticModelException">Thrown when Model is not set</exception>
+         * <seealso cref="IRoboticModel"/>
+         */
         JointSet JointPositions
         {
-            public set
+            public set 
             {
-                base.SendAngles(Model.Translate(JointPositions));
+                if (Model != null)
+                    base.SendAngles(Model.Translate(JointPositions));
+                else
+                    throw new NoRoboticModelException();
             }
             private get;
         }
 
+        /**
+         * <summary>
+         * <see cref="IRoboticModel"> for translating between joint positions to robot angles
+         * </summary>
+         */
         IRoboticModel Model { public set; private get; }
+
+        /**
+         * <summary>
+         * Default Constructor
+         * </summary>
+         * 
+         * <remarks>
+         * Setting the JointPositions parameter will throw a <see cref="NoRoboticModelException"/> if Model is not set.
+         * </remarks>
+         */
+        public JointAngleTranslator()
+        {
+            Model = null;
+        }
+
+        /**
+         * <summary>
+         * Constructor requiring a model to be passed in.
+         * </summary>
+         * 
+         * <param name="model">Robotic Model to use on construction</param>
+         */
+        public JointAngleTranslator(IRoboticModel model)
+        {
+            Model = model;
+        }
 
     }
 }

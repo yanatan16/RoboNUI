@@ -6,25 +6,29 @@ using System.Text;
 namespace RoboNui.RobotAdapter.SSC32
 {
     /**
-     * Query Pulse Width Servo Command
+     * <summary>
+     * Servo controller command to query the pulse width of channels on the servo controller
      * 
-     * Base class: Servo Command Group
+     * This command group has return values from the servo.
      * 
+     * Base class: <see cref="ServoCommandGroup"/>
+     * </summary>
+     * 
+     * <remarks>
      * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
-     * Query the pulse width of a list of channels
+     * </remarks>
      */
     class QueryPulseWidth : ServoCommandGroup
     {
         /**
-         * List of channels to query pulse width
+         * <summary>List of channels to query pulse width</summary>
          */
         private List<uint> Channel;
 
         /**
-         * Constructor
-         * 
-         * Construct base class and instantiate class variable
+         * <summary>
+         * Constructor which instantiates a Pulse Width Query Servo Command Type.
+         * </summary>
          */
         public QueryPulseWidth() :
             base(ServoCommandType.QueryPulseWidth)
@@ -33,9 +37,14 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
+         * <summary>
          * Add channel to query command
+         * </summary>
          * 
-         * Parameter: channel number
+         * <param name="ch">Channel number</param>
+         * <remarks>
+         * Increases the response length by one
+         * </remarks>
          */
         public void addChannel(uint ch)
         {
@@ -45,7 +54,7 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * (See ServoCommandGroup.IncCommandString(int i) for comments)
+         * <summary>See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary.</summary>
          */
         protected string ServoCommandGroup.IncCommandString(int i)
         {
@@ -56,7 +65,7 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * (See ServoCommandGroup.PostCommandString() for comments)
+         * <summary>See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary.</summary>
          */
         protected string ServoCommandGroup.PostCommandString()
         {
@@ -64,11 +73,12 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * Interpret the response from the servo controller
-         * Static method
+         * <summary>
+         * Static method to interpret the response from the servo controller
+         * </summary>
          * 
-         * Paramter: Response received from servo controller
-         * Returns: bool true if movement in complete, false otherwise
+         * <param name="response">Response received from servo controller</param>
+         * <returns>Array of pulse widths corresponding to channels selected.</returns>
          */
         public static ulong[] interpretPulseWidths(byte[] response)
         {

@@ -8,15 +8,18 @@ using RoboNui.Core;
 namespace RoboNui.RecordPlayback
 {
     /**
-     * Recorder
+     * <summary>
+     * This class records angles sent to the <see cref="IRoboticAngleConsumer"/> and stores it for later.
      * 
-     * This class records angles sent to the Robotic servo controllers
-     * and stores them for later.
-     * 
-     * Interface: IRoboticAngleConsumer
+     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * </summary>
+     * <seealso cref="RoboticAngleProvider"/>
      */
     class Recorder : IRoboticAngleConsumer
     {
+        /**
+         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for the inherited method summary</summary>
+         */
         void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             throw new NotImplementedException();

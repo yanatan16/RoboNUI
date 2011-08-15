@@ -10,39 +10,48 @@ using RoboNui.Core;
 namespace RoboNui.RobotAdapter
 {
     /**
-     * Robotic Servo Controller - Arm
-     * 
-     * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
-     * Base class: ServoController
-     * Interface: IRoboticAngleConsumer
-     * 
+     * <summary>
      * This class controls the Arm servos based on angles
      * passed in through the IRoboticAngleConsumer interface.
+     * 
+     * Base class: <see cref="ServoController"/>
+     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * </summary>
+     * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+     * <seealso cref="ServoController"/>
+     * <seealso cref="IRoboticAngleConsumer"/>
      */
     class RoboticArmServoController : ServoController, IRoboticAngleConsumer
     {
         /**
+         * <summary>
          * Mapping of RoboNUI.RoboticAngle to SSC-32 servo channels
+         * </summary>
          */
         public Dictionary<RoboticAngle, uint> ChannelMap { get; set; }
 
         /**
+         * <summary>
          * Generic speed for each movement
+         * </summary>
+         * <remarks>In units of microsecond per second</remarks>
          */
         public ulong Speed { get; set; }
 
         /**
+         * <summary>
          * A set of pulse width constants for this consumer to use
+         * </summary>
          */
         protected PulseWidthConstants MyPulseWidthConstants;
 
         /**
-         * Constructor
-         * 
-         * Construct class with port name, channel map, and default movement speed
-         * 
-         * Parameters: port name, channel map, and speed (usec/sec)
+         * <summary>
+         * Constructor with port name, channel map, and default movement speed
+         * </summary>
+         * <param name="channelMap">Map of robotic angles to channel number</param>
+         * <param name="portName">The serial port of the servo controller</param>
+         * <param name="speed">Optional generic speed of each movement</param>
          */
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
             base(portName)
@@ -53,9 +62,8 @@ namespace RoboNui.RobotAdapter
         }
 
         /**
-         * (See IRoboticAngleConsumer.updateAngles(AngleSet angles) for comments)
+         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for inherited method summary.</summary>
          */
-
         public void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
@@ -68,10 +76,11 @@ namespace RoboNui.RobotAdapter
         }
 
         /**
-         * Get positions of joints
+         * <summary>Get positions of joints</summary>
          * 
-         * Parameter: Joint list - list of joints requesting positions on
-         * Returns: Angle set of joint positions
+         * <param name="roboticAngleList">List of joints to retreive angle positions for</param>
+         * Joint list - list of joints requesting positions on
+         * <returns>Angle set of joint positions</returns>
          */
         public AngleSet GetAngles(List<RoboticAngle> roboticAngleList)
         {
@@ -97,9 +106,9 @@ namespace RoboNui.RobotAdapter
         }
 
         /**
-         * Query if movement is finished
+         * <summary>Query if movement is finished</summary>
          * 
-         * Returns: bool true if movement is finished, false otherwise
+         * <returns>Boolean true if movement is finished, false otherwise</returns>
          */
         public bool IsMovementFinished()
         {

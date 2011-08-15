@@ -6,47 +6,56 @@ using System.Text;
 namespace RoboNui.RobotAdapter.SSC32
 {
     /**
-     * Servo Movement Command
+     * <summary>
+     * A servo command for servo movement to an SSC-32 servo controller
      * 
      * Base class: Servo Command Group
-     * 
+     * </summary>
+     * <remarks>
      * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
-     * A representation for a servo movement command to an SSC-32 servo controller
+     * </remarks>
+     * <seealso cref="ServoCommandGroup"/>
      */
     class ServoMovementCommand : ServoCommandGroup
     {
         /**
-         * Channel number to command (motor)
-         * Range: 0 - 31
+         * <summary>List of channel numbers to command (motor)</summary>
+         * <remarks>Range: 0 - 31</remarks>
          */
         private List<uint> Channel;
 
         /**
-         * Pulse width to command (position)
-         * In unites of usec
+         * <summary>List of pulse widths to command (position)</summary>
+         * <remarks>
+         * In units of microseconds.
          * Range: 0 - 3000, 1500 is middle
+         * </remarks>
          */
         private List<ulong> PulseWidth;
 
         /**
-         * Movement speed to command, optional
-         * In units of usec / sec
-         * Only limits speed, may go slower, may go slower if time denotes
+         * <summary>List of movement speeds to command, optional</summary>
+         * <remarks>
+         * In units of microseconds per second
+         * Only limits speed, may go slower if <see cref="TotalTime"/> denotes.
+         * </remarks>
          */
         private List<ulong> MoveSpeed; 
 
         /**
-         * Total time for entire movement command group
-         * In unites of msec
-         * Only limits speed, may go slower if speed denotes
+         * <summary>Total time for entire movement command group</summary>
+         * <remarks>
+         * In unites of milliseconds
+         * Only limits speed, may go slower if <see cref="MoveSpeed"/> denotes
+         * </remarks>
          */
         public ulong TotalTime { get; set; }
 
         /**
-         * Constructor
-         * 
-         * Constructs base class, and instantiates class variables
+         * <summary>
+         * Constructor for this class.
+         * Instantiates a ServoMovement command from base class.
+         * </summary>
          */
         public ServoMovementCommand() :
             base(ServoCommandGroup.ServoCommandType.ServoMovement)
@@ -58,9 +67,12 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
+         * <summary>
          * Add a servo movement command to the command group
-         * 
-         * Pameters: Channel number, pulse width and movement speed (optional)
+         * </summary>
+         * <param name="ch">Channel number</param>
+         * <param name="pw">Pulse width</param>
+         * <param name="ms">movement speed (optional)</param>
          */
         public void addServoMovementCommand(uint ch, ulong pw, ulong ms = 0)
         {
@@ -69,9 +81,11 @@ namespace RoboNui.RobotAdapter.SSC32
             PulseWidth.Add(pw);
             MoveSpeed.Add(ms);
         }
-        
+
         /**
-         * (See ServoCommandGroup.IncCommandString(int i) for comments)
+         * <summary>
+         * See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary.
+         * </summary>
          */
         protected string ServoCommandGroup.IncCommandString(int i)
         {
@@ -84,7 +98,9 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * (See ServoCommandGroup.PostCommandString() for comments)
+         * <summary>
+         * See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary.
+         * </summary>
          */
         protected string ServoCommandGroup.PostCommandString()
         {

@@ -8,17 +8,18 @@ using RoboNui.Core;
 namespace RoboNui.RobotAdapter
 {
     /**
-     * Robotic Servo Controller - Marionette
+     * <summary>
+     * This class controls the Marionette servos based on angles passed in through the <see cref="IRoboticAngleConsumer"/> interface.
      * 
-     * This class controls the Marionette servos based on angles
-     * passed in through the IRoboticAngleConsumer interface.
-     * 
-     * Interface: IRoboticAngleConsumer
+     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * </summary>
      */
     class RoboticMarionetteServoController : IRoboticAngleConsumer
     {
 
-
+        /**
+         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for inherited method summary.</summary>
+         */
         void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             throw new NotImplementedException();

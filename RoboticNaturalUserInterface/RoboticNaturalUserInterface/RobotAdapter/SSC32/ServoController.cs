@@ -7,25 +7,26 @@ using System.IO.Ports;
 namespace RoboNui.RobotAdapter.SSC32
 {
     /**
-     * Servo Controller
-     * 
-     * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
+     * <summary>
      * Base class for communicating commands to an SSC-32 servo controller
+     * </summary>
+     * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
      */
     class ServoController
     {
         /**
-         * Serial port communicating on
+         * <summary>
+         * Serial port this controller communicates on
+         * </summary>
          */
         private SerialPort port;
         
         /**
-         * Constructor
+         * <summary>
+         * Constructor with port name and open the port
+         * </summary>
          * 
-         * Construct class with port name and open the port
-         * 
-         * Parameter: port name
+         * <param name="portName">Name of the serial port</param>
          */
         protected ServoController(string portName)
         {
@@ -34,9 +35,10 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * Destructor
-         * 
-         * Close the port
+         * <summary>
+         * Destructor of the class. 
+         * Closes the serial port.
+         * </summary>
          */
         protected ~ServoController()
         {
@@ -44,10 +46,15 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * Send a command to the port
+         * <summary>
+         * Send a command to the servo controller
+         * </summary>
          * 
-         * Parameter: Command to send
-         * Returns: byte array if command has a response (length equal to com.getResponseLength())
+         * <param name="com">Command to send</param>
+         * <returns>
+         * Byte array if command has a response.
+         * Length of byte array is com.getResponseLength())
+         * </returns>
          */
         protected byte[] sendCommand(ServoCommandGroup com)
         {

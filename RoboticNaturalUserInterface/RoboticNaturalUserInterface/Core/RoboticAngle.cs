@@ -6,10 +6,12 @@ using System.Text;
 namespace RoboNui.Core
 {
     /**
-     * Robotic Angles
-     * 
+     * <summary>
      * List of angles possible in this system
+     * </summary>
+     * <remarks>
      * Each servo controller will only use a subset of these
+     * </remarks>
      */
     enum RoboticAngle
     {

@@ -5,18 +5,22 @@ using System.Text;
 
 using RoboNui.Core;
 
+using Microsoft.Research.Kinect.Nui;
+
 namespace RoboNui.KinectAdapter
 {
     /**
-     * Skeletal Joint Monitor
+     * <summary>
+     * This class monitors the Kinect data feed for updates to the Joint positions for certain monitored joints. 
+     * The joints in question are passed in dynamically.
+     * After a certain period, also passed in dynamically, the new Joint positions are forwarded to the JAT.
+     * </summary>
      * 
-     * This class monitors the Kinect data feed for updates to the Joint 
-     * positions for certain monitored joints. The joints in question are 
-     * passed in dynamically. After a certain period, also passed in dynamically,
-     * the new Joint positions are forwarded to the JAT.
      */
     class SkeletalJointMonitor
     {
+        //TODO Implement
+
         private JointAngleTranslator jat;
         private double period;
         //private Joints interestedJoints;

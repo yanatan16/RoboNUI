@@ -6,20 +6,23 @@ using System.Text;
 namespace RoboNui.RobotAdapter.SSC32
 {
     /**
-     * Servo Command Group
-     * 
-     * Abstract Base Class
+     * <summary>
+     * An abstract base class representation of a servo command group to be sent to an SSC-32 servo controller.
+     * </summary>
+     * <remarks>
      * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
-     * A representation of a servo command group to be sent to an SSC-32
-     * servo controller
+     * </remarks>
+     * <seealso cref="QueryMovementStatus"/>
+     * <seealso cref="QueryPulseWidth"/>
+     * <seealso cref="ServoMovementCommand"/>
+     * <seealso cref="ServoController"/>
      */
     abstract class ServoCommandGroup
     {
         /**
-         * Servo Command Type
-         * 
-         * An enumeration of the 12 commands that can be sent to an SSC-32
+         * <summary
+         * An enumeration of the 12 command group types that can be sent to an SSC-32.
+         * </summary>
          */
         public enum ServoCommandType
         {
@@ -38,23 +41,27 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * Type of Servo Command
+         * <summary>Type of Servo Command</summary>
          */
         public ServoCommandType ComType { get; private set; }
+
         /**
-         * Number of commands in this command group
+         * <summary>Number of commands in this command group</summary>
          */
         protected uint NumCommands { get; set; }
 
         /**
-         * Length of the response in bytes
+         * <summary>Length of the response</summary>
+         * <remarks>In units of bytes</remarks>
          */
         public uint ResponseLength;
 
         /**
-         * Constructor
+         * <summary>
+         * Constructor for a servo command group
+         * </summary>
          * 
-         * Parameters: Type, response length, and number of commands
+         * <param name="numCommands">Number of commands</param>
          */
         protected ServoCommandGroup(ServoCommandType type, uint responseLength = 0, uint numCommands = 0) 
         {
@@ -64,9 +71,10 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-        * Command String
+        * <summary>Construct the command string to send to the servo controller</summary>
         * 
-        * Returns: The command string to send to the Servo Controller
+        * <returns>The command string to send</summary>
+        * <seealso cref="ServoController"/>
         */
         public string CommandString()
         {
@@ -80,23 +88,21 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-        * Incremental Command String
-        * Abstract method
+        * <summary>
+        * Abstract method to get the command string for each individual command sequentially
+        * </summary>
         * 
-        * Get the command string for each individual command
-        * 
-        * Parameter: Index of command to output
-        * Returns: Command string for command index as parameter
+        * <param name="commandIndex">Index of command to output</param>
+        * <returns>Incremental command string to send to the servo controller</returns>
         */
         protected abstract string IncCommandString(int commandIndex);
 
         /**
-        * Post-Command String
-        * Abstract method
+        * <summary>
+        * Abstract method to get the end of the command string
+        * </summary>
         * 
-        * Get the command string after all individual commands
-        * 
-        * Returns: String of command after all incremental commands
+        * <returns>End of the command string to send to the servo controller</returns>
         */
         protected abstract string PostCommandString();
     }

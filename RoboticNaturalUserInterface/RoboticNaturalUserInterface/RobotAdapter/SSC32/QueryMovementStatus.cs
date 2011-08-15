@@ -6,20 +6,19 @@ using System.Text;
 namespace RoboNui.RobotAdapter.SSC32
 {
     /**
-     * Query Movement Status
+     * <summary>
+     * Query the movement status of the servo controller.
      * 
-     * Base class: Servo Command Group
+     * This command group has one return byte.
      * 
-     * Author: Jon Eisen (yanatan16@gmail.com)
-     * 
-     * Query the movement status of the servo controller
+     * Base class: <see cref="ServoCommandGroup"/>
+     * </summary>
+     * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
      */
     class QueryMovementStatus : ServoCommandGroup
     {
         /**
-         * Constructor
-         * 
-         * Construct base class with a single return byte
+         * <summary>Constructor to construct a Query Movement Status Command Group</summary>
          */
         public QueryMovementStatus() :
             base(ServoCommandType.QueryMovementStatus, 1)
@@ -27,7 +26,7 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * (See ServoCommandGroup.IncCommandString(int i) for comments)
+         * <summary>See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary</summary>
          */
         protected String ServoCommandGroup.IncCommandString(int i)
         {
@@ -35,7 +34,7 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * (See ServoCommandGroup.PostCommandString() for comments)
+         * <summary>See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary</summary>
          */
         protected String ServoCommandGroup.PostCommandString()
         {
@@ -43,11 +42,11 @@ namespace RoboNui.RobotAdapter.SSC32
         }
 
         /**
-         * Interpret the response from the servo controller
-         * Static method
-         * 
-         * Paramter: Response received from servo controller
-         * Returns: bool true if movement in complete, false otherwise
+         * <summary>
+         * Static method to interpret the response from the servo controller
+         * </summary>
+         * <param name="response">Response received from servo controller</param>
+         * <returns>Boolean true if movement in complete, false otherwise</returns>
          */
         public static bool interpretMovementStatus(byte[] response)
         {

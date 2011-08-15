@@ -6,24 +6,32 @@ using System.Text;
 namespace RoboNui.Core
 {
     /**
-     * Struct of constants for translating pulse widths to angles and inverse
+     * <summary>
+     * Struct of constants for translating pulse widths to angles and angles to pulse widths.s
+     * </summary>
      * 
-     * Passed in to getPulseWidthMap in AngleSet
+     * <remarks>
+     * Author: Jon Eisen (yanatan16@gmail.com)
+     * </remarks>
      */
     struct PulseWidthConstants
     {
         /**
-         * Multiplier M for linear function of angle to pulse width: PW = M * A + C
+         * <summary>Multiplier M for linear function of angle to pulse width: PW = M * A + C</summary>
          */
         double Multiplier { private get; public set; }
 
         /**
-         * Constant C for linear function of angle to pulse width: PW = M * A + C
+         * <summary>Constant C for linear function of angle to pulse width: PW = M * A + C</summary>
          */
         ulong Constant { private get; public set; }
 
         /**
-         * Constructor
+         * <summary>
+         * Constructor with arguments
+         * </summary>
+         * <param name="C">Constant value</param>
+         * <param name="M">Multiplier value</param>
          */
         public PulseWidthConstants(double M, ulong C)
         {
@@ -32,7 +40,11 @@ namespace RoboNui.Core
         }
         
         /**
+         * <summary>
          * Convert an Angle to a Pulse Width
+         * </summary>
+         * <param name="a">Angle to convert</param>
+         * <returns>Pulse width</returns>
          */
         public ulong AngleToPulseWidth(double a)
         {
@@ -40,7 +52,11 @@ namespace RoboNui.Core
         }
 
         /**
+         * <summary>
          * Convert a Pulse Width to an Angle
+         * </summary>
+         * <param name="pw">Pulse width to convert</param>
+         * <returns>Angle value</returns>
          */
         public double PulseWidthToAngle(ulong pw)
         {
@@ -50,23 +66,29 @@ namespace RoboNui.Core
         
 
     /**
-     * Angle Set
-     * 
-     * A single struct that contains the angles of the robot
+     * <summary>
+     * A struct that contains the angles of the robot
+     * </summary>
+     * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+     * <seealso cref="RoboticAngle"/>
      */
     struct AngleSet
     {
         
         /**
-         * Angle Map
-         * 
+         * <summary>
          * Map of Robotic Angles to double angles.
+         * </summary>
+         * <remarks>
          * Angles are in the range -Math.PI to Math.PI
+         * </remarks>
          */
         public Dictionary<RoboticAngle, double> AngleMap { get; set; }
 
         /**
-         * Construct the struct
+         * <summary>
+         * Default Constructor
+         * </summary>
          */
         public AngleSet()
         {
@@ -74,12 +96,11 @@ namespace RoboNui.Core
         }
 
         /**
+         * <summary>
          * Translate the Angle Map to a pulse width map given a struct of Pulse Width Constants
-         * 
-         * Parameters:
-         *      Pulse Width Constant for pulse width translation
-         *      
-         * Returns: Pulse Width Dictionary Map
+         * </summary>
+         * <param name="pwc">Pulse Width Constant for pulse width translation</param>
+         * <returns>Pulse Width Dictionary Map</returns>
          */
         public Dictionary<RoboticAngle, ulong> getPulseWidthMap(PulseWidthConstants pwc)
         {
@@ -92,11 +113,11 @@ namespace RoboNui.Core
         }
 
         /**
+         * <summary>
          * Set the Angle Map by setting a Pulse Width Map given a struct of Pulse Width Constants
-         * 
-         * Parameters:
-         *      New Angle map in pulse widths
-         *      Pulse Width Constant for pulse width translation
+         * </summary>
+         * <param name="PulseWidthMap">Map of roboticangles to pulse widths</param>
+         * <param name="pwc">Pulse Width Constant for pulse width translation</param>
          */
         public void setPulseWidthMap(Dictionary<RoboticAngle, ulong> PulseWidthMap, PulseWidthConstants pwc)
         {

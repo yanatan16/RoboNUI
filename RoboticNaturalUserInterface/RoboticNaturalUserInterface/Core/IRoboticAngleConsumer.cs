@@ -8,19 +8,18 @@ using RoboNui.Core;
 namespace RoboNui.Core
 {
     /**
-     * Robotic Angle Consumer Interface
-     * 
-     * Author: Jon Eisen (jonathan.eisen@ngc.com)
-     * 
-     * Provide an interface for receiving updated angles from the JAT.
+     * <summary>
+     * Interface for receiving updated angles from the JAT.
+     * </summary>
+     * <remarks>Author: Jon Eisen (jonathan.eisen@ngc.com)</remarks>
      */
     interface IRoboticAngleConsumer
     {
 
         /**
-         * Update the angles to this consumer
+         * <summary>Update the angles to this consumer<summary>
          * 
-         * Parameter: Angle set
+         * <param name="angles">Angle set to update this consumer with</param>
          */
         public void UpdateAngles(AngleSet angles);
     }
