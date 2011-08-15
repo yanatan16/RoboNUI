@@ -56,7 +56,7 @@ namespace RoboNui.RobotAdapter.SSC32
         /**
          * <summary>See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary.</summary>
          */
-        protected string ServoCommandGroup.IncCommandString(int i)
+        protected override string IncCommandString(int i)
         {
             if (i == 0)
                 return String.Format("QP %ud", Channel[i]);
@@ -67,7 +67,7 @@ namespace RoboNui.RobotAdapter.SSC32
         /**
          * <summary>See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary.</summary>
          */
-        protected string ServoCommandGroup.PostCommandString()
+        protected override string PostCommandString()
         {
             return "";
         }

@@ -22,6 +22,6 @@ namespace RoboNui.Core
          * <param name="js"> Joint positions from human controller </param>
          * <returns> Robotic angles from robot model </returns>
          */
-        public AngleSet Translate(JointSet js);
+        AngleSet Translate(JointSet js);
     }
 }

@@ -28,7 +28,7 @@ namespace RoboNui.RobotAdapter.SSC32
         /**
          * <summary>See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary</summary>
          */
-        protected String ServoCommandGroup.IncCommandString(int i)
+        protected override String IncCommandString(int i)
         {
             return "";
         }
@@ -36,7 +36,7 @@ namespace RoboNui.RobotAdapter.SSC32
         /**
          * <summary>See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary</summary>
          */
-        protected String ServoCommandGroup.PostCommandString()
+        protected override String PostCommandString()
         {
             return "Q";
         }

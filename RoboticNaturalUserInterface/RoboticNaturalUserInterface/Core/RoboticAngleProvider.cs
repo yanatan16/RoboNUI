@@ -13,17 +13,27 @@ namespace RoboNui.Core
      * angle consumers.
      * </summary>
      * 
-     * </remarks> Author: Jon Eisen (yanatan16@gmail.com) </remarks>
-     * <seealso>IRoboticAngleConsumer</seealso>
+     * <remarks> Author: Jon Eisen (yanatan16@gmail.com) </remarks>
+     * <seealso cref="T:RoboNui.Core.IRoboticAngleConsumer"/>
      */
     class RoboticAngleProvider
     {
         /**
          * <summary>
-         * List of <see cref="IRoboticAngleConsumer"/>angle consumers</see> for this angle provider
+         * List of <see cref="IRoboticAngleConsumer"/> registered to this angle provider
          * </summary>
          */
-        private List<IRoboticAngleConsumer> angleConsumers;
+        private List<IRoboticAngleConsumer> AngleConsumers;
+
+        /**
+         * <summary>
+         * Constructor for this class
+         * </summary>
+         */
+        protected RoboticAngleProvider()
+        {
+            AngleConsumers = new List<IRoboticAngleConsumer>();
+        }
 
         /**
          * <summary>Add an angle consumer to the list</summary>
@@ -31,7 +41,7 @@ namespace RoboNui.Core
          */
         public void addAngleConsumer(IRoboticAngleConsumer newAngleConsumer)
         {
-            angleConsumers.Add(newAngleConsumer);
+            AngleConsumers.Add(newAngleConsumer);
         }
 
         /**
@@ -40,7 +50,7 @@ namespace RoboNui.Core
          */
         public void removeAngleConsumer(IRoboticAngleConsumer oldAngleConsumer)
         {
-            angleConsumers.Remove(oldAngleConsumer);
+            AngleConsumers.Remove(oldAngleConsumer);
         }
 
         /**
@@ -51,7 +61,7 @@ namespace RoboNui.Core
          */
         protected void SendAngles(AngleSet angles)
         {
-            for (List<IRoboticAngleConsumer>.Enumerator en = angleConsumers.GetEnumerator(); en.MoveNext(); )
+            for (List<IRoboticAngleConsumer>.Enumerator en = AngleConsumers.GetEnumerator(); en.MoveNext(); )
             {
                 (en.Current as IRoboticAngleConsumer).UpdateAngles(angles);
             }

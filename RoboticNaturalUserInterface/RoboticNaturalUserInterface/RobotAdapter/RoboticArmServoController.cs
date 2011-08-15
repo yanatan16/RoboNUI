@@ -64,7 +64,7 @@ namespace RoboNui.RobotAdapter
         /**
          * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for inherited method summary.</summary>
          */
-        public void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
+        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
             for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.getPulseWidthMap(MyPulseWidthConstants).GetEnumerator(); en.MoveNext(); )

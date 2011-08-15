@@ -20,7 +20,7 @@ namespace RoboNui.RobotAdapter.SSC32
     abstract class ServoCommandGroup
     {
         /**
-         * <summary
+         * <summary>
          * An enumeration of the 12 command group types that can be sent to an SSC-32.
          * </summary>
          */
@@ -62,6 +62,8 @@ namespace RoboNui.RobotAdapter.SSC32
          * </summary>
          * 
          * <param name="numCommands">Number of commands</param>
+         * <param name="type">Type of the Command Group</param>
+         * <param name="responseLength">Length of the response (in bytes)</param>
          */
         protected ServoCommandGroup(ServoCommandType type, uint responseLength = 0, uint numCommands = 0) 
         {
@@ -73,7 +75,7 @@ namespace RoboNui.RobotAdapter.SSC32
         /**
         * <summary>Construct the command string to send to the servo controller</summary>
         * 
-        * <returns>The command string to send</summary>
+        * <returns>The command string to send</returns>
         * <seealso cref="ServoController"/>
         */
         public string CommandString()

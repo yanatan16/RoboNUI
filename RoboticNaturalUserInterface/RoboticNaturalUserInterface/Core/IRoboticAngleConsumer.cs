@@ -17,10 +17,10 @@ namespace RoboNui.Core
     {
 
         /**
-         * <summary>Update the angles to this consumer<summary>
+         * <summary>Update the angles to this consumer</summary>
          * 
          * <param name="angles">Angle set to update this consumer with</param>
          */
-        public void UpdateAngles(AngleSet angles);
+        void UpdateAngles(AngleSet angles);
     }
 }

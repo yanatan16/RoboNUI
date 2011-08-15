@@ -14,17 +14,17 @@ namespace RoboNui.Core
      * Author: Jon Eisen (yanatan16@gmail.com)
      * </remarks>
      */
-    struct PulseWidthConstants
+    class PulseWidthConstants
     {
         /**
          * <summary>Multiplier M for linear function of angle to pulse width: PW = M * A + C</summary>
          */
-        double Multiplier { private get; public set; }
+        private double Multiplier { get; set;  }
 
         /**
          * <summary>Constant C for linear function of angle to pulse width: PW = M * A + C</summary>
          */
-        ulong Constant { private get; public set; }
+        private ulong Constant { get; set; }
 
         /**
          * <summary>
@@ -33,7 +33,8 @@ namespace RoboNui.Core
          * <param name="C">Constant value</param>
          * <param name="M">Multiplier value</param>
          */
-        public PulseWidthConstants(double M, ulong C)
+        public PulseWidthConstants(double M, ulong C) :
+            base()
         {
             Multiplier = M;
             Constant = C;
@@ -84,16 +85,6 @@ namespace RoboNui.Core
          * </remarks>
          */
         public Dictionary<RoboticAngle, double> AngleMap { get; set; }
-
-        /**
-         * <summary>
-         * Default Constructor
-         * </summary>
-         */
-        public AngleSet()
-        {
-            AngleMap = new Dictionary<RoboticAngle, double>();
-        }
 
         /**
          * <summary>

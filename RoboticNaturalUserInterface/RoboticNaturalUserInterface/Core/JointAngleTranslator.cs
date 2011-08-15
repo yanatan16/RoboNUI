@@ -57,35 +57,40 @@ namespace RoboNui.Core
          * <exception cref="NoRoboticModelException">Thrown when Model is not set</exception>
          * <seealso cref="IRoboticModel"/>
          */
-        JointSet JointPositions
+        public JointSet JointPositions
         {
-            public set 
+            get
+            {
+                return JointPositions;
+            }
+            set 
             {
                 if (Model != null)
                     base.SendAngles(Model.Translate(JointPositions));
                 else
                     throw new NoRoboticModelException();
             }
-            private get;
         }
 
         /**
          * <summary>
-         * <see cref="IRoboticModel"> for translating between joint positions to robot angles
+         * The Model for translating between joint positions to robot angles
          * </summary>
+         * <seealso cref="T:RoboNui.Core.IRoboticModel"/>
          */
-        IRoboticModel Model { public set; private get; }
+        public IRoboticModel Model { set; get; }
 
         /**
          * <summary>
-         * Default Constructor
+         * Constructor for this class
          * </summary>
          * 
          * <remarks>
          * Setting the JointPositions parameter will throw a <see cref="NoRoboticModelException"/> if Model is not set.
          * </remarks>
          */
-        public JointAngleTranslator()
+        public JointAngleTranslator() :
+            base()
         {
             Model = null;
         }

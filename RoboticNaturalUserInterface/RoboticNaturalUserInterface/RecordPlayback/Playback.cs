@@ -16,5 +16,10 @@ namespace RoboNui.RecordPlayback
      */
     class Playback : RoboticAngleProvider
     {
+        public Playback() :
+            base()
+        {
+
+        }
     }
 }

@@ -87,7 +87,7 @@ namespace RoboNui.RobotAdapter.SSC32
          * See <see cref="ServoCommandGroup.IncCommandString"/> for inherited method summary.
          * </summary>
          */
-        protected string ServoCommandGroup.IncCommandString(int i)
+        protected override string IncCommandString(int i)
         {
             string ret = string.Empty;
             //Required parameters
@@ -102,7 +102,7 @@ namespace RoboNui.RobotAdapter.SSC32
          * See <see cref="ServoCommandGroup.PostCommandString"/> for inherited method summary.
          * </summary>
          */
-        protected string ServoCommandGroup.PostCommandString()
+        protected override string PostCommandString()
         {
             if (TotalTime > 0)
                 return string.Format("T%uld", TotalTime);

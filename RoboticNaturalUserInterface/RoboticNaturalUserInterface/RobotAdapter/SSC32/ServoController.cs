@@ -40,7 +40,7 @@ namespace RoboNui.RobotAdapter.SSC32
          * Closes the serial port.
          * </summary>
          */
-        protected ~ServoController()
+        ~ServoController()
         {
             port.Close();
         }
