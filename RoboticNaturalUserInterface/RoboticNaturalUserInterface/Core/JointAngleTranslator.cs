@@ -5,7 +5,7 @@ using System.Text;
 
 using RoboNui.KinectAdapter;
 
-using Messaging;
+using Utilities.Messaging;
 
 namespace RoboNui.Core
 {

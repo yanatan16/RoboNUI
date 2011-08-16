@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using RoboNui.Core;
-using RoboNui.Messaging;
+using Utilities.Messaging;
 
 namespace RoboNui.RecordPlayback
 {

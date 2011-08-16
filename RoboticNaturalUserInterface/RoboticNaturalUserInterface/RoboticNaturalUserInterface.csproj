@@ -57,7 +57,6 @@
     <Compile Include="Core\AngleSet.cs" />
     <Compile Include="Core\ControllerJoints.cs" />
     <Compile Include="Core\GestureRecognizer.cs" />
-    <Compile Include="Messaging\IConsumer.cs" />
     <Compile Include="Core\JointSet.cs" />
     <Compile Include="Core\IRoboticModel.cs" />
     <Compile Include="Core\Position3d.cs" />
@@ -68,7 +67,6 @@
     <Compile Include="Core\JointAngleTranslator.cs" />
     <Compile Include="RecordPlayback\Playback.cs" />
     <Compile Include="RecordPlayback\Recorder.cs" />
-    <Compile Include="Messaging\RoboticAngleProvider.cs" />
     <Compile Include="RobotAdapter\RoboticArmServoController.cs" />
     <Compile Include="RobotAdapter\RoboticMarionetteServoController.cs" />
     <Compile Include="KinectAdapter\SkeletalJointMonitor.cs" />
@@ -109,9 +107,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\MessagingUtilities.csproj">
+    <ProjectReference Include="..\MessagingUtilities\Utilities.csproj">
       <Project>{BA547776-CFDE-4BD1-BA91-1C8803DE41AA}</Project>
-      <Name>MessagingUtilities</Name>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

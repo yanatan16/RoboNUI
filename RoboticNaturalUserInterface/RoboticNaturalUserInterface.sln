@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboticNaturalUserInterface", "RoboticNaturalUserInterface\RoboticNaturalUserInterface.csproj", "{0109AB12-ED7A-41C9-813B-32A110759E54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingUtilities", "ClassLibrary1\MessagingUtilities.csproj", "{BA547776-CFDE-4BD1-BA91-1C8803DE41AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "MessagingUtilities\Utilities.csproj", "{BA547776-CFDE-4BD1-BA91-1C8803DE41AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
