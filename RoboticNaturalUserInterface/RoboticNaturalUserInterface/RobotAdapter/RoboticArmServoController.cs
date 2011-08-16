@@ -6,6 +6,7 @@ using System.IO.Ports;
 
 using RoboNui.RobotAdapter.SSC32;
 using RoboNui.Core;
+using RoboNui.Messaging;
 
 namespace RoboNui.RobotAdapter
 {
@@ -15,13 +16,13 @@ namespace RoboNui.RobotAdapter
      * passed in through the IRoboticAngleConsumer interface.
      * 
      * Base class: <see cref="ServoController"/>
-     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * Interface: <see cref="T:IConsumer{AngleSet}"/>
      * </summary>
      * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
      * <seealso cref="ServoController"/>
-     * <seealso cref="IRoboticAngleConsumer"/>
+     * <seealso cref="T:IConsumer{AngleSet}"/>
      */
-    class RoboticArmServoController : ServoController, IRoboticAngleConsumer
+    class RoboticArmServoController : ServoController, IConsumer<AngleSet>
     {
         /**
          * <summary>
@@ -62,9 +63,9 @@ namespace RoboNui.RobotAdapter
         }
 
         /**
-         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for inherited method summary.</summary>
+         * <summary>See <see cref="M:IConsumer{AngleSet}.Update"/> for inherited method summary.</summary>
          */
-        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
+        void IConsumer<AngleSet>.Update(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
             for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.getPulseWidthMap(MyPulseWidthConstants).GetEnumerator(); en.MoveNext(); )

@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Core\AngleSet.cs" />
     <Compile Include="Core\ControllerJoints.cs" />
+    <Compile Include="Core\GestureRecognizer.cs" />
+    <Compile Include="Messaging\IConsumer.cs" />
     <Compile Include="Core\JointSet.cs" />
     <Compile Include="Core\IRoboticModel.cs" />
     <Compile Include="Core\Position3d.cs" />
@@ -66,12 +68,11 @@
     <Compile Include="Core\JointAngleTranslator.cs" />
     <Compile Include="RecordPlayback\Playback.cs" />
     <Compile Include="RecordPlayback\Recorder.cs" />
-    <Compile Include="Core\RoboticAngleProvider.cs" />
+    <Compile Include="Messaging\RoboticAngleProvider.cs" />
     <Compile Include="RobotAdapter\RoboticArmServoController.cs" />
     <Compile Include="RobotAdapter\RoboticMarionetteServoController.cs" />
     <Compile Include="KinectAdapter\SkeletalJointMonitor.cs" />
     <Compile Include="Core\RoboticAngle.cs" />
-    <Compile Include="Core\IRoboticAngleConsumer.cs" />
     <Compile Include="RobotAdapter\SSC32\ServoMovementCommand.cs" />
     <Compile Include="RobotAdapter\SSC32\QueryMovementStatus.cs" />
     <Compile Include="Core\StateManager.cs" />
@@ -106,6 +107,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\MessagingUtilities.csproj">
+      <Project>{BA547776-CFDE-4BD1-BA91-1C8803DE41AA}</Project>
+      <Name>MessagingUtilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

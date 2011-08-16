@@ -5,16 +5,18 @@ using System.Text;
 
 using RoboNui.Core;
 
+using Messaging;
+
 namespace RoboNui.RecordPlayback
 {
     /**
      * <summary>
-     * This class reads in stored angle data for robotic servos and forwards them to the <see cref="IRoboticAngleConsumer"/> denoted.
+     * This class reads in stored angle data for robotic servos and forwards them to the <see cref="T:RoboNui.Messaging.IConsumer"/> denoted.
      * 
-     * Base Class: <see cref="RoboticAngleProvider"/>
+     * Base Class: <see cref="Provider{AngleSet}"/>
      * </summary>
      */
-    class Playback : RoboticAngleProvider
+    class Playback : Provider<AngleSet>
     {
         public Playback() :
             base()

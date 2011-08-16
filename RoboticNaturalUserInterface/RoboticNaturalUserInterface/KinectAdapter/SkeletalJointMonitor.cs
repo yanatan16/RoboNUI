@@ -5,6 +5,8 @@ using System.Text;
 
 using RoboNui.Core;
 
+using Messaging;
+
 using Microsoft.Research.Kinect.Nui;
 
 namespace RoboNui.KinectAdapter
@@ -17,33 +19,35 @@ namespace RoboNui.KinectAdapter
      * </summary>
      * 
      */
-    class SkeletalJointMonitor
+    class SkeletalJointMonitor : Provider<JointSet>
     {
         //TODO Implement
 
-        private JointAngleTranslator jat;
-        private double period;
-        //private Joints interestedJoints;
+        public double Period { get; set; }
 
-        public SkeletalJointMonitor(JointAngleTranslator _jat)
+        public List<JointID> InterestedJoints { get; set; }
+
+        public SkeletalJointMonitor() :
+            base()
         {
-            this.jat = _jat;
-            period = 0;
+            Period = 0;
+            InterestedJoints = new List<JointID>();
         }
 
         public void setPeriod(double _period)
         {
-            this.period = _period;
+            this.Period = _period;
         }
 
         public double getPeriod()
         {
-            return period;
+            return Period;
         }
 
 //        public void setJointList(Joints _joints)
 //        {
 //            interestedJoints = _joints;
 //        }
+
     }
 }

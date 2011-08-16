@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 
 using RoboNui.Core;
+using RoboNui.Messaging;
 
 namespace RoboNui.RobotAdapter
 {
     /**
      * <summary>
-     * This class controls the Marionette servos based on angles passed in through the <see cref="IRoboticAngleConsumer"/> interface.
+     * This class controls the Marionette servos based on angles passed in through the <see cref="T:IConsumer"/> interface.
      * 
-     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * Interface: <see cref="T:IConsumer"/> with T = <see cref="AngleSet"/>
      * </summary>
      */
-    class RoboticMarionetteServoController : IRoboticAngleConsumer
+    class RoboticMarionetteServoController : IConsumer<AngleSet>
     {
 
         /**
-         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for inherited method summary.</summary>
+         * <summary>See <see cref="M:IConsumer.Update"/> for the inherited method summary</summary>
          */
-        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
+        void IConsumer<AngleSet>.Update(AngleSet angles)
         {
             throw new NotImplementedException();
         }

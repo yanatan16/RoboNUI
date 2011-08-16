@@ -5,13 +5,13 @@ using System.Text;
 
 using RoboNui.KinectAdapter;
 
-using Microsoft.Research.Kinect.Nui;
+using Messaging;
 
 namespace RoboNui.Core
 {
     /**
      * <summary>
-     * Thrown when the <see cref="JointAngleTranslator"/> has no <see cref="IRoboticModel"/> when its <see cref="JointAngleTranslator.JointPositions"/> is set.
+     * Thrown when the <see cref="JointAngleTranslator"/> has no <see cref="IRoboticModel"/> when its <see cref="M:JointAngleTranslator.Update"/> is called.
      * </summary>
      * 
      * <remarks>
@@ -37,41 +37,18 @@ namespace RoboNui.Core
      * to the currently active IRoboticAngleConsumer, which is set by the
      * State Manager.
      * 
-     * Base Class: <see cref="RoboticAngleProvider"/>
+     * Base Class: <see cref="Provider{AngleSet}"/>
+     * Interface: <see cref="IConsumer{JointSet}"/>
      * </summary>
      * <remarks>
      * Author: Jon Eisen (yanatan16@gmail.com)
      * </remarks>
      * 
-     * <seealso cref="RoboticAngleProvider"/>
+     * <seealso cref="T:Provider{AngleSet}"/>
+     * <seealso cref="T:IConsumer{JointSet}"/>
      */
-    class JointAngleTranslator : RoboticAngleProvider
+    class JointAngleTranslator : Provider <AngleSet>, IConsumer <JointSet>
     {
-        /**
-         * <summary>
-         * Setter for the joint positions. 
-         * This will translate the positions to angles through the Robotic Model.
-         * Then it will forward those angles to the Robotic Consumers who are registered.
-         * </summary>
-         * <value>Positions of human controller's joints</value>
-         * <exception cref="NoRoboticModelException">Thrown when Model is not set</exception>
-         * <seealso cref="IRoboticModel"/>
-         */
-        public JointSet JointPositions
-        {
-            get
-            {
-                return JointPositions;
-            }
-            set 
-            {
-                if (Model != null)
-                    base.SendAngles(Model.Translate(JointPositions));
-                else
-                    throw new NoRoboticModelException();
-            }
-        }
-
         /**
          * <summary>
          * The Model for translating between joint positions to robot angles
@@ -105,6 +82,23 @@ namespace RoboNui.Core
         public JointAngleTranslator(IRoboticModel model)
         {
             Model = model;
+        }
+
+        /**
+         * <summary>
+         * This will translate the positions to angles through the Robotic Model.
+         * Then it will forward those angles to the Robotic Consumers who are registered.
+         * </summary>
+         * <exception cref="NoRoboticModelException">Thrown when Model is not set</exception>
+         * <seealso cref="IRoboticModel"/>
+         * <remarks>See <see cref="M:IConsumer{JointSet}.Update"/> for inherited method comments. </remarks>
+         */
+        void IConsumer<JointSet>.Update(JointSet js)
+        {
+            if (Model != null)
+                base.Send(Model.Translate(js));
+            else
+                throw new NoRoboticModelException();
         }
 
     }

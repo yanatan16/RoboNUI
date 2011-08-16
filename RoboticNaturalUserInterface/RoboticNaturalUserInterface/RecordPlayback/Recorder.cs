@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 
 using RoboNui.Core;
+using RoboNui.Messaging;
 
 namespace RoboNui.RecordPlayback
 {
     /**
      * <summary>
-     * This class records angles sent to the <see cref="IRoboticAngleConsumer"/> and stores it for later.
+     * This class records angles sent to the <see cref="T:IConsumer"/> and stores it for later.
      * 
-     * Interface: <see cref="IRoboticAngleConsumer"/>
+     * Interface: <see cref="T:RoboNui.Messaging.IConsumer"/> with T = <see cref="AngleSet"/>
      * </summary>
-     * <seealso cref="RoboticAngleProvider"/>
+     * <seealso cref="T:Provider{AngleSet}"/>
      */
-    class Recorder : IRoboticAngleConsumer
+    class Recorder : IConsumer<AngleSet>
     {
         /**
-         * <summary>See <see cref="IRoboticAngleConsumer.UpdateAngles"/> for the inherited method summary</summary>
+         * <summary>See <see cref="M:IConsumer.Update"/> for the inherited method summary</summary>
          */
-        void IRoboticAngleConsumer.UpdateAngles(AngleSet angles)
+        void IConsumer<AngleSet>.Update(AngleSet angles)
         {
             throw new NotImplementedException();
         }
