@@ -5,6 +5,8 @@ using System.Text;
 
 using RoboNui.Core;
 
+using log4net;
+
 namespace RoboNui.KinectAdapter
 {
     /**
@@ -15,6 +17,11 @@ namespace RoboNui.KinectAdapter
      */
     class VoiceControlInterpreter
     {
+        /**
+         * <summary>Log for logging events in this class</summary>
+         */
+        private ILog log;
+
         /**
          * <summary>
          * State Manager to send commands to
@@ -30,6 +37,9 @@ namespace RoboNui.KinectAdapter
          */
         public VoiceControlInterpreter(StateManager sm)
         {
+            log = LogManager.GetLogger(this.GetType());
+            log.Debug(this.ToString() + " constructed.");
+
             StMgr = sm;
         }
     }

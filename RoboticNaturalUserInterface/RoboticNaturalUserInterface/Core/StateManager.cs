@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using log4net;
+
 namespace RoboNui.Core
 {
     /**
@@ -14,6 +16,17 @@ namespace RoboNui.Core
      */
     class StateManager
     {
+        /**
+         * <summary>Log for logging events in this class</summary>
+         */
+        private ILog log;
+
+        public StateManager()
+        {
+            log = LogManager.GetLogger(this.GetType());
+            log.Debug(this.ToString() + " constructed.");
+        }
+
         static void Main(string [] args)
         {
 

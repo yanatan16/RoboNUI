@@ -9,6 +9,8 @@ using Utilities.Messaging;
 
 using Microsoft.Research.Kinect.Nui;
 
+using log4net;
+
 namespace RoboNui.KinectAdapter
 {
     /**
@@ -23,6 +25,11 @@ namespace RoboNui.KinectAdapter
      */
     class SkeletalJointMonitor : Provider<JointSet>
     {
+        /**
+         * <summary>Log for logging events in this class</summary>
+         */
+        private ILog log;
+
         /**
          * <summary>
          * The time period between retrieval of the Kinect joints
@@ -47,6 +54,9 @@ namespace RoboNui.KinectAdapter
         public SkeletalJointMonitor() :
             base()
         {
+            log = LogManager.GetLogger(this.GetType());
+            log.Debug(this.ToString() + " constructed.");
+
             Period = 0;
             InterestedJoints = new List<JointID>();
 

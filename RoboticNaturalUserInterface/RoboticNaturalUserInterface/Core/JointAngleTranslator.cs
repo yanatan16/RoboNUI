@@ -7,6 +7,8 @@ using RoboNui.KinectAdapter;
 
 using Utilities.Messaging;
 
+using log4net;
+
 namespace RoboNui.Core
 {
     /**
@@ -50,6 +52,11 @@ namespace RoboNui.Core
     class JointAngleTranslator : Provider <AngleSet>, IConsumer <JointSet>
     {
         /**
+         * <summary>Log for logging events in this class</summary>
+         */
+        private ILog log;
+
+        /**
          * <summary>
          * The Model for translating between joint positions to robot angles
          * </summary>
@@ -69,6 +76,9 @@ namespace RoboNui.Core
         public JointAngleTranslator() :
             base()
         {
+            log = LogManager.GetLogger(this.GetType());
+            log.Debug(this.ToString() + " constructed.");
+
             Model = null;
         }
 

@@ -8,6 +8,8 @@ using RoboNui.RobotAdapter.SSC32;
 using RoboNui.Core;
 using Utilities.Messaging;
 
+using log4net;
+
 namespace RoboNui.RobotAdapter
 {
     /**
@@ -24,6 +26,11 @@ namespace RoboNui.RobotAdapter
      */
     class RoboticArmServoController : ServoController, IConsumer<AngleSet>
     {
+        /**
+         * <summary>Log for logging events in this class</summary>
+         */
+        private ILog log;
+
         /**
          * <summary>
          * Mapping of RoboNUI.RoboticAngle to SSC-32 servo channels
@@ -57,6 +64,9 @@ namespace RoboNui.RobotAdapter
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
             base(portName)
         {
+            log = LogManager.GetLogger(this.GetType());
+            log.Debug(this.ToString() + " constructed.");
+
             MyPulseWidthConstants = new PulseWidthConstants(1500 / Math.PI, 1500);
             ChannelMap = channelMap;
             Speed = speed;
