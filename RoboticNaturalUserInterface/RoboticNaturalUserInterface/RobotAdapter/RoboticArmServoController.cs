@@ -78,9 +78,9 @@ namespace RoboNui.RobotAdapter
         void IConsumer<AngleSet>.Update(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
-            for (Dictionary<RoboticAngle, ulong>.Enumerator en = angles.getPulseWidthMap(MyPulseWidthConstants).GetEnumerator(); en.MoveNext(); )
+            foreach (KeyValuePair<RoboticAngle, ulong> angle in angles.AngleMap)
             {
-                command.addServoMovementCommand(ChannelMap[en.Current.Key], en.Current.Value, Speed);
+                command.addServoMovementCommand(ChannelMap[angle.Key], angle.Value, Speed);
             }
 
             sendCommand(command);
@@ -96,9 +96,9 @@ namespace RoboNui.RobotAdapter
         public AngleSet GetAngles(List<RoboticAngle> roboticAngleList)
         {
             QueryPulseWidth command = new QueryPulseWidth();
-            for (List<RoboticAngle>.Enumerator en = roboticAngleList.GetEnumerator(); en.MoveNext(); )
+            foreach (RoboticAngle ra in roboticAngleList)
             {
-                command.addChannel(ChannelMap[en.Current]);
+                command.addChannel(ChannelMap[ra]);
             }
 
             byte[] response = sendCommand(command);

@@ -96,9 +96,9 @@ namespace RoboNui.Core
         public Dictionary<RoboticAngle, ulong> getPulseWidthMap(PulseWidthConstants pwc)
         {
             Dictionary<RoboticAngle, ulong> PulseWidthMap = new Dictionary<RoboticAngle, ulong>();
-            for (Dictionary<RoboticAngle, double>.Enumerator eAngle = AngleMap.GetEnumerator(); eAngle.MoveNext(); )
+            foreach (KeyValuePair<RoboticAngle, double> angle in AngleMap)
             {
-                PulseWidthMap[eAngle.Current.Key] = pwc.AngleToPulseWidth(eAngle.Current.Value);
+                PulseWidthMap[angle.Key] = pwc.AngleToPulseWidth(angle.Value);
             }
             return PulseWidthMap;
         }
@@ -113,9 +113,9 @@ namespace RoboNui.Core
         public void setPulseWidthMap(Dictionary<RoboticAngle, ulong> PulseWidthMap, PulseWidthConstants pwc)
         {
             AngleMap.Clear();
-            for (Dictionary<RoboticAngle, ulong>.Enumerator ePW = PulseWidthMap.GetEnumerator(); ePW.MoveNext(); )
+            foreach (KeyValuePair<RoboticAngle, ulong>pw in PulseWidthMap)
             {
-                AngleMap[ePW.Current.Key] = pwc.PulseWidthToAngle(ePW.Current.Value);
+                AngleMap[pw.Key] = pwc.PulseWidthToAngle(pw.Value);
             }
         }
 
