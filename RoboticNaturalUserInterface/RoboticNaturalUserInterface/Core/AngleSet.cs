@@ -93,7 +93,7 @@ namespace RoboNui.Core
          * <param name="pwc">Pulse Width Constant for pulse width translation</param>
          * <returns>Pulse Width Dictionary Map</returns>
          */
-        public Dictionary<RoboticAngle, ulong> getPulseWidthMap(PulseWidthConstants pwc)
+        public Dictionary<RoboticAngle, ulong> GetPulseWidthMap(PulseWidthConstants pwc)
         {
             Dictionary<RoboticAngle, ulong> PulseWidthMap = new Dictionary<RoboticAngle, ulong>();
             foreach (KeyValuePair<RoboticAngle, double> angle in AngleMap)
@@ -110,7 +110,7 @@ namespace RoboNui.Core
          * <param name="PulseWidthMap">Map of roboticangles to pulse widths</param>
          * <param name="pwc">Pulse Width Constant for pulse width translation</param>
          */
-        public void setPulseWidthMap(Dictionary<RoboticAngle, ulong> PulseWidthMap, PulseWidthConstants pwc)
+        public void SetPulseWidthMap(Dictionary<RoboticAngle, ulong> PulseWidthMap, PulseWidthConstants pwc)
         {
             AngleMap.Clear();
             foreach (KeyValuePair<RoboticAngle, ulong>pw in PulseWidthMap)

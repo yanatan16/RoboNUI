@@ -110,6 +110,7 @@ namespace RoboNui.KinectAdapter
          * This method is an Event Handler for new Skeleton data coming available from the Kinect Nui.
          * It periodically publishes a Joint Set composed of joints from the requested <see cref="F:ControllerTrackID"/> and the joints noted in 
          * <see cref="F:InterestedJoints"/>. It also populates the field <see cref="F:PossibleTrackIDs"/> every call.
+         * </summary>
          * <param name="e">Skeleton Frame arguments</param>
          * <param name="sender">The caller of this method</param>
          */

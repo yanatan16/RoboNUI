@@ -51,7 +51,7 @@ namespace RoboNui.RobotAdapter
          * A set of pulse width constants for this consumer to use
          * </summary>
          */
-        protected PulseWidthConstants MyPulseWidthConstants;
+        protected PulseWidthConstants PulseWidthConverter;
 
         /**
          * <summary>
@@ -67,7 +67,7 @@ namespace RoboNui.RobotAdapter
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
 
-            MyPulseWidthConstants = new PulseWidthConstants(1500 / Math.PI, 1500);
+            PulseWidthConverter = new PulseWidthConstants(1500 / Math.PI, 1500);
             ChannelMap = channelMap;
             Speed = speed;
         }
@@ -78,7 +78,7 @@ namespace RoboNui.RobotAdapter
         void IConsumer<AngleSet>.Update(AngleSet angles)
         {
             ServoMovementCommand command = new ServoMovementCommand();
-            foreach (KeyValuePair<RoboticAngle, ulong> angle in angles.AngleMap)
+            foreach (KeyValuePair<RoboticAngle, ulong> angle in angles.GetPulseWidthMap(PulseWidthConverter))
             {
                 command.addServoMovementCommand(ChannelMap[angle.Key], angle.Value, Speed);
             }
@@ -111,7 +111,7 @@ namespace RoboNui.RobotAdapter
             }
             
             AngleSet ret = new AngleSet();
-            ret.setPulseWidthMap(pwMap, MyPulseWidthConstants);
+            ret.SetPulseWidthMap(pwMap, PulseWidthConverter);
 
             return ret;
         }
