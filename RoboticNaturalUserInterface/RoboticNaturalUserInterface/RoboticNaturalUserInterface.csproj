@@ -52,7 +52,7 @@
     <DocumentationFile>bin\Release\RoboNuiDocs.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>RoboNui.Core.StateManager</StartupObject>
+    <StartupObject>RoboNui.Management.StateManager</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\AngleSet.cs" />
@@ -61,8 +61,8 @@
     <Compile Include="Core\JointSet.cs" />
     <Compile Include="Core\IRoboticModel.cs" />
     <Compile Include="Core\Position3d.cs" />
-    <Compile Include="Core\StateCommand.cs" />
-    <Compile Include="Core\StateConfiguration.cs" />
+    <Compile Include="Management\StateCommand.cs" />
+    <Compile Include="Management\StateConfiguration.cs" />
     <Compile Include="RobotAdapter\RoboticArmModel.cs" />
     <Compile Include="RobotAdapter\SSC32\ServoController.cs" />
     <Compile Include="RobotAdapter\SSC32\QueryPulseWidth.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Core\RoboticAngle.cs" />
     <Compile Include="RobotAdapter\SSC32\ServoMovementCommand.cs" />
     <Compile Include="RobotAdapter\SSC32\QueryMovementStatus.cs" />
-    <Compile Include="Core\StateManager.cs" />
+    <Compile Include="Management\StateManager.cs" />
     <Compile Include="KinectAdapter\VoiceControlInterpreter.cs" />
     <Compile Include="Test\RoboticArmTest.cs" />
   </ItemGroup>
