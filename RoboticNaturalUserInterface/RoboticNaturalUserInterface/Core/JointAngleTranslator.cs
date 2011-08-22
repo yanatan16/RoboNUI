@@ -49,7 +49,7 @@ namespace RoboNui.Core
      * <seealso cref="T:Provider{AngleSet}"/>
      * <seealso cref="T:IConsumer{JointSet}"/>
      */
-    class JointAngleTranslator : Provider <AngleSet>, IConsumer <JointSet>
+    class JointAngleTranslator : ProviderConsumer <AngleSet, JointSet>
     {
         /**
          * <summary>Log for logging events in this class</summary>
@@ -103,12 +103,16 @@ namespace RoboNui.Core
          * <seealso cref="IRoboticModel"/>
          * <remarks>See <see cref="M:IConsumer{JointSet}.Update"/> for inherited method comments. </remarks>
          */
-        void IConsumer<JointSet>.Update(JointSet js)
+        public override void Update(JointSet js)
         {
             if (Model != null)
                 base.Send(Model.Translate(js));
             else
-                throw new NoRoboticModelException();
+            {
+                NoRoboticModelException e = new NoRoboticModelException();
+                log.Error("Tried to update angles upon receipt of joints. No Model Found.", e);
+                throw e;
+            }
         }
 
     }

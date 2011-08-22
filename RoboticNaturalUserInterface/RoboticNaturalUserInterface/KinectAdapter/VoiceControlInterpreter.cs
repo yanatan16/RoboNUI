@@ -7,6 +7,8 @@ using RoboNui.Core;
 
 using log4net;
 
+using Utilities.Messaging;
+
 namespace RoboNui.KinectAdapter
 {
     /**
@@ -15,7 +17,7 @@ namespace RoboNui.KinectAdapter
      * It communicates solely with the State Manager for the purpose of commanding an action of the system.
      * </summary>
      */
-    class VoiceControlInterpreter
+    class VoiceControlInterpreter : Provider<StateCommand>
     {
         /**
          * <summary>Log for logging events in this class</summary>
@@ -24,23 +26,14 @@ namespace RoboNui.KinectAdapter
 
         /**
          * <summary>
-         * State Manager to send commands to
+         * Constructor
          * </summary>
          */
-        private StateManager StMgr;
-
-        /**
-         * <summary>
-         * Constructor requiring <see cref="StateManager"/>.
-         * </summary>
-         * <param name="sm">State Manager to correspond with</param>
-         */
-        public VoiceControlInterpreter(StateManager sm)
+        public VoiceControlInterpreter() :
+            base()
         {
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
-
-            StMgr = sm;
         }
     }
 }

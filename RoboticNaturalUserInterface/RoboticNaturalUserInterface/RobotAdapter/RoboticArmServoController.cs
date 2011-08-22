@@ -82,6 +82,7 @@ namespace RoboNui.RobotAdapter
             {
                 command.addServoMovementCommand(ChannelMap[angle.Key], angle.Value, Speed);
             }
+            log.Info("Sent movement command to Servo Controller.");
 
             sendCommand(command);
         }
