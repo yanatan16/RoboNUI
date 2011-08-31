@@ -1,0 +1,32 @@
+﻿// JSON-formatted configuration file for RoboNui
+// This config file serializes into StateConfiguration
+{
+	"RobotAdapter" : 
+	{
+		"Arm" :
+		{
+			"Port" : "usb01",
+			"Channels" : 
+			{
+				"Keys" : [ 0, 1, 2, 3, 4, 5 ],
+				"Values" : [ 0, 1, 2, 3, 4, 5]
+			},
+			"Speed" : 0
+		},
+
+		"Marionette" :
+		{
+
+		},
+	},
+
+	"KinectAdapter" :
+	{
+
+	},
+
+	"Core" : 
+	{
+
+	}
+}
