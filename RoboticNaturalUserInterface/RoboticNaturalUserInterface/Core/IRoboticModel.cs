@@ -16,6 +16,11 @@ namespace RoboNui.Core
     interface IRoboticModel
     {
         /**
+        * <summary> The list of joints that this model requires to translate.</summary>
+        */
+        List<ControllerJoints> NeededJoints { get; }
+
+        /**
          * <summary>
          * Translate between a human Joints model to a Robotic angle model
          * </summary>

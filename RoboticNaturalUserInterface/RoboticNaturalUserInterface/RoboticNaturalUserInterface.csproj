@@ -52,9 +52,10 @@
     <DocumentationFile>bin\Release\RoboNuiDocs.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>RoboNui.Management.StateManager</StartupObject>
+    <StartupObject>RoboNui.Starter</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Starter.cs" />
     <Compile Include="Core\AngleSet.cs" />
     <Compile Include="Core\ControllerJoints.cs" />
     <Compile Include="Core\GestureRecognizer.cs" />

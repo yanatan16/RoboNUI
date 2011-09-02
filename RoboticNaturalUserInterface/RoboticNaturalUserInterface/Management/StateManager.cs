@@ -38,7 +38,7 @@ namespace RoboNui.Management
         private Provider<AngleSet> _CurrentAngleProvider;
         private IConsumer<JointSet> _CurrentJointConsumer;
         private Provider<JointSet> _CurrentJointProvider;
-
+        private IRoboticModel _CurrentRoboticModel;
 
         /**
          * <summary>Log for logging events in this class</summary>
@@ -58,7 +58,7 @@ namespace RoboNui.Management
             get { return _Active; }
             set
             {
-                _Active = Active;
+                _Active = value;
                 if (Active)
                 {
                     if (CurrentJointProvider != null)
@@ -99,7 +99,7 @@ namespace RoboNui.Management
                     if (Active)
                         _CurrentJointProvider.Deactivate();
                 }
-                _CurrentJointProvider = CurrentJointProvider;
+                _CurrentJointProvider = value;
                 if (_CurrentJointProvider != null)
                 {
                     if (_CurrentJointConsumer != null)
@@ -129,7 +129,7 @@ namespace RoboNui.Management
                 {
                     _CurrentJointProvider.RemoveConsumer(_CurrentJointConsumer);
                 }
-                _CurrentJointConsumer = CurrentJointConsumer;
+                _CurrentJointConsumer = value;
                 if (_CurrentJointConsumer != null &&
                     _CurrentJointProvider != null)
                 {
@@ -158,7 +158,7 @@ namespace RoboNui.Management
                     if (Active)
                         _CurrentAngleProvider.Deactivate();
                 }
-                _CurrentAngleProvider = CurrentAngleProvider;
+                _CurrentAngleProvider = value;
                 if (_CurrentAngleProvider != null)
                 {
                     if (_CurrentAngleConsumer != null)
@@ -188,7 +188,7 @@ namespace RoboNui.Management
                 {
                     _CurrentAngleProvider.RemoveConsumer(_CurrentAngleConsumer);
                 }
-                _CurrentAngleConsumer = CurrentAngleConsumer;
+                _CurrentAngleConsumer = value;
                 if (_CurrentAngleConsumer != null &&
                     _CurrentAngleProvider != null)
                 {
@@ -198,12 +198,29 @@ namespace RoboNui.Management
         }
 
         /**
+         * <summary>The current <see cref="IRoboticModel"/> setup for the SJM</summary>
+         * <seealso cref="SkeletalJointMonitor"/>
+         */
+        IRoboticModel CurrentRoboticModel
+        {
+            get
+            {
+                return _CurrentRoboticModel;
+            }
+            set
+            {
+                _CurrentRoboticModel = value;
+                sjm.InterestedJoints = _CurrentRoboticModel.NeededJoints;
+            }
+        }
+
+        /**
          * <summary>The current human controller</summary>
          */
         public int CurrentControllerID
         {
             get { return sjm.ControllerTrackID; }
-            set { sjm.ControllerTrackID = CurrentControllerID; }
+            set { sjm.ControllerTrackID = value; }
         }
 
         /**
@@ -212,7 +229,7 @@ namespace RoboNui.Management
         public List<int> PossibleControllerIDs
         {
             get { return sjm.PossibleTrackIDs; }
-            set { sjm.PossibleTrackIDs = PossibleControllerIDs; }
+            set { sjm.PossibleTrackIDs = value; }
         }
 
         /**
@@ -266,6 +283,9 @@ namespace RoboNui.Management
         public void Startup()
         {
             // Set up SJM-JAT-RSC/Arm path
+            RoboticArmModel ram = new RoboticArmModel();
+
+            sjm.InterestedJoints = ram.NeededJoints;
             CurrentJointProvider = sjm;
 
             jat.Model = new RoboticArmModel();
@@ -313,15 +333,6 @@ namespace RoboNui.Management
                     log.Warn("Unable to handle command type: " + com.ComType);
                     break;
             }
-        }
-
-        static void Main(string [] args)
-        {
-            string configFile = "robonui.json";
-
-            StateConfiguration cfg = StateConfiguration.ReadConfigFile(configFile);
-            StateManager sm = new StateManager(cfg);
-            sm.Initialize();
         }
     }
 }

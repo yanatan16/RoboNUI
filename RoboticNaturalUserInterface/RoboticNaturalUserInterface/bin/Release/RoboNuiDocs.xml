@@ -108,6 +108,21 @@
             Constructor with spherical coordinates
             </summary>
         </member>
+        <member name="M:RoboNui.Core.Position3d.Magnitude">
+            <summary>Magnitude (2-norm) of this vector</summary>
+            <returns>Magnitude of this vector</returns>
+        </member>
+        <member name="M:RoboNui.Core.Position3d.Dot(RoboNui.Core.Position3d)">
+            <summary>Dot product with b</summary>
+            <param name="b">Second vector to dot product</param>
+            <returns>Dot product with b</returns>
+        </member>
+        <member name="M:RoboNui.Core.Position3d.op_Subtraction(RoboNui.Core.Position3d,RoboNui.Core.Position3d)">
+            <summary>Subtract two Position3d's</summary>
+            <param name="a">Positive element in sum</param>
+            <param name="b">Negative element in sum</param>
+            <returns>A Position3d object that is the sum of a and -b.</returns>
+        </member>
         <member name="P:RoboNui.Core.Position3d.x">
             <summary>
             Rectangular horizontal distance from center
@@ -224,6 +239,10 @@
             The currently active <see cref="T:Utilities.Messaging.IConsumer`1"/> in the system.
             Setting this field will deactivate and clear the previous one and activate and enable the new one.
             </summary>
+        </member>
+        <member name="P:RoboNui.Management.StateManager.CurrentRoboticModel">
+            <summary>The current <see cref="T:RoboNui.Core.IRoboticModel"/> setup for the SJM</summary>
+            <seealso cref="T:RoboNui.KinectAdapter.SkeletalJointMonitor"/>
         </member>
         <member name="P:RoboNui.Management.StateManager.CurrentControllerID">
             <summary>The current human controller</summary>
@@ -558,6 +577,15 @@
             <param name="response">Response received from servo controller</param>
             <returns>Array of pulse widths corresponding to channels selected.</returns>
         </member>
+        <member name="T:RoboNui.RobotAdapter.RoboticArmModel">
+            <summary>
+            This class provides a translation from human controller joints to Robotic Arm angles.
+            These angles are determined by a model of the physical robotic arm itself.
+            </summary>
+            
+            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+            <seealso cref="T:RoboNui.Core.IRoboticModel"/>
+        </member>
         <member name="T:RoboNui.Core.IRoboticModel">
             <summary>
             Provides the capability to translate from a human model of Joints to a Robotic model of Angles
@@ -573,8 +601,19 @@
             <param name="js"> Joint positions from human controller </param>
             <returns> Robotic angles from robot model </returns>
         </member>
+        <member name="P:RoboNui.Core.IRoboticModel.NeededJoints">
+            <summary> The list of joints that this model requires to translate.</summary>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.RoboticArmModel.#ctor">
+            <summary>Construct the Robotic Arm Model</summary>
+            
+        </member>
         <member name="M:RoboNui.RobotAdapter.RoboticArmModel.Translate(RoboNui.Core.JointSet)">
+            <summary>Translate between joints to angles for the robotic arm</summary>
             <see cref="M:RoboNui.Core.IRoboticModel.Translate(RoboNui.Core.JointSet)"/>
+        </member>
+        <member name="P:RoboNui.RobotAdapter.RoboticArmModel.NeededJoints">
+            <summary> The list of joints that this model requires to translate.</summary>
         </member>
         <member name="T:RoboNui.RecordPlayback.Recorder">
             <summary>
@@ -842,6 +881,16 @@
         </member>
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
+        </member>
+        <member name="T:RoboNui.Starter">
+            <summary>
+            This class acts as a starter for the RoboNui system.
+            </summary>
+            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+            
+        </member>
+        <member name="M:RoboNui.Starter.Main(System.String[])">
+            <summary>Main method for RobotNui</summary>
         </member>
     </members>
 </doc>

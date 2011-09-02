@@ -40,7 +40,18 @@ namespace RoboNui.KinectAdapter
         /**
          * <summary> The list of joints the SJM should forward every <see cref="F:Period"/>.</summary>
          */
-        public List<JointID> InterestedJoints { get; set; }
+        public List<ControllerJoints> InterestedJoints
+        {
+            set
+            {
+                _InterestedJoints.Clear();
+                foreach (ControllerJoints cj in value)
+                {
+                    _InterestedJoints.Add((JointID)cj);
+                }
+            }
+        }
+        private List<JointID> _InterestedJoints;
 
         /**
          * <summary>The current controller's <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/>.
@@ -74,7 +85,7 @@ namespace RoboNui.KinectAdapter
             log.Debug(this.ToString() + " constructed.");
 
             Period = Double.MaxValue;
-            InterestedJoints = new List<JointID>();
+            _InterestedJoints = new List<JointID>();
             lastTime = DateTime.MaxValue;
             ControllerTrackID = 0;
             PossibleTrackIDs = new List<int>();
@@ -128,12 +139,11 @@ namespace RoboNui.KinectAdapter
                 {
                     if (human.TrackingID == ControllerTrackID)
                     {
-                        foreach (ControllerJoints jcj in InterestedJoints)
+                        foreach (JointID jid in _InterestedJoints)
                         {
-                            JointID jid = (JointID)jcj;
                             Joint j = human.Joints[jid];
                             Position3d pos = new Position3d(j.Position.X, j.Position.Y, j.Position.Z);
-                            jset.JointMap.Add(jcj, pos);
+                            jset.JointMap.Add((ControllerJoints)jid, pos);
                         }
                     }
                 }

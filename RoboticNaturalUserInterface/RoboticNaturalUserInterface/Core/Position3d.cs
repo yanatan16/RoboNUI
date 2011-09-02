@@ -70,6 +70,7 @@ namespace RoboNui.Core
 
             set
             {
+                theta = value;
                 x = r * Math.Sin(theta) * Math.Cos(phi);
                 y = r * Math.Sin(theta) * Math.Cos(phi);
                 z = r * Math.Cos(theta);
@@ -94,6 +95,7 @@ namespace RoboNui.Core
 
             set
             {
+                r = value;
                 x = r * Math.Sin(theta) * Math.Cos(phi);
                 y = r * Math.Sin(theta) * Math.Cos(phi);
                 z = r * Math.Cos(theta);
@@ -123,6 +125,7 @@ namespace RoboNui.Core
 
             set
             {
+                phi = value;
                 x = rho * Math.Cos(phi);
                 y = rho * Math.Sin(phi);
             }
@@ -145,6 +148,7 @@ namespace RoboNui.Core
             }
             set
             {
+                rho = value;
                 x = rho * Math.Cos(phi);
                 y = rho * Math.Sin(phi);
             }
@@ -186,6 +190,35 @@ namespace RoboNui.Core
             this.theta = theta;
         }
 
+        /**
+         * <summary>Magnitude (2-norm) of this vector</summary>
+         * <returns>Magnitude of this vector</returns>
+         */
+        public double Magnitude()
+        {
+            return Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2) + Math.Pow(z, 2));
+        }
+
+        /**
+         * <summary>Dot product with b</summary>
+         * <param name="b">Second vector to dot product</param>
+         * <returns>Dot product with b</returns>
+         */
+        public double Dot(Position3d b)
+        {
+            return x * b.x + y * b.y + z * b.z;
+        }
+
+        /**
+         * <summary>Subtract two Position3d's</summary>
+         * <param name="a">Positive element in sum</param>
+         * <param name="b">Negative element in sum</param>
+         * <returns>A Position3d object that is the sum of a and -b.</returns>
+         */
+        public static Position3d operator -(Position3d a, Position3d b)
+        {
+            return new Position3d(a.x - b.x, a.y - b.y, a.z - b.z);
+        }
                 
     }
 }
