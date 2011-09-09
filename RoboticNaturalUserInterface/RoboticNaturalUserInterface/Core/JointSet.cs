@@ -16,8 +16,17 @@ namespace RoboNui.Core
      * <seealso cref="ControllerJoints"/>
      * <seealso cref="Position3d"/>
      */
-    struct JointSet
+    public class JointSet
     {
+        /**
+         * <summary>
+         * Construct the JointSet.
+         * </summary>
+         */
+        public JointSet()
+        {
+            JointMap = new Dictionary<ControllerJoints, Position3d>();
+        }
         
         /**
          * <summary>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="265854f7-0cfb-44a9-b278-a95de9c27810" name="Eisen@CRAZYEISEN 2011-09-08 21:42:59" runUser="CRAZYEISEN\Eisen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8e5fc231-a8cb-423c-9521-0eadba8787ac">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Eisen_CRAZYEISEN 2011-09-08 21_42_59">
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\log4net\log4net.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Release\Utilities.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\json\Newtonsoft.Json.Net35.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Release\RoboticNaturalUserInterface.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-09-08T21:42:59.3125072-04:00" queuing="2011-09-08T21:43:00.8005923-04:00" start="2011-09-08T21:43:01.0016038-04:00" finish="2011-09-08T21:43:02.0586643-04:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="6" executed="6" passed="1" error="0" failed="5" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="StartGetAnglesTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="79910ce3-504e-d28b-b1e6-2cfee93c9001">
+      <Execution id="ec3746d1-7251-4b13-9830-5985af2988a8" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="StartGetAnglesTest" />
+    </UnitTest>
+    <UnitTest name="JointAngleTranslatorConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="3607432d-474d-0ce1-5eb1-b98786483e85">
+      <Execution id="b75d647b-0331-48fd-85ba-c3d17ec540f1" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JointAngleTranslatorConstructorTest" />
+    </UnitTest>
+    <UnitTest name="RoboticArmServoControllerConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="a9142bc7-fdb8-08b6-aa3a-4e5428bbec5d">
+      <Execution id="fabcccd0-1541-4529-b07b-b1948b092161" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RoboticArmServoControllerConstructorTest" />
+    </UnitTest>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="c0eca1fb-66d4-bb09-728d-297533670eaf">
+      <DeploymentItems>
+        <DeploymentItem filename="RoboticNaturalUserInterface.exe" />
+      </DeploymentItems>
+      <Execution id="ec7a1f30-6a51-424f-88e7-a05e0e55c9f0" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="IsMovementFinishedTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="d5490ce4-ac11-2484-f37d-aa5f215bcfd5">
+      <Execution id="c4900b68-e39a-4b00-9500-e2ac0b019824" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="IsMovementFinishedTest" />
+    </UnitTest>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\release\robonuitest.dll" id="eeddceb7-7d47-fd72-2af9-db464e484902">
+      <Execution id="b54749b7-9a07-4101-8259-fe25d2c4f8df" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Release/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3607432d-474d-0ce1-5eb1-b98786483e85" executionId="b75d647b-0331-48fd-85ba-c3d17ec540f1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="79910ce3-504e-d28b-b1e6-2cfee93c9001" executionId="ec3746d1-7251-4b13-9830-5985af2988a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a9142bc7-fdb8-08b6-aa3a-4e5428bbec5d" executionId="fabcccd0-1541-4529-b07b-b1948b092161" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0eca1fb-66d4-bb09-728d-297533670eaf" executionId="ec7a1f30-6a51-424f-88e7-a05e0e55c9f0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d5490ce4-ac11-2484-f37d-aa5f215bcfd5" executionId="c4900b68-e39a-4b00-9500-e2ac0b019824" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eeddceb7-7d47-fd72-2af9-db464e484902" executionId="b54749b7-9a07-4101-8259-fe25d2c4f8df" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b75d647b-0331-48fd-85ba-c3d17ec540f1" testId="3607432d-474d-0ce1-5eb1-b98786483e85" testName="JointAngleTranslatorConstructorTest" computerName="CRAZYEISEN" duration="00:00:00.0302939" startTime="2011-09-08T21:43:01.1326113-04:00" endTime="2011-09-08T21:43:01.7686477-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b75d647b-0331-48fd-85ba-c3d17ec540f1">
+    </UnitTestResult>
+    <UnitTestResult executionId="ec3746d1-7251-4b13-9830-5985af2988a8" testId="79910ce3-504e-d28b-b1e6-2cfee93c9001" testName="StartGetAnglesTest" computerName="CRAZYEISEN" duration="00:00:00.1068467" startTime="2011-09-08T21:43:01.7796483-04:00" endTime="2011-09-08T21:43:01.9126559-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec3746d1-7251-4b13-9830-5985af2988a8">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.RoboticArmServoControllerTest.StartGetAnglesTest threw exception: 
+System.ArgumentException: The given port name does not start with COM/com or does not resolve to a valid serial port.
+Parameter name: portName</Message>
+          <StackTrace>    at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at RoboNui.RobotAdapter.SSC32.ServoController..ctor(String portName) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 34
+   at RoboNui.RobotAdapter.RoboticArmServoController..ctor(String portName, Dictionary`2 channelMap, UInt64 speed) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\RoboticArmServoController.cs:line 64
+   at RoboNuiTest.RoboticArmServoControllerTest.StartGetAnglesTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 98
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="fabcccd0-1541-4529-b07b-b1948b092161" testId="a9142bc7-fdb8-08b6-aa3a-4e5428bbec5d" testName="RoboticArmServoControllerConstructorTest" computerName="CRAZYEISEN" duration="00:00:00.0079338" startTime="2011-09-08T21:43:01.9186563-04:00" endTime="2011-09-08T21:43:01.9326571-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fabcccd0-1541-4529-b07b-b1948b092161">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.RoboticArmServoControllerTest.RoboticArmServoControllerConstructorTest threw exception: 
+System.ArgumentException: The given port name does not start with COM/com or does not resolve to a valid serial port.
+Parameter name: portName</Message>
+          <StackTrace>    at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at RoboNui.RobotAdapter.SSC32.ServoController..ctor(String portName) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 34
+   at RoboNui.RobotAdapter.RoboticArmServoController..ctor(String portName, Dictionary`2 channelMap, UInt64 speed) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\RoboticArmServoController.cs:line 64
+   at RoboNuiTest.RoboticArmServoControllerTest.RoboticArmServoControllerConstructorTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 88
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ec7a1f30-6a51-424f-88e7-a05e0e55c9f0" testId="c0eca1fb-66d4-bb09-728d-297533670eaf" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:00.0049009" startTime="2011-09-08T21:43:01.9376574-04:00" endTime="2011-09-08T21:43:01.9506581-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec7a1f30-6a51-424f-88e7-a05e0e55c9f0">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.RoboticArmServoControllerTest.UpdateTest threw exception: 
+System.ArgumentException: The given port name does not start with COM/com or does not resolve to a valid serial port.
+Parameter name: portName</Message>
+          <StackTrace>    at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at RoboNui.RobotAdapter.SSC32.ServoController..ctor(String portName) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 34
+   at RoboNui.RobotAdapter.RoboticArmServoController..ctor(String portName, Dictionary`2 channelMap, UInt64 speed) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\RoboticArmServoController.cs:line 64
+   at RoboNuiTest.RoboticArmServoControllerTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 117
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c4900b68-e39a-4b00-9500-e2ac0b019824" testId="d5490ce4-ac11-2484-f37d-aa5f215bcfd5" testName="IsMovementFinishedTest" computerName="CRAZYEISEN" duration="00:00:00.0037460" startTime="2011-09-08T21:43:01.9566585-04:00" endTime="2011-09-08T21:43:01.9676591-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c4900b68-e39a-4b00-9500-e2ac0b019824">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.RoboticArmServoControllerTest.IsMovementFinishedTest threw exception: 
+System.ArgumentException: The given port name does not start with COM/com or does not resolve to a valid serial port.
+Parameter name: portName</Message>
+          <StackTrace>    at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at RoboNui.RobotAdapter.SSC32.ServoController..ctor(String portName) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 34
+   at RoboNui.RobotAdapter.RoboticArmServoController..ctor(String portName, Dictionary`2 channelMap, UInt64 speed) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\RoboticArmServoController.cs:line 64
+   at RoboNuiTest.RoboticArmServoControllerTest.IsMovementFinishedTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 135
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b54749b7-9a07-4101-8259-fe25d2c4f8df" testId="eeddceb7-7d47-fd72-2af9-db464e484902" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:00.0075580" startTime="2011-09-08T21:43:01.9736594-04:00" endTime="2011-09-08T21:43:01.9886603-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b54749b7-9a07-4101-8259-fe25d2c4f8df">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.JointAngleTranslatorTest.UpdateTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at RoboNuiTest.JointAngleTranslatorTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\JointAngleTranslatorTest.cs:line 105
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

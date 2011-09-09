@@ -79,7 +79,7 @@
     <Compile Include="RobotAdapter\SSC32\QueryMovementStatus.cs" />
     <Compile Include="Management\StateManager.cs" />
     <Compile Include="KinectAdapter\VoiceControlInterpreter.cs" />
-    <Compile Include="Test\RoboticArmTest.cs" />
+    <Compile Include="TestFriends.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="log4net">

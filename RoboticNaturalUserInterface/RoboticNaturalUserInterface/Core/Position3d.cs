@@ -16,7 +16,7 @@ namespace RoboNui.Core
      * Author: Jon Eisen (yanatan16@gmail.com)
      * </remarks>
      */
-    class Position3d
+    public class Position3d
     {
         /**
          * <summary>

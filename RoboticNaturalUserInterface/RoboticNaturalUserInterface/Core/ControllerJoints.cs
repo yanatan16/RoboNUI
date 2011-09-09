@@ -19,7 +19,7 @@ namespace RoboNui.Core
      * <seealso cref="IRoboticModel"/>
      * <seealso cref="JointSet"/>
      */
-    enum ControllerJoints
+    public enum ControllerJoints
     {
         HipCenter = 0,
         Spine = 1,

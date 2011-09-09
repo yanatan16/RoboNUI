@@ -14,7 +14,7 @@ namespace RoboNui.Core
      * Author: Jon Eisen (yanatan16@gmail.com)
      * </remarks>
      */
-    class PulseWidthConstants
+    public class PulseWidthConstants
     {
         /**
          * <summary>Multiplier M for linear function of angle to pulse width: PW = M * A + C</summary>
@@ -73,8 +73,17 @@ namespace RoboNui.Core
      * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
      * <seealso cref="RoboticAngle"/>
      */
-    struct AngleSet
+    public class AngleSet
     {
+        /**
+         * <summary>
+         * Construct the JointSet.
+         * </summary>
+         */
+        public AngleSet()
+        {
+            AngleMap = new Dictionary<RoboticAngle, double>();
+        }
         
         /**
          * <summary>

@@ -47,6 +47,11 @@
             <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
             <seealso cref="T:RoboNui.Core.RoboticAngle"/>
         </member>
+        <member name="M:RoboNui.Core.AngleSet.#ctor">
+            <summary>
+            Construct the JointSet.
+            </summary>
+        </member>
         <member name="M:RoboNui.Core.AngleSet.GetPulseWidthMap(RoboNui.Core.PulseWidthConstants)">
             <summary>
             Translate the Angle Map to a pulse width map given a struct of Pulse Width Constants
@@ -67,19 +72,6 @@
             </summary>
             <remarks>
             Angles are in the range -Math.PI to Math.PI
-            </remarks>
-        </member>
-        <member name="T:RoboNui.Test.RoboticArmTest">
-            <summary>
-            Tests the system using the robotic arm.
-            
-            This class should test the following components/classes:
-             Joint Angle Translator
-             RoboticArmModel
-             RoboticArmServoController
-            </summary>
-            <remarks>
-            Author: Thor Kirkby (akirkby3@gmail.com)
             </remarks>
         </member>
         <member name="T:RoboNui.Core.Position3d">
@@ -514,6 +506,11 @@
             <seealso cref="T:RoboNui.Core.ControllerJoints"/>
             <seealso cref="T:RoboNui.Core.Position3d"/>
         </member>
+        <member name="M:RoboNui.Core.JointSet.#ctor">
+            <summary>
+            Construct the JointSet.
+            </summary>
+        </member>
         <member name="P:RoboNui.Core.JointSet.JointMap">
             <summary>
             Map of Controller Joints to Positions.
@@ -576,6 +573,16 @@
             
             <param name="response">Response received from servo controller</param>
             <returns>Array of pulse widths corresponding to channels selected.</returns>
+        </member>
+        <member name="T:RoboNui.Starter">
+            <summary>
+            This class acts as a starter for the RoboNui system.
+            </summary>
+            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+            
+        </member>
+        <member name="M:RoboNui.Starter.Main(System.String[])">
+            <summary>Main method for RobotNui</summary>
         </member>
         <member name="T:RoboNui.RobotAdapter.RoboticArmModel">
             <summary>
@@ -881,16 +888,6 @@
         </member>
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
-        </member>
-        <member name="T:RoboNui.Starter">
-            <summary>
-            This class acts as a starter for the RoboNui system.
-            </summary>
-            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
-            
-        </member>
-        <member name="M:RoboNui.Starter.Main(System.String[])">
-            <summary>Main method for RobotNui</summary>
         </member>
     </members>
 </doc>
