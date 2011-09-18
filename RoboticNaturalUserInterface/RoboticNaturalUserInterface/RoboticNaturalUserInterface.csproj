@@ -55,6 +55,7 @@
     <StartupObject>RoboNui.Starter</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="KinectAdapter\CommandRecognitionAdapter.cs" />
     <Compile Include="Starter.cs" />
     <Compile Include="Core\AngleSet.cs" />
     <Compile Include="Core\ControllerJoints.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="TestFriends.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\plugin\log4net\log4net.dll</HintPath>
     </Reference>

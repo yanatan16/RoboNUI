@@ -17,6 +17,7 @@ namespace RoboNui.KinectAdapter
      * This class provides extended voice control functionality for the RoboNUI system. 
      * It communicates solely with the State Manager for the purpose of commanding an action of the system.
      * </summary>
+     * <remarks>Author: Jon Eisen (jon.m.eisen@gmail.com)</remarks>
      */
     class VoiceControlInterpreter : Provider<StateCommand>
     {

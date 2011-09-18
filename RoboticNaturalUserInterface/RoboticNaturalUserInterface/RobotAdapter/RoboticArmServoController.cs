@@ -103,6 +103,12 @@ namespace RoboNui.RobotAdapter
             }
 
             byte[] response = sendCommand(command);
+            
+            if (response == null)
+            {
+                return null;
+            }
+
             ulong[] pws = QueryPulseWidth.interpretPulseWidths(response);
 
             Dictionary<RoboticAngle, ulong> pwMap = new Dictionary<RoboticAngle, ulong>();

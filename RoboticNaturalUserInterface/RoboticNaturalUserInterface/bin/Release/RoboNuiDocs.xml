@@ -311,6 +311,7 @@
             This class provides extended voice control functionality for the RoboNUI system. 
             It communicates solely with the State Manager for the purpose of commanding an action of the system.
             </summary>
+            <remarks>Author: Jon Eisen (jon.m.eisen@gmail.com)</remarks>
         </member>
         <member name="F:RoboNui.KinectAdapter.VoiceControlInterpreter.log">
             <summary>Log for logging events in this class</summary>
@@ -424,6 +425,9 @@
             Base class for communicating commands to an SSC-32 servo controller
             </summary>
             <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+        </member>
+        <member name="F:RoboNui.RobotAdapter.SSC32.ServoController.log">
+            <summary>Log for logging events in this class</summary>
         </member>
         <member name="F:RoboNui.RobotAdapter.SSC32.ServoController.port">
             <summary>
