@@ -6,8 +6,8 @@
 	{
 		"Arm" :
 		{
-			"Port" : "COM4",
-			"Speed" : 0
+			"Port" : "COM5",
+			"Speed" : 1000
 		},
 
 		"Marionette" :

@@ -80,8 +80,9 @@ namespace RoboNui.RobotAdapter
             ServoMovementCommand command = new ServoMovementCommand();
             foreach (KeyValuePair<RoboticAngle, ulong> angle in angles.GetPulseWidthMap(PulseWidthConverter))
             {
-                command.addServoMovementCommand(ChannelMap[angle.Key], angle.Value, Speed);
+                command.addServoMovementCommand(ChannelMap[angle.Key], angle.Value, 0);
             }
+            command.TotalTime = Speed;
             log.Info("Sent movement command to Servo Controller.");
 
             sendCommand(command);

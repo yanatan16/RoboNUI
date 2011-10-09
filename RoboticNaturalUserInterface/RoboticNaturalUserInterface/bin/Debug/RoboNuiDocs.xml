@@ -483,19 +483,6 @@
             Map of Controller Joints to Positions.
             </summary>
         </member>
-        <member name="T:RoboNui.MainWindow">
-            <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
-            </summary>
-        </member>
-        <member name="M:RoboNui.MainWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:RoboNui.App">
             <summary>
             Interaction logic for App.xaml
@@ -890,6 +877,19 @@
         </member>
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
+        </member>
+        <member name="T:RoboNui.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:RoboNui.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
         </member>
     </members>
 </doc>

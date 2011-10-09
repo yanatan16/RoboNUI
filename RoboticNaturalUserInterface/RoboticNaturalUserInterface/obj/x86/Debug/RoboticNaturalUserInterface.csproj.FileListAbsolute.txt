@@ -12,8 +12,8 @@ C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserI
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.exe
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.pdb
-C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.baml
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\app.g.cs
-C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.g.cs
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface_MarkupCompile.cache
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.g.resources
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.baml
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.g.cs

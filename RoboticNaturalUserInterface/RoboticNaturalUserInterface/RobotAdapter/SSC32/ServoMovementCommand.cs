@@ -91,9 +91,9 @@ namespace RoboNui.RobotAdapter.SSC32
         {
             string ret = string.Empty;
             //Required parameters
-            ret += string.Format("#%ud P%uld", Channel[i], PulseWidth[i]);
+            ret += string.Format("#{0} P{1}", Channel[i], PulseWidth[i]);
             if (MoveSpeed[i] > 0)
-                ret += string.Format(" S%uld", MoveSpeed[i]);
+                ret += string.Format(" S{0}", MoveSpeed[i]);
             return ret;
         }
 
@@ -105,7 +105,7 @@ namespace RoboNui.RobotAdapter.SSC32
         protected override string PostCommandString()
         {
             if (TotalTime > 0)
-                return string.Format("T%uld", TotalTime);
+                return string.Format("T{0}", TotalTime);
             else
                 return string.Empty;
         }

@@ -5,6 +5,8 @@ using System.Text;
 
 using RoboNui.Core;
 
+using log4net;
+
 namespace RoboNui.RobotAdapter
 {
     /**
@@ -18,6 +20,7 @@ namespace RoboNui.RobotAdapter
      */
     class RoboticArmModel : IRoboticModel
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(RoboticArmModel)); 
         /**
         * <summary> The list of joints that this model requires to translate.</summary>
         */
@@ -35,7 +38,6 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.ElbowRight);
             NeededJoints.Add(ControllerJoints.WristRight);
             NeededJoints.Add(ControllerJoints.HandRight);
-            NeededJoints.Add(ControllerJoints.ShoulderRight);
         }
 
 
@@ -81,6 +83,8 @@ namespace RoboNui.RobotAdapter
             //TODO Figure out these angles
             angles.AngleMap.Add(RoboticAngle.ArmWristRotate, 0);
             angles.AngleMap.Add(RoboticAngle.ArmHandGrasp, 0);
+
+            log.Debug("Translating JointSet to AngleSet: js(" + js.ToString() + ") to as(" + angles.ToString() + ")");
 
             return angles;
         }

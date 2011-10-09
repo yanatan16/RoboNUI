@@ -35,5 +35,21 @@ namespace RoboNui.Core
          */
         public Dictionary<ControllerJoints, Position3d> JointMap { get; set; }
 
+        public string ToString()
+        {
+            string str = "JointSet{ ";
+            int i = 0;
+            foreach (KeyValuePair<ControllerJoints, Position3d> pair in JointMap)
+            {
+                str += "(" + pair.Key.ToString() + "," + pair.Value.ToString() + ")";
+                if (++i < JointMap.Count)
+                    str += ", ";
+            }
+            str += " }";
+            return str;
+        }
+
+
+
     }
 }

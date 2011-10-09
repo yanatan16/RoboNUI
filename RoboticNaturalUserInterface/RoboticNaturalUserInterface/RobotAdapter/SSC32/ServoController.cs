@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO.Ports;
+using System.IO;
 
 using log4net;
+
 
 namespace RoboNui.RobotAdapter.SSC32
 {
@@ -27,6 +29,8 @@ namespace RoboNui.RobotAdapter.SSC32
          * </summary>
          */
         private SerialPort port;
+
+        bool inactive;
         
         /**
          * <summary>
@@ -40,10 +44,19 @@ namespace RoboNui.RobotAdapter.SSC32
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
 
-            port = new SerialPort(portName);
-            port.Open();
+            try
+            {
+                port = new SerialPort(portName);
+                port.Open();
 
-            port.ReadTimeout = 1000;
+                port.ReadTimeout = 1000;
+                inactive = false;
+            }
+            catch (IOException ex)
+            {
+                log.Error("Could not open Servo Controller Port on " + portName, ex);
+                inactive = true;
+            }
         }
 
         /**
@@ -70,13 +83,24 @@ namespace RoboNui.RobotAdapter.SSC32
          */
         protected byte[] sendCommand(ServoCommandGroup com)
         {
-            port.Write(com.CommandString());
+            log.Debug("Send Command " + com.CommandString());
+            if (!inactive)
+            {
+                port.Write(com.CommandString());
+            }
             if (com.ResponseLength > 0)
             {
                 byte[] buf = new byte[com.ResponseLength];
                 try
                 {
-                    port.Read(buf, 0, (int)com.ResponseLength);
+                    if (inactive)
+                    {
+                        buf = Enumerable.Repeat<byte>((byte)0, (int) com.ResponseLength).ToArray<byte>();
+                    }
+                    else
+                    {
+                        port.Read(buf, 0, (int)com.ResponseLength);
+                    }
                 }
                 catch (TimeoutException te)
                 {

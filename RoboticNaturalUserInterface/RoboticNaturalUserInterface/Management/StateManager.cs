@@ -61,7 +61,7 @@ namespace RoboNui.Management
             set
             {
                 _Active = value;
-                if (Active)
+                if (value)
                 {
                     if (CurrentJointProvider != null)
                         CurrentJointProvider.Activate();

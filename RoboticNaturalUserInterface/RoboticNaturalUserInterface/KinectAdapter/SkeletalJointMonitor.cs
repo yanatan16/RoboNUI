@@ -112,25 +112,24 @@ namespace RoboNui.KinectAdapter
             // Check to make sure period has been satisfied
             if (lastTime.AddMilliseconds(Period) < DateTime.Now)
             {
-                log.Debug("Now updating joints.");
                 JointSet jset = new JointSet();
 
                 foreach (SkeletonData human in frame.Skeletons)
                 {
-                    if (human.TrackingID == ControllerTrackID)
+                    if (human.TrackingID == ControllerTrackID && human.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         foreach (JointID jid in _InterestedJoints)
                         {
                             Joint j = human.Joints[jid];
                             Position3d pos = new Position3d(j.Position.X, j.Position.Y, j.Position.Z);
-                            jset.JointMap.Add((ControllerJoints)jid, pos);
+                            jset.JointMap[(ControllerJoints)jid] = pos;
                         }
                     }
                 }
 
                 if (jset.JointMap.Count > 0)
                 {
-                    log.Info("Publishing " + jset.JointMap.Count + " joints.");
+                    log.Debug("Publishing " + jset.JointMap.Count + " joints.");
                     Send(jset);
                     lastTime = DateTime.Now;
                 }
@@ -141,8 +140,12 @@ namespace RoboNui.KinectAdapter
             PossibleTrackIDs.Clear();
             foreach (SkeletonData h in frame.Skeletons)
             {
-                PossibleTrackIDs.Add(h.TrackingID);
+                if (h.TrackingState == SkeletonTrackingState.Tracked)
+                    PossibleTrackIDs.Add(h.TrackingID);
             }
+            
+            // Until control of this has been enabled.
+            ControllerTrackID = PossibleTrackIDs.Max<int>();
         }
     }
 }

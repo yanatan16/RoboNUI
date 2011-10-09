@@ -128,6 +128,19 @@ namespace RoboNui.Core
             }
         }
 
+        public string ToString()
+        {
+            string str = "AngleSet{ ";
+            int i = 0;
+            foreach (KeyValuePair<RoboticAngle, double> pair in AngleMap)
+            {
+                str += "(" + pair.Key.ToString() + "," + pair.Value.ToString() + ")";
+                if (++i < AngleMap.Count)
+                    str += ", ";
+            }
+            str += " }";
+            return str;
+        }
 
 
     }

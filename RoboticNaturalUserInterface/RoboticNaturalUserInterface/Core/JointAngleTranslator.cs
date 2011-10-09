@@ -105,6 +105,7 @@ namespace RoboNui.Core
          */
         public override void Update(JointSet js)
         {
+            log.Debug("Updated JointSet. Translating to AngleSet and Sending");
             if (Model != null)
                 base.Send(Model.Translate(js));
             else
