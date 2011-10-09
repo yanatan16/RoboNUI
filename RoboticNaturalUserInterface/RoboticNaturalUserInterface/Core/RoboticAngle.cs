@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+
+using Newtonsoft.Json.Converters;
 
 namespace RoboNui.Core
 {
@@ -42,7 +45,9 @@ namespace RoboNui.Core
         /// <summary> Marionette angle of the lift of the rear of the Marionette </summary>
         RearLift,
         /// <summary> Marionette angle of the curtain's open location </summary>
-        CurtainOpen
+        CurtainOpen,
+
+        Length
 
     }
 }

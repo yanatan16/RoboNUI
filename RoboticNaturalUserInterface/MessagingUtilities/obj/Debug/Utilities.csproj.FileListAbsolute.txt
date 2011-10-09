@@ -1,0 +1,5 @@
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\obj\Debug\Utilities.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\obj\Debug\Utilities.pdb

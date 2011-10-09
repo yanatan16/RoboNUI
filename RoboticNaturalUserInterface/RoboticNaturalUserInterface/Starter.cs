@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 
 using RoboNui.Management;
+using log4net;
+using log4net.Config;
 
 namespace RoboNui
 {
@@ -16,16 +18,13 @@ namespace RoboNui
      */
     class Starter
     {
+        
         /**
          * <summary>Main method for RobotNui</summary>
          */
-        static void Main(string[] args)
+        static void start()
         {
-            string configFile = "robonui.json";
-
-            StateConfiguration cfg = StateConfiguration.ReadConfigFile(configFile);
-            StateManager sm = new StateManager(cfg);
-            sm.Initialize();
+            
         }
     }
 }

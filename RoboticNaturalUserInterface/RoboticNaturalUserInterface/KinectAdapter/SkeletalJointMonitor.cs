@@ -78,42 +78,21 @@ namespace RoboNui.KinectAdapter
         /**
          * <summary> Constructor of this class. This starts up the Nui.Runtime and initializes the class fields. </summary>
          */
-        public SkeletalJointMonitor() :
+        public SkeletalJointMonitor(object nui) :
             base()
         {
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
 
-            Period = Double.MaxValue;
+            Period = 1000000000000;
             _InterestedJoints = new List<JointID>();
             lastTime = DateTime.MaxValue;
-            ControllerTrackID = 0;
+            ControllerTrackID = -1;
             PossibleTrackIDs = new List<int>();
 
-            nui = new Runtime(); 
-            try
-            {
-                nui.Initialize(RuntimeOptions.UseDepthAndPlayerIndex | RuntimeOptions.UseSkeletalTracking);
-            }
-            catch (InvalidOperationException e)
-            {
-                log.Error("Nui.Runtime initialization failed. Please make sure Kinect device is plugged in.", e);
-                return;
-            }
-
-            try
-            {
-                nui.VideoStream.Open(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.ColorInDepthSpace);
-                nui.DepthStream.Open(ImageStreamType.Depth, 2, ImageResolution.Resolution320x240, ImageType.DepthAndPlayerIndex);
-            }
-            catch (InvalidOperationException e)
-            {
-                log.Error("Failed to open streams. Make sure resolution and type are specified correctly.", e);
-                return;
-            }
-
+            Runtime rnui = (Runtime)nui;
             lastTime = DateTime.Now;
-            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+            rnui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
         }
 
         /**
@@ -133,6 +112,7 @@ namespace RoboNui.KinectAdapter
             // Check to make sure period has been satisfied
             if (lastTime.AddMilliseconds(Period) < DateTime.Now)
             {
+                log.Debug("Now updating joints.");
                 JointSet jset = new JointSet();
 
                 foreach (SkeletonData human in frame.Skeletons)
@@ -148,9 +128,12 @@ namespace RoboNui.KinectAdapter
                     }
                 }
 
-                log.Info("Publishing " + jset.JointMap.Count + " joints.");
-                Send(jset);
-                lastTime = DateTime.Now;
+                if (jset.JointMap.Count > 0)
+                {
+                    log.Info("Publishing " + jset.JointMap.Count + " joints.");
+                    Send(jset);
+                    lastTime = DateTime.Now;
+                }
             }
 
             

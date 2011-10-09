@@ -48,6 +48,7 @@ namespace RoboNui.Core
          */
         public double z { get; set; }
 
+#if false
         /**
          * <summary>
          * Spherical angle from x=0, y=0 depth line in view of camera (no depth)
@@ -60,7 +61,7 @@ namespace RoboNui.Core
         {
             get
             {
-                theta = Math.Atan2(z, Math.Sqrt(Math.Pow(x,2) + Math.Pow(y,2))) % Math.PI;
+                theta = Math.Atan2(z, Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2))) % Math.PI;
                 if (theta < 0)
                 {
                     theta += Math.PI;
@@ -129,7 +130,7 @@ namespace RoboNui.Core
                 x = rho * Math.Cos(phi);
                 y = rho * Math.Sin(phi);
             }
-        }
+        } 
 
         /**
          * <summary>
@@ -156,6 +157,19 @@ namespace RoboNui.Core
 
         /**
          * <summary>
+         * Constructor with spherical coordinates
+         * </summary>
+         */
+        public Position3d(double r, double phi, double theta, bool unused)
+        {
+            this.r = r;
+            this.phi = phi;
+            this.theta = theta;
+        }
+#endif
+
+        /**
+         * <summary>
          * Default Constructor
          * </summary>
          */
@@ -176,18 +190,6 @@ namespace RoboNui.Core
             this.x = x;
             this.y = y;
             this.z = z;
-        }
-
-        /**
-         * <summary>
-         * Constructor with spherical coordinates
-         * </summary>
-         */
-        public Position3d(double r, double phi, double theta, bool unused)
-        {
-            this.r = r;
-            this.phi = phi;
-            this.theta = theta;
         }
 
         /**

@@ -50,6 +50,8 @@ namespace RoboNui.Management
          */
         public StateConfiguration config;
 
+        object runtimeNui;
+
         /**
          * <summary>Active system boolean. An inactive system will not operate.</summary>
          */
@@ -237,10 +239,13 @@ namespace RoboNui.Management
          * Constructor for the State Manager. Set all current components to null.
          * </summary>
          */
-        public StateManager(StateConfiguration cfg)
+        public StateManager(StateConfiguration cfg, object nui)
         {
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
+
+            config = cfg;
+            runtimeNui = nui;
 
             sjm = null;
             vci = null;
@@ -265,11 +270,13 @@ namespace RoboNui.Management
             jat = new JointAngleTranslator();
 
             // Kinect Adapter
-            sjm = new SkeletalJointMonitor();
+            sjm = new SkeletalJointMonitor(runtimeNui);
 
             // Robot Adapter
+
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
 
+            Startup();
             log.Info("Default System configuration Initialized.");
         }
 
@@ -286,6 +293,7 @@ namespace RoboNui.Management
             RoboticArmModel ram = new RoboticArmModel();
 
             sjm.InterestedJoints = ram.NeededJoints;
+            sjm.Period = config.KinectAdapter.Period;
             CurrentJointProvider = sjm;
 
             jat.Model = new RoboticArmModel();

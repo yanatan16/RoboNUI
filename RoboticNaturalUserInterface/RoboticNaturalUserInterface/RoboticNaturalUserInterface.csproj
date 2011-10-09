@@ -52,8 +52,26 @@
     <DocumentationFile>bin\Release\RoboNuiDocs.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>RoboNui.Starter</StartupObject>
+    <ApplicationIcon>SkeletalViewer.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="KinectAdapter\CommandRecognitionAdapter.cs" />
     <Compile Include="Starter.cs" />
@@ -83,17 +101,24 @@
     <Compile Include="TestFriends.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Accessibility">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\plugin\log4net\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json.Net35">
       <HintPath>..\..\plugin\json\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -131,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Management\robonui.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SkeletalViewer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -35,6 +35,7 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.ElbowRight);
             NeededJoints.Add(ControllerJoints.WristRight);
             NeededJoints.Add(ControllerJoints.HandRight);
+            NeededJoints.Add(ControllerJoints.ShoulderRight);
         }
 
 

@@ -5,6 +5,8 @@ using System.Text;
 using System.IO;
 
 using Newtonsoft.Json;
+using System.ComponentModel;
+using Newtonsoft.Json.Converters;
 
 using RoboNui.Core;
 
@@ -21,6 +23,7 @@ namespace RoboNui.Management
      */
     public class StateConfiguration
     {
+
         /**
          * <summary>
          * Configuration sub-struct for the RobotAdapter Assembly.
@@ -39,7 +42,7 @@ namespace RoboNui.Management
                 /// <summary>Serial Port name of the Robotic Arm's Servo Controller</summary>
                 public string Port;
 
-                /// <summary>Robotic Angle to Channel Number dictionary</summary>
+                /// <summary>Robotic Angle to Channel Number list</summary>
                 public Dictionary<RoboticAngle, uint> Channels;
 
                 /// <summary>Speed of motions for the Robotic Arm (in microseconds per second)</summary>
@@ -73,6 +76,9 @@ namespace RoboNui.Management
          */
         public struct _KinectAdapter
         {
+            /// <summary>Period to update the system</summary>
+            /// <remarks>In milliseconds</remarks>
+            public long Period;
 
         }
 
@@ -104,11 +110,18 @@ namespace RoboNui.Management
         /**
          * <summary>Construct the Configuration with default values.</summary>
          */
-        protected StateConfiguration()
+        public StateConfiguration()
         {
             RobotAdapter.Arm.Port = "";
             RobotAdapter.Arm.Channels = new Dictionary<RoboticAngle, uint>();
             RobotAdapter.Arm.Speed = 0;
+
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmBaseRotate] = 0;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmElbowBend] = 1;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmHandGrasp] = 2;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmShoulderLift] = 3;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmWristRotate] = 4;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmWristTilt] = 5;
         }
 
         /**
@@ -122,7 +135,11 @@ namespace RoboNui.Management
 
             JsonSerializer serializer = JsonSerializer.Create(settings);
             JsonReader reader = new JsonTextReader(new StreamReader(fn));
-            return serializer.Deserialize<StateConfiguration>(reader);
+            StateConfiguration sc = serializer.Deserialize<StateConfiguration>(reader);
+
+            StateConfiguration realSc = new StateConfiguration();
+            sc.RobotAdapter.Arm.Channels = realSc.RobotAdapter.Arm.Channels;
+            return sc;
         }
     }
 }
