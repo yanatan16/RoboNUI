@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="8231ddf7-5fe9-4ba9-aa61-695c581460df" name="Eisen@CRAZYEISEN 2011-10-16 13:32:13" runUser="CRAZYEISEN\Eisen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8e5fc231-a8cb-423c-9521-0eadba8787ac">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Eisen_CRAZYEISEN 2011-10-16 13_32_13">
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\log4net\log4net.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\json\Newtonsoft.Json.Net35.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-10-16T13:32:13.4496885-04:00" queuing="2011-10-16T13:32:13.5156923-04:00" start="2011-10-16T13:32:13.5526944-04:00" finish="2011-10-16T13:34:03.1219614-04:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>49 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - RoboNui.RobotAdapter.RoboticArmServoController constructed.
+83 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] INFO RoboNui.RobotAdapter.RoboticArmServoController (null) - Initiating all servos to center.
+85 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command comstr: #0 P1500 #1 P1500 #2 P1500 #3 P1500 #4 P1500 #5 P1500   (0x23 0x30 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x23 0x31 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x23 0x32 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x23 0x33 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x23 0x34 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x23 0x35 0x20 0x50 0x31 0x35 0x30 0x30 0x20 0x20 0xd )
+86 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - RoboNui.RobotAdapter.RoboticArmServoController constructed.
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="CRAZYEISEN" outcome="Warning" timestamp="2011-10-16T13:32:13.5146922-04:00">
+        <Text>Deployment is currently disabled. The deployment item 'RoboticNaturalUserInterface.exe' on test 'RoboNuiTest.RoboticArmServoControllerTest.UpdateTest' was not deployed.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="c0eca1fb-66d4-bb09-728d-297533670eaf">
+      <DeploymentItems>
+        <DeploymentItem filename="RoboticNaturalUserInterface.exe" />
+      </DeploymentItems>
+      <Execution id="733ba1b2-56d8-4d21-980a-742750faac07" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="c0eca1fb-66d4-bb09-728d-297533670eaf" executionId="733ba1b2-56d8-4d21-980a-742750faac07" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="733ba1b2-56d8-4d21-980a-742750faac07" testId="c0eca1fb-66d4-bb09-728d-297533670eaf" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:01.1079996" startTime="2011-10-16T13:32:13.5726955-04:00" endTime="2011-10-16T13:32:15.0917824-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="733ba1b2-56d8-4d21-980a-742750faac07">
+      <Output>
+        <StdOut>143 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] INFO RoboNui.RobotAdapter.RoboticArmServoController (null) - Sent movement command to Servo Controller.
+143 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command comstr: #0 P1738 #1 P1738 #2 P1738 #3 P1738 #4 P1738 #5 P1738 T1000  (0x23 0x30 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x23 0x31 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x23 0x32 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x23 0x33 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x23 0x34 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x23 0x35 0x20 0x50 0x31 0x37 0x33 0x38 0x20 0x54 0x31 0x30 0x30 0x30 0x20 0xd )
+145 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command comstr: QP 0    (0x51 0x50 0x20 0x30 0x20 0x20 0x20 0xd )
+1146 [Agent: adapter run thread for test 'UpdateTest' with id '733ba1b2-56d8-4d21-980a-742750faac07'] ERROR RoboNui.RobotAdapter.RoboticArmServoController (null) - Timeout exception on read to SSC32.
+System.TimeoutException: The operation has timed out.
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at System.IO.Ports.SerialPort.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at RoboNui.RobotAdapter.SSC32.ServoController.sendCommand(ServoCommandGroup com) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 152</StdOut>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;RoboNui.Core.AngleSet&gt;. Actual:&lt;(null)&gt;. </Message>
+          <StackTrace>   at RoboNuiTest.RoboticArmServoControllerTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 121
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

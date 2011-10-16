@@ -17,14 +17,14 @@ namespace RoboNui.RobotAdapter
      * This class controls the Arm servos based on angles
      * passed in through the IRoboticAngleConsumer interface.
      * 
-     * Base class: <see cref="ServoController"/>
+     * Base class: <see cref="SSC32ServoController"/>
      * Interface: <see cref="T:IConsumer{AngleSet}"/>
      * </summary>
      * <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
-     * <seealso cref="ServoController"/>
+     * <seealso cref="SSC32ServoController"/>
      * <seealso cref="T:IConsumer{AngleSet}"/>
      */
-    class RoboticArmServoController : ServoController, IConsumer<AngleSet>
+    class RoboticArmServoController : SSC32ServoController, IConsumer<AngleSet>
     {
         /**
          * <summary>Log for logging events in this class</summary>
@@ -62,7 +62,7 @@ namespace RoboNui.RobotAdapter
          * <param name="speed">Optional generic speed of each movement</param>
          */
         public RoboticArmServoController(string portName, Dictionary<RoboticAngle, uint> channelMap, ulong speed = 0) :
-            base(portName)
+            base(portName, channelMap.Values)
         {
             log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
@@ -97,27 +97,24 @@ namespace RoboNui.RobotAdapter
          */
         public AngleSet GetAngles(List<RoboticAngle> roboticAngleList)
         {
-            QueryPulseWidth command = new QueryPulseWidth();
+            Dictionary<RoboticAngle, ulong> pwMap = new Dictionary<RoboticAngle, ulong>();
+            
             foreach (RoboticAngle ra in roboticAngleList)
             {
+                QueryPulseWidth command = new QueryPulseWidth();
                 command.addChannel(ChannelMap[ra]);
+                
+                byte[] response = sendCommand(command);
+                if (response == null)
+                {
+                    return null;
+                }
+
+                ulong[] pws = QueryPulseWidth.interpretPulseWidths(response);
+
+                pwMap[ra] = pws[0];
             }
 
-            byte[] response = sendCommand(command);
-            
-            if (response == null)
-            {
-                return null;
-            }
-
-            ulong[] pws = QueryPulseWidth.interpretPulseWidths(response);
-
-            Dictionary<RoboticAngle, ulong> pwMap = new Dictionary<RoboticAngle, ulong>();
-            for (int i = 0; i < response.Length; i++)
-            {
-                pwMap[roboticAngleList[i]] = pws[i];
-            }
-            
             AngleSet ret = new AngleSet();
             ret.SetPulseWidthMap(pwMap, PulseWidthConverter);
 

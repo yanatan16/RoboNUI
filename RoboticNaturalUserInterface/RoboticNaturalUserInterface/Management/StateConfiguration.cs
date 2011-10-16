@@ -32,6 +32,8 @@ namespace RoboNui.Management
         public struct _RobotAdapterConfig
         {
 
+            public int UseArm;
+
             /**
              * <summary>
              * Configuration sub-struct for the Robotic Arm component(s).
@@ -56,6 +58,11 @@ namespace RoboNui.Management
              */
             public struct _Marionette
             {
+                /// <summary>Serial Port name of the Robotic Arm's Servo Controller</summary>
+                public string Port;
+
+                /// <summary>Robotic Angle to Channel Number list</summary>
+                public Dictionary<RoboticAngle, uint> Channels;
             }
 
             /**
@@ -117,11 +124,19 @@ namespace RoboNui.Management
             RobotAdapter.Arm.Speed = 0;
 
             RobotAdapter.Arm.Channels[RoboticAngle.ArmBaseRotate] = 0;
-            RobotAdapter.Arm.Channels[RoboticAngle.ArmElbowBend] = 1;
-            RobotAdapter.Arm.Channels[RoboticAngle.ArmHandGrasp] = 2;
-            RobotAdapter.Arm.Channels[RoboticAngle.ArmShoulderLift] = 3;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmShoulderLift] = 1;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmElbowBend] = 2;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmWristTilt] = 3;
             RobotAdapter.Arm.Channels[RoboticAngle.ArmWristRotate] = 4;
-            RobotAdapter.Arm.Channels[RoboticAngle.ArmWristTilt] = 5;
+            RobotAdapter.Arm.Channels[RoboticAngle.ArmHandGrasp] = 5;
+
+            RobotAdapter.Marionette.Channels = new Dictionary<RoboticAngle, uint>();
+            RobotAdapter.Marionette.Port = "";
+            RobotAdapter.Marionette.Channels[RoboticAngle.CurtainOpen] = 6;
+            RobotAdapter.Marionette.Channels[RoboticAngle.RightArmLift] = 1;
+            RobotAdapter.Marionette.Channels[RoboticAngle.LeftArmLift] = 7;
+            RobotAdapter.Marionette.Channels[RoboticAngle.RearLift] = 3;
+            RobotAdapter.Marionette.Channels[RoboticAngle.HeadLift] = 5;
         }
 
         /**
@@ -139,6 +154,7 @@ namespace RoboNui.Management
 
             StateConfiguration realSc = new StateConfiguration();
             sc.RobotAdapter.Arm.Channels = realSc.RobotAdapter.Arm.Channels;
+            sc.RobotAdapter.Marionette.Channels = realSc.RobotAdapter.Marionette.Channels;
             return sc;
         }
     }

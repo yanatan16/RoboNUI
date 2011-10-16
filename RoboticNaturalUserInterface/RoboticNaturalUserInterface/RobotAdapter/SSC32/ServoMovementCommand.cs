@@ -91,9 +91,9 @@ namespace RoboNui.RobotAdapter.SSC32
         {
             string ret = string.Empty;
             //Required parameters
-            ret += string.Format("#{0} P{1}", Channel[i], PulseWidth[i]);
+            ret += string.Format("#{0}P{1}", Channel[i], PulseWidth[i]);
             if (MoveSpeed[i] > 0)
-                ret += string.Format(" S{0}", MoveSpeed[i]);
+                ret += string.Format("S{0}", MoveSpeed[i]);
             return ret;
         }
 

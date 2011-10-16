@@ -222,7 +222,7 @@
             <seealso cref="T:RoboNui.RobotAdapter.SSC32.QueryMovementStatus"/>
             <seealso cref="T:RoboNui.RobotAdapter.SSC32.QueryPulseWidth"/>
             <seealso cref="T:RoboNui.RobotAdapter.SSC32.ServoMovementCommand"/>
-            <seealso cref="T:RoboNui.RobotAdapter.SSC32.ServoController"/>
+            <seealso cref="T:RoboNui.RobotAdapter.SSC32.SSC32ServoController"/>
         </member>
         <member name="F:RoboNui.RobotAdapter.SSC32.ServoCommandGroup.ResponseLength">
             <summary>Length of the response</summary>
@@ -241,7 +241,7 @@
             <summary>Construct the command string to send to the servo controller</summary>
             
             <returns>The command string to send</returns>
-            <seealso cref="T:RoboNui.RobotAdapter.SSC32.ServoController"/>
+            <seealso cref="T:RoboNui.RobotAdapter.SSC32.SSC32ServoController"/>
         </member>
         <member name="M:RoboNui.RobotAdapter.SSC32.ServoCommandGroup.IncCommandString(System.Int32)">
             <summary>
@@ -376,41 +376,43 @@
             This class controls the Arm servos based on angles
             passed in through the IRoboticAngleConsumer interface.
             
-            Base class: <see cref="T:RoboNui.RobotAdapter.SSC32.ServoController"/>
+            Base class: <see cref="T:RoboNui.RobotAdapter.SSC32.SSC32ServoController"/>
             Interface: <see cref="T:IConsumer{AngleSet}"/>
             </summary>
             <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
-            <seealso cref="T:RoboNui.RobotAdapter.SSC32.ServoController"/>
+            <seealso cref="T:RoboNui.RobotAdapter.SSC32.SSC32ServoController"/>
             <seealso cref="T:IConsumer{AngleSet}"/>
         </member>
-        <member name="T:RoboNui.RobotAdapter.SSC32.ServoController">
+        <member name="T:RoboNui.RobotAdapter.SSC32.SSC32ServoController">
             <summary>
             Base class for communicating commands to an SSC-32 servo controller
             </summary>
             <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
         </member>
-        <member name="F:RoboNui.RobotAdapter.SSC32.ServoController.log">
+        <member name="F:RoboNui.RobotAdapter.SSC32.SSC32ServoController.log">
             <summary>Log for logging events in this class</summary>
         </member>
-        <member name="F:RoboNui.RobotAdapter.SSC32.ServoController.port">
+        <member name="F:RoboNui.RobotAdapter.SSC32.SSC32ServoController.port">
             <summary>
             Serial port this controller communicates on
             </summary>
         </member>
-        <member name="M:RoboNui.RobotAdapter.SSC32.ServoController.#ctor(System.String)">
+        <member name="M:RoboNui.RobotAdapter.SSC32.SSC32ServoController.#ctor(System.String,System.Collections.Generic.ICollection{System.UInt32})">
             <summary>
-            Constructor with port name and open the port
+            Constructor with port name and open the port.
+            Also initializes servo channels to center
             </summary>
             
             <param name="portName">Name of the serial port</param>
+            <param name="channels">Channels to center on construction</param>
         </member>
-        <member name="M:RoboNui.RobotAdapter.SSC32.ServoController.Finalize">
+        <member name="M:RoboNui.RobotAdapter.SSC32.SSC32ServoController.Finalize">
             <summary>
             Destructor of the class. 
             Closes the serial port.
             </summary>
         </member>
-        <member name="M:RoboNui.RobotAdapter.SSC32.ServoController.sendCommand(RoboNui.RobotAdapter.SSC32.ServoCommandGroup)">
+        <member name="M:RoboNui.RobotAdapter.SSC32.SSC32ServoController.sendCommand(RoboNui.RobotAdapter.SSC32.ServoCommandGroup)">
             <summary>
             Send a command to the servo controller
             </summary>
@@ -483,6 +485,19 @@
             Map of Controller Joints to Positions.
             </summary>
         </member>
+        <member name="T:RoboNui.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:RoboNui.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:RoboNui.App">
             <summary>
             Interaction logic for App.xaml
@@ -508,11 +523,57 @@
             Interface: <see cref="T:IConsumer"/> with T = <see cref="T:RoboNui.Core.AngleSet"/>
             </summary>
         </member>
+        <member name="T:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController">
+            <summary>
+            Base class for communicating commands to an SSC-32 servo controller
+            </summary>
+            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+        </member>
+        <member name="F:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController.log">
+            <summary>Log for logging events in this class</summary>
+        </member>
+        <member name="F:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController.port">
+            <summary>
+            Serial port this controller communicates on
+            </summary>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController.#ctor(System.String,System.Collections.Generic.ICollection{System.UInt32})">
+            <summary>
+            Constructor with port name and open the port.
+            Also initializes servo channels to center
+            </summary>
+            
+            <param name="portName">Name of the serial port</param>
+            <param name="channels">Channels to center on construction</param>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController.Finalize">
+            <summary>
+            Destructor of the class. 
+            Closes the serial port.
+            </summary>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController.sendCommand(RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand)">
+            <summary>
+            Send a command to the servo controller
+            </summary>
+            
+            <param name="com">Command to send</param>
+        </member>
         <member name="F:RoboNui.RobotAdapter.RoboticMarionetteServoController.log">
             <summary>Log for logging events in this class</summary>
         </member>
+        <member name="F:RoboNui.RobotAdapter.RoboticMarionetteServoController.PulseWidthConverter">
+            <summary>
+            A set of pulse width constants for this consumer to use
+            </summary>
+        </member>
         <member name="M:RoboNui.RobotAdapter.RoboticMarionetteServoController.Utilities#Messaging#IConsumer{RoboNui#Core#AngleSet}#Update(RoboNui.Core.AngleSet)">
             <summary>See <see cref="M:IConsumer.Update"/> for the inherited method summary</summary>
+        </member>
+        <member name="P:RoboNui.RobotAdapter.RoboticMarionetteServoController.ChannelMap">
+            <summary>
+            Mapping of RoboNUI.RoboticAngle to Mini SSC II servo channels
+            </summary>
         </member>
         <member name="T:RoboNui.RobotAdapter.SSC32.QueryPulseWidth">
             <summary>
@@ -606,6 +667,43 @@
         </member>
         <member name="P:RoboNui.RobotAdapter.RoboticArmModel.NeededJoints">
             <summary> The list of joints that this model requires to translate.</summary>
+        </member>
+        <member name="T:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand">
+            <summary>
+            A servo command for servo movement to an Mini-SSC II servo controller
+            </summary>
+            <remarks>
+            Author: Jon Eisen (yanatan16@gmail.com)
+            </remarks>
+        </member>
+        <member name="F:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand.Channel">
+            <summary>Channel number to command (motor)</summary>
+            <remarks>Range: 0 - 31</remarks>
+        </member>
+        <member name="F:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand.PulseWidth">
+            <summary>Pulse width to command (position)</summary>
+            <remarks>
+            In units of microseconds.
+            Range: 0 - 3000, 1500 is middle
+            </remarks>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand.#ctor">
+            <summary>
+            Constructor for this class.
+            Instantiates a ServoMovement command from base class.
+            </summary>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand.#ctor(System.UInt32,System.Byte)">
+            <summary>
+            Constructor for this class with parameters.
+            Instantiates a ServoMovement command from base class.
+            </summary>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.MiniSSC2.ServoMovementCommand.CommandString">
+            <summary>Construct the command string to send to the servo controller</summary>
+            
+            <returns>The command string to send</returns>
+            <seealso cref="T:RoboNui.RobotAdapter.MiniSSC2.MiniSSCIIServoController"/>
         </member>
         <member name="T:RoboNui.RecordPlayback.Recorder">
             <summary>
@@ -736,6 +834,12 @@
             Configuration sub-struct for the Robotic Marionette component(s).
             </summary>
         </member>
+        <member name="F:RoboNui.Management.StateConfiguration._RobotAdapterConfig._Marionette.Port">
+            <summary>Serial Port name of the Robotic Arm's Servo Controller</summary>
+        </member>
+        <member name="F:RoboNui.Management.StateConfiguration._RobotAdapterConfig._Marionette.Channels">
+            <summary>Robotic Angle to Channel Number list</summary>
+        </member>
         <member name="T:RoboNui.Management.StateConfiguration._KinectAdapter">
             <summary>
             Configuration sub-struct for the Kinect Adapter Assembly.
@@ -775,6 +879,26 @@
             </summary>
             <param name="response">Response received from servo controller</param>
             <returns>Boolean true if movement in complete, false otherwise</returns>
+        </member>
+        <member name="T:RoboNui.RobotAdapter.RoboticMarionetteModel">
+            <summary>
+            This class provides a translation from human controller joints to Robotic Marionette angles.
+            These angles are determined by a model of the physical robotic marionette itself.
+            </summary>
+            
+            <remarks>Author: Jon Eisen (yanatan16@gmail.com)</remarks>
+            <seealso cref="T:RoboNui.Core.IRoboticModel"/>
+        </member>
+        <member name="M:RoboNui.RobotAdapter.RoboticMarionetteModel.#ctor">
+            <summary>Construct the Robotic Marionette Model</summary>
+            
+        </member>
+        <member name="M:RoboNui.RobotAdapter.RoboticMarionetteModel.Translate(RoboNui.Core.JointSet)">
+            <summary>Translate between joints to angles for the robotic arm</summary>
+            <see cref="M:RoboNui.Core.IRoboticModel.Translate(RoboNui.Core.JointSet)"/>
+        </member>
+        <member name="P:RoboNui.RobotAdapter.RoboticMarionetteModel.NeededJoints">
+            <summary> The list of joints that this model requires to translate.</summary>
         </member>
         <member name="T:RoboNui.Core.ControllerJoints">
             <summary>
@@ -877,19 +1001,6 @@
         </member>
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
-        </member>
-        <member name="T:RoboNui.MainWindow">
-            <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
-            </summary>
-        </member>
-        <member name="M:RoboNui.MainWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
         </member>
     </members>
 </doc>

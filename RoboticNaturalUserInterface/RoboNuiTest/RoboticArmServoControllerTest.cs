@@ -51,10 +51,11 @@ namespace RoboNuiTest
         //}
         //
         //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            Assert.IsNotNull(target);
+        }
         //
         //Use TestCleanup to run code after each test has run
         //[TestCleanup()]
@@ -64,49 +65,34 @@ namespace RoboNuiTest
         //
         #endregion
 
+        static string defaultPortName = "COM5";
+        static Dictionary<RoboticAngle, uint> defaultChannelMap;
+        static ulong defaultSpeed;
+
+        static RoboticArmServoController target;
+
         //Use ClassInitialize to run code before running the first test in the class
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext tc)
         {
             BasicConfigurator.Configure();
-        }
 
-
-        //Use ClassInitialize to run code before running the first test in the class
-        [TestInitialize()]
-        public void MyTestInitialize()
-        {
             defaultChannelMap = new Dictionary<RoboticAngle, uint>();
             RoboticAngle[] angles = { RoboticAngle.ArmBaseRotate, RoboticAngle.ArmElbowBend, RoboticAngle.ArmHandGrasp, 
                                        RoboticAngle.ArmShoulderLift, RoboticAngle.ArmWristRotate, RoboticAngle.ArmWristTilt };
             uint[] channels = { 0, 1, 2, 3, 4, 5 };
             for (uint i = 0; i < angles.Length; i++)
                 defaultChannelMap.Add(angles[i], channels[i]);
-            defaultSpeed = 1;
-        }
-
-        string defaultPortName = "COM3";
-        Dictionary<RoboticAngle, uint> defaultChannelMap;
-        ulong defaultSpeed;
-
-        /// <summary>
-        ///A test for RoboticArmServoController Constructor
-        ///</summary>
-        [TestMethod()]
-        public void RoboticArmServoControllerConstructorTest()
-        {
-            RoboticArmServoController target = new RoboticArmServoController(defaultPortName, defaultChannelMap, defaultSpeed);
-            Assert.IsNotNull(target);
+            defaultSpeed = 1000;
+            target = new RoboticArmServoController(defaultPortName, defaultChannelMap, defaultSpeed);
         }
 
         /// <summary>
         ///A test for GetAngles
         ///</summary>
-        [TestMethod()]
+//        [TestMethod()]
         public void StartGetAnglesTest()
         {
-            RoboticArmServoController target = new RoboticArmServoController(defaultPortName, defaultChannelMap, defaultSpeed);
-
             List<RoboticAngle> roboticAngleList = new List<RoboticAngle>(defaultChannelMap.Keys);
             AngleSet expected = new AngleSet();
             for (int i = 0; i < roboticAngleList.Count; i++)
@@ -125,8 +111,6 @@ namespace RoboNuiTest
         [DeploymentItem("RoboticNaturalUserInterface.exe")]
         public void UpdateTest()
         {
-            RoboticArmServoController target = new RoboticArmServoController(defaultPortName, defaultChannelMap, defaultSpeed);
-
             List<RoboticAngle> roboticAngleList = new List<RoboticAngle>(defaultChannelMap.Keys);
             AngleSet requested = new AngleSet();
             for (int i = 0; i < roboticAngleList.Count; i++)
@@ -140,11 +124,9 @@ namespace RoboNuiTest
         /// <summary>
         ///A test for IsMovementFinished
         ///</summary>
-        [TestMethod()]
+//        [TestMethod()]
         public void IsMovementFinishedTest()
         {
-            RoboticArmServoController target = new RoboticArmServoController(defaultPortName, defaultChannelMap, 10);
-
             List<RoboticAngle> roboticAngleList = new List<RoboticAngle>(defaultChannelMap.Keys);
             AngleSet requested = new AngleSet(); 
             for (int i = 0; i < roboticAngleList.Count; i++)

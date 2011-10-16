@@ -7,6 +7,9 @@ using RoboNui.Core;
 using Utilities.Messaging;
 
 using log4net;
+using RoboNui.RobotAdapter.MiniSSC2;
+
+// TODO Implement
 
 namespace RoboNui.RobotAdapter
 {
@@ -17,17 +20,37 @@ namespace RoboNui.RobotAdapter
      * Interface: <see cref="T:IConsumer"/> with T = <see cref="AngleSet"/>
      * </summary>
      */
-    class RoboticMarionetteServoController : IConsumer<AngleSet>
+    class RoboticMarionetteServoController : MiniSSCIIServoController, IConsumer<AngleSet>
     {
         /**
          * <summary>Log for logging events in this class</summary>
          */
-        private ILog log;
+        private readonly ILog log = LogManager.GetLogger(typeof(RoboticMarionetteServoController));
 
-        public RoboticMarionetteServoController()
+        /**
+         * <summary>
+         * Mapping of RoboNUI.RoboticAngle to Mini SSC II servo channels
+         * </summary>
+         */
+        public Dictionary<RoboticAngle, uint> ChannelMap { get; set; }
+
+        /**
+         * <summary>
+         * A set of pulse width constants for this consumer to use
+         * </summary>
+         */
+        protected PulseWidthConstants PulseWidthConverter;
+
+        public RoboticMarionetteServoController(string portName, Dictionary<RoboticAngle, uint> channelMap) :
+            base(portName, channelMap.Values)
         {
-            log = LogManager.GetLogger(this.GetType());
             log.Debug(this.ToString() + " constructed.");
+
+            PulseWidthConverter = new PulseWidthConstants(128 / Math.PI, 128);
+            ChannelMap = channelMap;
+
+            ServoMovementCommand smc = new ServoMovementCommand(channelMap[RoboticAngle.CurtainOpen], 0);
+            sendCommand(smc);
         }
 
         /**
@@ -35,7 +58,13 @@ namespace RoboNui.RobotAdapter
          */
         void IConsumer<AngleSet>.Update(AngleSet angles)
         {
-            throw new NotImplementedException();
+            foreach (KeyValuePair<RoboticAngle, ulong> pair in angles.GetPulseWidthMap(PulseWidthConverter))
+            {
+                byte pw = (byte) Math.Min(255, pair.Value);
+                ServoMovementCommand smc = new ServoMovementCommand(ChannelMap[pair.Key], pw);
+                sendCommand(smc);
+            }
+            log.Info("Sent " + angles.AngleMap.Count + " movement commands to the Servo Controller.");
         }
     }
 }

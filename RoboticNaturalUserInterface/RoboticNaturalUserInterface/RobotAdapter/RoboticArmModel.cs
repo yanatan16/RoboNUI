@@ -49,28 +49,20 @@ namespace RoboNui.RobotAdapter
         {
             AngleSet angles = new AngleSet();
 
-            Position3d flatShoulder = js.JointMap[ControllerJoints.ShoulderRight];
-            flatShoulder.z = 0;
+            Position3d r = js.JointMap[ControllerJoints.ElbowRight] - js.JointMap[ControllerJoints.ShoulderRight];
+            
             angles.AngleMap.Add(RoboticAngle.ArmBaseRotate,
-                getAngle3d(
-                    flatShoulder,
-                    js.JointMap[ControllerJoints.ShoulderCenter],
-                    js.JointMap[ControllerJoints.ShoulderRight]
-                )
+                Math.Atan2(r.y, r.x) + Math.PI / 2
             );
-            angles.AngleMap.Add(RoboticAngle.ArmShoulderLift, 
-                getAngle3d(
-                    js.JointMap[ControllerJoints.ShoulderCenter],
-                    js.JointMap[ControllerJoints.ShoulderRight],
-                    js.JointMap[ControllerJoints.ElbowRight]
-                )
+            angles.AngleMap.Add(RoboticAngle.ArmShoulderLift,
+                - Math.Atan2(r.z * 10, r.x)
             );
             angles.AngleMap.Add(RoboticAngle.ArmElbowBend,
                 getAngle3d(
                     js.JointMap[ControllerJoints.ShoulderRight],
                     js.JointMap[ControllerJoints.ElbowRight],
                     js.JointMap[ControllerJoints.WristRight]
-                )
+                ) - Math.PI
             );
             angles.AngleMap.Add(RoboticAngle.ArmWristTilt, 
                 getAngle3d(
@@ -84,7 +76,9 @@ namespace RoboNui.RobotAdapter
             angles.AngleMap.Add(RoboticAngle.ArmWristRotate, 0);
             angles.AngleMap.Add(RoboticAngle.ArmHandGrasp, 0);
 
-            log.Debug("Translating JointSet to AngleSet: js(" + js.ToString() + ") to as(" + angles.ToString() + ")");
+            log.Debug("Elbow vector: " + (js.JointMap[ControllerJoints.ElbowRight] - js.JointMap[ControllerJoints.ShoulderRight]).ToString());
+            log.Debug("Incoming JointSet: " + js.ToString());
+            log.Debug("Translating JointSet to AngleSet: (" + angles.ToString() + ")");
 
             return angles;
         }
@@ -94,6 +88,45 @@ namespace RoboNui.RobotAdapter
             Position3d vec1 = a - b;
             Position3d vec2 = c - b;
             return Math.Acos(vec1.Dot(vec2) / (vec1.Magnitude() * vec2.Magnitude()));
+        }
+
+        private double getProjectedAngle(Position3d a, Position3d b, Position3d c, Dimension toProject)
+        {
+            Position3d ap = new Position3d(a);
+            Position3d bp = new Position3d(b);
+            Position3d cp = new Position3d(c);
+
+            if (toProject == Dimension.X)
+            {
+                ap.x = 0;
+                bp.x = 0;
+                cp.x = 0;
+            }
+            else if (toProject == Dimension.Y)
+            {
+                ap.y = 0;
+                bp.y = 0;
+                cp.y = 0;
+            }
+            else
+            {
+                ap.z = 0;
+                bp.z = 0;
+                cp.z = 0;
+            }
+            return getAngle3d(ap, bp, cp);
+        }
+
+        private double getProjectedPolarTheta(Position3d center, Position3d point, Dimension toProject)
+        {
+            Position3d r = point - center;
+
+            if (toProject == Dimension.X)
+                return Math.Atan2(r.z, r.y);
+            else if (toProject == Dimension.Y)
+                return Math.Atan2(r.z, r.x);
+            else
+                return Math.Atan2(r.y, r.x);
         }
     }
 }

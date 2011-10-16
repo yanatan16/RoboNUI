@@ -58,10 +58,7 @@ namespace RoboNui.RobotAdapter.SSC32
          */
         protected override string IncCommandString(int i)
         {
-            if (i == 0)
-                return String.Format("QP %ud", Channel[i]);
-            else
-                return String.Format("%ud", Channel[i]);
+            return string.Format("QP{0}", Channel[i]);
         }
 
         /**
@@ -69,7 +66,7 @@ namespace RoboNui.RobotAdapter.SSC32
          */
         protected override string PostCommandString()
         {
-            return "";
+            return string.Empty;
         }
 
         /**

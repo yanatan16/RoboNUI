@@ -273,8 +273,8 @@ namespace RoboNui.Management
             sjm = new SkeletalJointMonitor(runtimeNui);
 
             // Robot Adapter
-
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
+            rsc_mar = new RoboticMarionetteServoController(config.RobotAdapter.Marionette.Port, config.RobotAdapter.Marionette.Channels);
 
             Startup();
             log.Info("Default System configuration Initialized.");
@@ -289,18 +289,24 @@ namespace RoboNui.Management
          */
         public void Startup()
         {
-            // Set up SJM-JAT-RSC/Arm path
-            RoboticArmModel ram = new RoboticArmModel();
+            IRoboticModel irm;
+            if (config.RobotAdapter.UseArm == 1)
+            {
+                // Set up SJM-JAT-RSC/Arm path
+                irm = new RoboticArmModel();
+                CurrentAngleConsumer = rsc_arm;
+            } else {
+                irm = new RoboticMarionetteModel();
+                CurrentAngleConsumer = rsc_mar;
+            }
 
-            sjm.InterestedJoints = ram.NeededJoints;
+            sjm.InterestedJoints = irm.NeededJoints;
             sjm.Period = config.KinectAdapter.Period;
             CurrentJointProvider = sjm;
 
-            jat.Model = new RoboticArmModel();
+            jat.Model = irm;
             CurrentJointConsumer = jat;
             CurrentAngleProvider = jat;
-            
-            CurrentAngleConsumer = rsc_arm;
 
             // And...GO!
             Active = true;

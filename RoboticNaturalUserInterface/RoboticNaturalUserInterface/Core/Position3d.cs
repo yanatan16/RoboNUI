@@ -5,6 +5,9 @@ using System.Text;
 
 namespace RoboNui.Core
 {
+
+    public enum Dimension { X, Y, Z }
+
     /**
      * <summary>
      * 3 Dimensional position
@@ -173,12 +176,13 @@ namespace RoboNui.Core
          * Default Constructor
          * </summary>
          */
-        public Position3d()
+        public Position3d() : this(0,0,0)
         {
-            x = 0;
-            y = 0;
-            z = 0;
         }
+
+        public Position3d(Position3d v)
+            : this(v.x, v.y, v.z)
+        { }
 
         /**
          * <summary>

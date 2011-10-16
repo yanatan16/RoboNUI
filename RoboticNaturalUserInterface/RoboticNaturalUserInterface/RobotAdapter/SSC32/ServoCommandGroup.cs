@@ -15,7 +15,7 @@ namespace RoboNui.RobotAdapter.SSC32
      * <seealso cref="QueryMovementStatus"/>
      * <seealso cref="QueryPulseWidth"/>
      * <seealso cref="ServoMovementCommand"/>
-     * <seealso cref="ServoController"/>
+     * <seealso cref="SSC32ServoController"/>
      */
     abstract class ServoCommandGroup
     {
@@ -76,16 +76,16 @@ namespace RoboNui.RobotAdapter.SSC32
         * <summary>Construct the command string to send to the servo controller</summary>
         * 
         * <returns>The command string to send</returns>
-        * <seealso cref="ServoController"/>
+        * <seealso cref="SSC32ServoController"/>
         */
         public string CommandString()
         {
             string ret = string.Empty;
             for (int i = 0; i < NumCommands; i++)
             {
-                ret += IncCommandString(i) + " ";
+                ret += IncCommandString(i);
             }
-            ret += PostCommandString() + " " + ((char)13);
+            ret += PostCommandString();
             return ret;
         }
 

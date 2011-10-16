@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KinectAdapter\CommandRecognitionAdapter.cs" />
+    <Compile Include="RobotAdapter\RoboticMarionetteModel.cs" />
+    <Compile Include="RobotAdapter\MiniSSC-II\ServoController.cs" />
+    <Compile Include="RobotAdapter\MiniSSC-II\ServoMovementCommand.cs" />
     <Compile Include="Starter.cs" />
     <Compile Include="Core\AngleSet.cs" />
     <Compile Include="Core\ControllerJoints.cs" />
