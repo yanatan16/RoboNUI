@@ -49,27 +49,21 @@ namespace RoboNui.RobotAdapter
         {
             AngleSet angles = new AngleSet();
 
-            Position3d r = js.JointMap[ControllerJoints.ElbowRight] - js.JointMap[ControllerJoints.ShoulderRight];
-            
+            Position3d topArm = js.JointMap[ControllerJoints.ElbowRight] - js.JointMap[ControllerJoints.ShoulderRight];
+            Position3d bottomArm = js.JointMap[ControllerJoints.WristRight] - js.JointMap[ControllerJoints.ElbowRight];
+            Position3d hand = js.JointMap[ControllerJoints.HandRight] - js.JointMap[ControllerJoints.WristRight];
+
             angles.AngleMap.Add(RoboticAngle.ArmBaseRotate,
-                Math.Atan2(r.y, r.x) + Math.PI / 2
+                Math.Atan2(topArm.z, topArm.x)
             );
             angles.AngleMap.Add(RoboticAngle.ArmShoulderLift,
-                - Math.Atan2(r.z * 10, r.x)
+                Math.Atan2(topArm.y, topArm.x)
             );
             angles.AngleMap.Add(RoboticAngle.ArmElbowBend,
-                getAngle3d(
-                    js.JointMap[ControllerJoints.ShoulderRight],
-                    js.JointMap[ControllerJoints.ElbowRight],
-                    js.JointMap[ControllerJoints.WristRight]
-                ) - Math.PI
+                Math.Acos(bottomArm.Dot(-topArm) / (topArm.Magnitude() * bottomArm.Magnitude()))
             );
-            angles.AngleMap.Add(RoboticAngle.ArmWristTilt, 
-                getAngle3d(
-                    js.JointMap[ControllerJoints.ElbowRight],
-                    js.JointMap[ControllerJoints.WristRight],
-                    js.JointMap[ControllerJoints.HandRight]
-                )
+            angles.AngleMap.Add(RoboticAngle.ArmWristTilt,
+                Math.Acos(hand.Dot(-bottomArm) / (hand.Magnitude() * bottomArm.Magnitude()))
             );
 
             //TODO Figure out these angles

@@ -226,6 +226,11 @@ namespace RoboNui.Core
             return new Position3d(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
+        public static Position3d operator -(Position3d that)
+        {
+            return new Position3d(-that.x, -that.y, -that.z);
+        }
+
         public string ToString()
         {
             return "[" + x + "," + y + "," + z + "]";
