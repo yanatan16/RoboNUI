@@ -215,6 +215,11 @@ namespace RoboNui.Core
             return x * b.x + y * b.y + z * b.z;
         }
 
+        public Position3d Cross(Position3d b)
+        {
+            return new Position3d(y * b.z - z * b.y, z * b.x - x * b.z, x * b.y - y * b.x);
+        }
+
         /**
          * <summary>Subtract two Position3d's</summary>
          * <param name="a">Positive element in sum</param>

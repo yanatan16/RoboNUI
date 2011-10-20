@@ -4,16 +4,16 @@
 {
 	"RobotAdapter" : 
 	{
-		"UseArm" : 0,
+		"UseArm" : 1,
 		"Arm" :
 		{
-			"Port" : "COM3",
+			"Port" : "COM5",
 			"Speed" : 1000
 		},
 
 		"Marionette" :
 		{
-			"Port" : "COM5"
+			"Port" : "COM3"
 		},
 	},
 

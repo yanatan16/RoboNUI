@@ -59,18 +59,27 @@ namespace RoboNui.RobotAdapter
             angles.AngleMap.Add(RoboticAngle.ArmShoulderLift,
                 Math.Atan2(topArm.y, topArm.x)
             );
+
+            // Test this
+            double elbowangle = Math.Acos(bottomArm.Dot(topArm) / (topArm.Magnitude() * bottomArm.Magnitude()));
+            double elbowsign = Math.Sign(topArm.Cross(bottomArm).z);
             angles.AngleMap.Add(RoboticAngle.ArmElbowBend,
-                Math.Acos(bottomArm.Dot(-topArm) / (topArm.Magnitude() * bottomArm.Magnitude()))
+                elbowangle * elbowsign
             );
+
+            // Test this
+            double wristangle = Math.Acos(bottomArm.Dot(hand) / (hand.Magnitude() * bottomArm.Magnitude()));
+            double wristsign = Math.Sign(bottomArm.Cross(hand).z);
             angles.AngleMap.Add(RoboticAngle.ArmWristTilt,
-                Math.Acos(hand.Dot(-bottomArm) / (hand.Magnitude() * bottomArm.Magnitude()))
+                wristangle * wristsign
             );
 
             //TODO Figure out these angles
             angles.AngleMap.Add(RoboticAngle.ArmWristRotate, 0);
             angles.AngleMap.Add(RoboticAngle.ArmHandGrasp, 0);
 
-            log.Debug("Elbow vector: " + (js.JointMap[ControllerJoints.ElbowRight] - js.JointMap[ControllerJoints.ShoulderRight]).ToString());
+            log.Debug("Top Arm vector: " + topArm.ToString());
+            log.Debug("Bottom Arm vector: " + bottomArm.ToString());
             log.Debug("Incoming JointSet: " + js.ToString());
             log.Debug("Translating JointSet to AngleSet: (" + angles.ToString() + ")");
 
