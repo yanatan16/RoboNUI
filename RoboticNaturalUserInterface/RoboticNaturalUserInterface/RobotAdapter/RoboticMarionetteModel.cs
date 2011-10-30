@@ -43,8 +43,8 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.ShoulderRight);
             NeededJoints.Add(ControllerJoints.HandRight);
             NeededJoints.Add(ControllerJoints.HipCenter);
-            NeededJoints.Add(ControllerJoints.FootLeft);
-            NeededJoints.Add(ControllerJoints.FootRight);
+            NeededJoints.Add(ControllerJoints.KneeLeft);
+            NeededJoints.Add(ControllerJoints.KneeRight);
         }
 
 
@@ -54,32 +54,30 @@ namespace RoboNui.RobotAdapter
          */
         public AngleSet Translate(JointSet js)
         {
-            // TODO Figure out how to scale these
-            const double scale = .5;
-            const double constant = -1;
-
-            // Find the floor level
-            double averageFloor = (js.JointMap[ControllerJoints.FootLeft].y + js.JointMap[ControllerJoints.FootRight].y) / 2;
-
             // Find the height above for each node
             Position3d lefthand = js.JointMap[ControllerJoints.HandLeft] - js.JointMap[ControllerJoints.ShoulderLeft];
             Position3d righthand = js.JointMap[ControllerJoints.HandRight] - js.JointMap[ControllerJoints.ShoulderRight];
 
-            double handLeftAngle = Math.Atan2(lefthand.y, -lefthand.x);
-            double handRightAngle = Math.Atan2(righthand.y, righthand.x);
+            double handLeftAngle = -Math.Atan2(lefthand.y, -lefthand.x);
+            double handRightAngle = -Math.Atan2(righthand.y, righthand.x);
 
-            Position3d leftfoot = js.JointMap[ControllerJoints.FootLeft] - js.JointMap[ControllerJoints.HipCenter];
-            Position3d rightfoot = js.JointMap[ControllerJoints.FootRight] - js.JointMap[ControllerJoints.HipCenter];
-            double footAngle = Math.Acos(leftfoot.Dot(rightfoot) / (leftfoot.Magnitude() * rightfoot.Magnitude()));
+            Position3d legs = (2 * js.JointMap[ControllerJoints.HipCenter] - js.JointMap[ControllerJoints.KneeLeft] - js.JointMap[ControllerJoints.KneeRight]) / 2;
+            Position3d torso = -js.JointMap[ControllerJoints.HipCenter] - js.JointMap[ControllerJoints.Head];
+            //legs.x = 0;
+            //torso.x = 0;
+            double bendAngle = legs.angle(torso) - Math.PI / 2;
+            double headAngle = bendAngle * 4;
+            double rearAngle = -headAngle;
 
-            double headHeight = js.JointMap[ControllerJoints.Head].y - averageFloor;
-            headHeight -= getAndAddToAverageHeight(headHeight);
-
+            log.Debug("legs: " + legs.ToString());
+            log.Debug("torso: " + torso.ToString());
+            log.Debug("bendAngle(" + bendAngle + ") headAngle(" + headAngle + ")");
+            
             AngleSet angles = new AngleSet();
-            angles.AngleMap.Add(RoboticAngle.HeadLift, headHeight);
+            angles.AngleMap.Add(RoboticAngle.HeadLift, headAngle);
             angles.AngleMap.Add(RoboticAngle.LeftArmLift, handLeftAngle);
             angles.AngleMap.Add(RoboticAngle.RightArmLift, handRightAngle);
-            angles.AngleMap.Add(RoboticAngle.RearLift, footAngle);
+            angles.AngleMap.Add(RoboticAngle.RearLift, rearAngle);
             
             log.Debug("Translating JointSet to AngleSet: as(" + angles.ToString() + ")");
 

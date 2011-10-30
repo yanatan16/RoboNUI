@@ -118,7 +118,14 @@ namespace RoboNui.RobotAdapter.MiniSSC2
             if (!inactive)
             {
                 IEnumerable<byte> command = com.CommandString();
-                port.Write(command.ToArray(), 0, command.Count());
+                try
+                {
+                    port.Write(command.ToArray(), 0, command.Count());
+                }
+                catch (SystemException sex)
+                {
+                    log.Error(sex);
+                }
             }
         }
 

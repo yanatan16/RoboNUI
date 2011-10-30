@@ -4,11 +4,11 @@
 {
 	"RobotAdapter" : 
 	{
-		"UseArm" : 1,
+		"UseArm" : 0,
 		"Arm" :
 		{
 			"Port" : "COM5",
-			"Speed" : 1000
+			"Speed" : 500
 		},
 
 		"Marionette" :
@@ -19,11 +19,11 @@
 
 	"KinectAdapter" :
 	{
-		"Period" : 1000
+		"Period" : 500
 	},
 
 	"Core" : 
 	{
-
+		
 	}
 }

@@ -62,16 +62,19 @@ namespace RoboNui.RobotAdapter
 
             // Test this
             double elbowangle = Math.Acos(bottomArm.Dot(topArm) / (topArm.Magnitude() * bottomArm.Magnitude()));
-            double elbowsign = Math.Sign(topArm.Cross(bottomArm).z);
+            double elbowsign = -Math.Sign(topArm.Cross(bottomArm).z);
+            double elbowshift = -Math.PI / 4;
             angles.AngleMap.Add(RoboticAngle.ArmElbowBend,
-                elbowangle * elbowsign
+                elbowangle * elbowsign + elbowshift
             );
 
             // Test this
             double wristangle = Math.Acos(bottomArm.Dot(hand) / (hand.Magnitude() * bottomArm.Magnitude()));
             double wristsign = Math.Sign(bottomArm.Cross(hand).z);
+            double wristshift = Math.PI / 6;
+            double wristmult = 2;
             angles.AngleMap.Add(RoboticAngle.ArmWristTilt,
-                wristangle * wristsign
+                (wristangle * wristsign + wristshift) * wristmult
             );
 
             //TODO Figure out these angles

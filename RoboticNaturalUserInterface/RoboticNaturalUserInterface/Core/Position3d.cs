@@ -220,6 +220,11 @@ namespace RoboNui.Core
             return new Position3d(y * b.z - z * b.y, z * b.x - x * b.z, x * b.y - y * b.x);
         }
 
+        public double angle(Position3d that)
+        {
+            return Math.Acos(this.Dot(that) / (this.Magnitude() * that.Magnitude()));
+        }
+
         /**
          * <summary>Subtract two Position3d's</summary>
          * <param name="a">Positive element in sum</param>
@@ -228,12 +233,45 @@ namespace RoboNui.Core
          */
         public static Position3d operator -(Position3d a, Position3d b)
         {
-            return new Position3d(a.x - b.x, a.y - b.y, a.z - b.z);
+            return a + (-b);
         }
 
         public static Position3d operator -(Position3d that)
         {
             return new Position3d(-that.x, -that.y, -that.z);
+        }
+
+        public static Position3d operator -(double a, Position3d x)
+        {
+            return (-x) + a;
+        }
+        public static Position3d operator -(Position3d x, double a)
+        {
+            return x + (-a);
+        }
+
+        public static Position3d operator +(Position3d x, double a)
+        {
+            return new Position3d(x.x + a, x.y + a, x.z + a);
+        }
+
+        public static Position3d operator +(Position3d x, Position3d y)
+        {
+            return new Position3d(x.x + y.x, x.y + y.y, x.z + y.z);
+        }
+        public static Position3d operator *(Position3d x, double a)
+        {
+            return new Position3d(a * x.x, a * x.y, a * x.z);
+        }
+
+        public static Position3d operator *(double a, Position3d x)
+        {
+            return x * a;
+        }
+
+        public static Position3d operator /(Position3d x, double a)
+        {
+            return x * (1/a);
         }
 
         public string ToString()
