@@ -28,5 +28,13 @@ namespace RoboNui.Core
          * <returns> Robotic angles from robot model </returns>
          */
         AngleSet Translate(JointSet js);
+
+        /**
+         * <summary>
+         * Reset the angle set (as if no controller in the view)
+         * </summary>
+         * <returns> Robotic angles from robot model </returns>
+         */
+        AngleSet Reset();
     }
 }

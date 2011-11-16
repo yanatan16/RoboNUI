@@ -106,14 +106,23 @@ namespace RoboNui.Core
         public override void Update(JointSet js)
         {
             log.Debug("Updated JointSet. Translating to AngleSet and Sending");
-            if (Model != null)
-                base.Send(Model.Translate(js));
-            else
+
+            AngleSet angles;
+            if (js.JointMap.Count > 0)
             {
-                NoRoboticModelException e = new NoRoboticModelException();
-                log.Error("Tried to update angles upon receipt of joints. No Model Found.", e);
-                throw e;
+                if (Model != null)
+                    base.Send(Model.Translate(js));
+                else
+                {
+                    NoRoboticModelException e = new NoRoboticModelException();
+                    log.Error("Tried to update angles upon receipt of joints. No Model Found.", e);
+                    throw e;
+                }
             }
+            else
+                angles = Model.Reset();
+
+            
         }
 
     }

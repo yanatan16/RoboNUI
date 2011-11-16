@@ -127,12 +127,9 @@ namespace RoboNui.KinectAdapter
                     }
                 }
 
-                if (jset.JointMap.Count > 0)
-                {
-                    log.Debug("Publishing " + jset.JointMap.Count + " joints.");
-                    Send(jset);
-                    lastTime = DateTime.Now;
-                }
+                log.Debug("Publishing " + jset.JointMap.Count + " joints.");
+                Send(jset);
+                lastTime = DateTime.Now;
             }
 
             

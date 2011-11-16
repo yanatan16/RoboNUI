@@ -47,6 +47,19 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.KneeRight);
         }
 
+        /**
+         * <summary>Reset the robotic marionette</summary>
+         * <see cref="IRoboticModel.Reset"/>
+         */
+        public AngleSet Reset()
+        {
+            AngleSet angles = new AngleSet();
+            angles.AngleMap.Add(RoboticAngle.HeadLift, 0);
+            angles.AngleMap.Add(RoboticAngle.LeftArmLift, 0);
+            angles.AngleMap.Add(RoboticAngle.RightArmLift, 0);
+            angles.AngleMap.Add(RoboticAngle.RearLift, 0);
+            return angles;
+        }
 
         /**
          * <summary>Translate between joints to angles for the robotic arm</summary>

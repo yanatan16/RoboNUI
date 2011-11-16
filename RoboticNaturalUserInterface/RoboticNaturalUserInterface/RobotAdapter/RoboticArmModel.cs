@@ -40,6 +40,21 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.HandRight);
         }
 
+        /**
+         * <summary>Reset the robotic arm</summary>
+         * <see cref="IRoboticModel.Reset"/>
+         */
+        public AngleSet Reset()
+        {
+            AngleSet angles = new AngleSet();
+            angles.AngleMap.Add(RoboticAngle.ArmBaseRotate, 0);
+            angles.AngleMap.Add(RoboticAngle.ArmShoulderLift, 0);
+            angles.AngleMap.Add(RoboticAngle.ArmElbowBend, 0);
+            angles.AngleMap.Add(RoboticAngle.ArmWristTilt, 0);
+            angles.AngleMap.Add(RoboticAngle.ArmWristRotate, 0);
+            angles.AngleMap.Add(RoboticAngle.ArmHandGrasp, 0);
+            return angles;
+        }
 
         /**
          * <summary>Translate between joints to angles for the robotic arm</summary>
