@@ -654,12 +654,22 @@
             <param name="js"> Joint positions from human controller </param>
             <returns> Robotic angles from robot model </returns>
         </member>
+        <member name="M:RoboNui.Core.IRoboticModel.Reset">
+            <summary>
+            Reset the angle set (as if no controller in the view)
+            </summary>
+            <returns> Robotic angles from robot model </returns>
+        </member>
         <member name="P:RoboNui.Core.IRoboticModel.NeededJoints">
             <summary> The list of joints that this model requires to translate.</summary>
         </member>
         <member name="M:RoboNui.RobotAdapter.RoboticArmModel.#ctor">
             <summary>Construct the Robotic Arm Model</summary>
             
+        </member>
+        <member name="M:RoboNui.RobotAdapter.RoboticArmModel.Reset">
+            <summary>Reset the robotic arm</summary>
+            <see cref="M:RoboNui.Core.IRoboticModel.Reset"/>
         </member>
         <member name="M:RoboNui.RobotAdapter.RoboticArmModel.Translate(RoboNui.Core.JointSet)">
             <summary>Translate between joints to angles for the robotic arm</summary>
@@ -892,6 +902,10 @@
         <member name="M:RoboNui.RobotAdapter.RoboticMarionetteModel.#ctor">
             <summary>Construct the Robotic Marionette Model</summary>
             
+        </member>
+        <member name="M:RoboNui.RobotAdapter.RoboticMarionetteModel.Reset">
+            <summary>Reset the robotic marionette</summary>
+            <see cref="M:RoboNui.Core.IRoboticModel.Reset"/>
         </member>
         <member name="M:RoboNui.RobotAdapter.RoboticMarionetteModel.Translate(RoboNui.Core.JointSet)">
             <summary>Translate between joints to angles for the robotic arm</summary>

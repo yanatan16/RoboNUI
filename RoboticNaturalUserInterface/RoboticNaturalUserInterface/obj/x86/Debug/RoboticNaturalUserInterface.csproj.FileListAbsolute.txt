@@ -17,3 +17,6 @@ C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserI
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.g.resources
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.baml
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\MainWindow.g.cs
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe.config
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.exe
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.pdb

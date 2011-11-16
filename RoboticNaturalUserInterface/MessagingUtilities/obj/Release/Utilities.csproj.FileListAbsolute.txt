@@ -3,3 +3,8 @@ C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Release\Utilities.pdb
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\obj\Release\Utilities.dll
 C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\obj\Release\Utilities.pdb
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\MessagingUtilities\bin\Release\Utilities.dll
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\MessagingUtilities\bin\Release\Utilities.pdb
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\MessagingUtilities\obj\Release\ResolveAssemblyReference.cache
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\MessagingUtilities\obj\Release\Utilities.dll
+C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\MessagingUtilities\obj\Release\Utilities.pdb
