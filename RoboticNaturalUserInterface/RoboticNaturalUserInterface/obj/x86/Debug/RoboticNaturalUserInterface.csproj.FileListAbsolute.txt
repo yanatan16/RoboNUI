@@ -20,3 +20,9 @@ C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserI
 C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe.config
 C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.exe
 C:\Users\eisenjo\Code\RoboNui\repo\RoboNUI\RoboticNaturalUserInterface\RoboticNaturalUserInterface\obj\x86\Debug\RoboticNaturalUserInterface.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\Emgu.CV.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\Emgu.Util.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\OpenNI.Net.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\Emgu.CV.xml
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\Emgu.Util.xml
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\OpenNI.Net.pdb

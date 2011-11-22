@@ -66,11 +66,6 @@ namespace RoboNui.KinectAdapter
         public List<int> PossibleTrackIDs { get; set; }
 
         /**
-         * <summary>Nui runtime for communicating with the Kinect</summary>
-         */
-        private Runtime nui;
-
-        /**
          * <summary>The last time the joints were published</summary>
          */
         private DateTime lastTime;

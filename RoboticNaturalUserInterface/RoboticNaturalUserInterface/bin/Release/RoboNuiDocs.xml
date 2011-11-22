@@ -982,9 +982,6 @@
         <member name="F:RoboNui.KinectAdapter.SkeletalJointMonitor.log">
             <summary>Log for logging events in this class</summary>
         </member>
-        <member name="F:RoboNui.KinectAdapter.SkeletalJointMonitor.nui">
-            <summary>Nui runtime for communicating with the Kinect</summary>
-        </member>
         <member name="F:RoboNui.KinectAdapter.SkeletalJointMonitor.lastTime">
             <summary>The last time the joints were published</summary>
         </member>
@@ -1015,6 +1012,37 @@
         </member>
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
+        </member>
+        <member name="T:RoboNui.KinectAdapter.HandTracker">
+            <summary>
+            This class monitors the Kinect data feed to track hand position.
+            It will find index and thumb points if in view
+            After a certain period, also passed in dynamically, the new Joint positions are forwarded to the JAT.
+            </summary>
+            
+            <remarks>Author: Jon Eisen (jon.m.eisen@gmail.com)</remarks>
+            
+        </member>
+        <member name="F:RoboNui.KinectAdapter.HandTracker.log">
+            <summary>Log for logging events in this class</summary>
+        </member>
+        <member name="P:RoboNui.KinectAdapter.HandTracker.ControllerTrackID">
+            <summary>Tracking ID for the controller in control</summary>
+        </member>
+        <member name="P:RoboNui.KinectAdapter.HandTracker.UseRightHand">
+            <summary>Use the right hand of the subject</summary>
+            <remarks>If false, use left</remarks>
+        </member>
+        <member name="P:RoboNui.KinectAdapter.HandTracker.Period">
+            <summary>
+            The time period between retrieval of the Kinect joints
+            </summary>
+        </member>
+        <member name="P:RoboNui.KinectAdapter.HandTracker.BoundingBoxDepthThreshold">
+            <summary>
+            The depth threshold on the hand.
+            </summary>
+            <remarks>This is a configuration item</remarks>
         </member>
     </members>
 </doc>
