@@ -50,7 +50,7 @@ namespace RoboNui.KinectAdapter
          * </summary>
          * <remarks>This is a configuration item</remarks>
          */
-        public int BoundingBoxDepthThreshold { get; set; }
+        public float BoundingBoxDepthThreshold { get; set; }
 
 
         /**
@@ -102,20 +102,25 @@ namespace RoboNui.KinectAdapter
             
         }
 
-        private float[] convertDepthFrame(byte[] depthImage, int playerIndex)
+        private float[,,] convertDepthFrame(PlanarImage depthImage, int playerIndex)
         {
-            float[] outputFrame = new float[depthImage.Length];
-            for (int i = 0; i < depthImage.Length; i++)
+            float[,,] outputFrame = new float[depthImage.Width, depthImage.Height, 1];
+            int elementStride = 2;
+            int vectorStride = elementStride * depthImage.Height;
+            for (int i = 0; i < depthImage.Bits.Length; i+=2)
             {
-                int player = depthImage[i] & 0x07;
+                int player = depthImage.Bits[i] & 0x07;
+                int value = (depthImage.Bits[i + 1] << 5) | (depthImage.Bits[i] >> 3);
+                int jw = i / vectorStride;
+                int jh = (i / elementStride) % depthImage.Height;
                 if (player != playerIndex)
                 {
-                    outputFrame[i] = 0;
+                    outputFrame[jw, jh, 0] = 0;
                 }
                 else
                 {
-                    //TODO Do I have to adjust depth values?
-                    outputFrame[i] = (float)(depthImage[i] & 0xfff8 >> 3);
+                    //TODO Do I have to calibrate depth values?
+                    outputFrame[jw, jh, 0] = (float) value;
                 }
             }
             return outputFrame;
@@ -123,25 +128,34 @@ namespace RoboNui.KinectAdapter
 
         void Process(PlanarImage depthImage, Vector handPosition)
         {
-            // Convert the depth frame
-            float[] depthFrame = convertDepthFrame(depthImage.Bits, ControllerTrackID);
-
             //#1 Get depth threshold around hand
             float depthX, depthY;
             short depthValue;
             nui.SkeletonEngine.SkeletonToDepthImage(handPosition, out depthX, out depthY, out depthValue);
 
-            float depthLowerBound = (float)(depthValue - BoundingBoxDepthThreshold);
-            float depthUpperBound = (float)(depthValue + BoundingBoxDepthThreshold);
+            int depthActual = (depthValue & 0xfff8) >> 3;
+            int playerIndex = depthValue & 0x07;
 
-            for (int i = 0; i < depthFrame.Length; i++)
+            float depthLowerBound = (depthActual - BoundingBoxDepthThreshold);
+            float depthUpperBound = (depthActual + BoundingBoxDepthThreshold);
+
+            // Convert the depth frame
+            float[,,] depthFrame = convertDepthFrame(depthImage, playerIndex);
+
+            for (int i = 0; i < depthFrame.GetUpperBound(0); i++)
             {
-                if (depthFrame[i] > depthUpperBound || depthFrame[i] < depthLowerBound)
-                    depthFrame[i] = 0;
+                for (int j = 0; j < depthFrame.GetUpperBound(1); j++)
+                {
+                    if (depthFrame[i,j,0] > depthUpperBound || 
+                        depthFrame[i,j,0] < depthLowerBound)
+                        depthFrame[i,j,0] = 0;
+                }
             }
 
             //#2 Use OpenCV to get defect points and lines
+            Image<Gray,Single> image = new Image<Gray, Single>(depthFrame);
             
+            //CvInvoke.cvFindContours(
 
             //#3 Convert defect points and lines into fingertip points
         }
