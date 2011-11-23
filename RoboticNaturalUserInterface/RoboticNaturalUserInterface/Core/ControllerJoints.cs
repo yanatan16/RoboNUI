@@ -43,8 +43,8 @@ namespace RoboNui.Core
         FootRight = 19,
 
         //HandTracker
-        LargestFinger,
-        Thumb,
+        Fingertip, //Largest fingertip from palm
+        Fingerstart, //Largest finger start
 
         //Count
         Count,
