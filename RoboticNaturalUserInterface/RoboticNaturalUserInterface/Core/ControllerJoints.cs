@@ -41,6 +41,12 @@ namespace RoboNui.Core
         KneeRight = 17,
         AnkleRight = 18,
         FootRight = 19,
-        Count = 20,
+
+        //HandTracker
+        LargestFinger,
+        Thumb,
+
+        //Count
+        Count,
     }
 }

@@ -11,6 +11,7 @@ using RoboNui.Core;
 
 using Emgu.CV;
 using Emgu.CV.Structure;
+using System.Drawing;
 
 namespace RoboNui.KinectAdapter
 {
@@ -102,9 +103,9 @@ namespace RoboNui.KinectAdapter
             
         }
 
-        private float[,,] convertDepthFrame(PlanarImage depthImage, int playerIndex)
+        private short[,,] convertDepthFrame(PlanarImage depthImage, int playerIndex)
         {
-            float[,,] outputFrame = new float[depthImage.Width, depthImage.Height, 1];
+            short[,,] outputFrame = new short[depthImage.Width, depthImage.Height, 1];
             int elementStride = 2;
             int vectorStride = elementStride * depthImage.Height;
             for (int i = 0; i < depthImage.Bits.Length; i+=2)
@@ -120,7 +121,7 @@ namespace RoboNui.KinectAdapter
                 else
                 {
                     //TODO Do I have to calibrate depth values?
-                    outputFrame[jw, jh, 0] = (float) value;
+                    outputFrame[jw, jh, 0] = (short) value;
                 }
             }
             return outputFrame;
@@ -140,7 +141,7 @@ namespace RoboNui.KinectAdapter
             float depthUpperBound = (depthActual + BoundingBoxDepthThreshold);
 
             // Convert the depth frame
-            float[,,] depthFrame = convertDepthFrame(depthImage, playerIndex);
+            short[,,] depthFrame = convertDepthFrame(depthImage, playerIndex);
 
             for (int i = 0; i < depthFrame.GetUpperBound(0); i++)
             {
@@ -153,13 +154,23 @@ namespace RoboNui.KinectAdapter
             }
 
             //#2 Use OpenCV to get defect points and lines
-            Image<Gray,Single> image = new Image<Gray, Single>(depthFrame);
-            
-            //CvInvoke.cvFindContours(
+            Image<Gray,Int16> image = new Image<Gray, Int16>(depthFrame);
+            Contour<Point> contours = image.FindContours();
+            Seq<MCvConvexityDefect> defects = contours.GetConvexityDefacts(new MemStorage(), Emgu.CV.CvEnum.ORIENTATION.CV_CLOCKWISE);
+
+            int maxi = 0;
+            float maxd = 0;
+            for (int i = 0; i < defects.Count(); i++)
+            {
+                if (maxd < defects[i].Depth)
+                {
+                    maxd = defects[i].Depth;
+                    maxi = i;
+                }
+            }
 
             //#3 Convert defect points and lines into fingertip points
         }
-
 
 
     }
