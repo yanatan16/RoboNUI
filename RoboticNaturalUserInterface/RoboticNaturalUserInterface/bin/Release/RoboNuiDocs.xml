@@ -294,6 +294,11 @@
             Enumeration of types of servo controllers
             </summary>
         </member>
+        <member name="T:RoboNui.Management.SideSelectionType">
+            <summary>
+            Enumeration of types of sides
+            </summary>
+        </member>
         <member name="T:RoboNui.Management.StateCommand">
             <summary>
             A command to the <see cref="T:RoboNui.Management.StateManager"/> to affect the system.

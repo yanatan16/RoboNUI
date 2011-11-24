@@ -271,6 +271,7 @@ namespace RoboNui.Management
 
             // Kinect Adapter
             sjm = new SkeletalJointMonitor(runtimeNui);
+            vci = new VoiceControlInterpreter();
 
             // Robot Adapter
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
@@ -308,6 +309,9 @@ namespace RoboNui.Management
             CurrentJointConsumer = jat;
             CurrentAngleProvider = jat;
 
+            // Set up State Command interfaces
+            vci.AddConsumer(this);
+
             // And...GO!
             Active = true;
         }
@@ -326,21 +330,28 @@ namespace RoboNui.Management
 
                 case CommandType.ControllerIDSelect:
                     sjm.ControllerTrackID = (int) com.Argument;
+                    //TODO when merge between handtracker and voice is done, complete this section
                     break;
 
                 case CommandType.RoboticServoControllerSelect:
                     switch ((RoboticServoControllerType)com.Argument)
                     {
                         case RoboticServoControllerType.Arm:
+                            jat.Model = new RoboticArmModel();
                             CurrentAngleConsumer = rsc_arm;
                             break;
                         case RoboticServoControllerType.Marionette:
+                            jat.Model = new RoboticMarionetteModel();
                             CurrentAngleConsumer = rsc_mar;
                             break;
                         default:
                             log.Warn("RoboticServoControllerSelect has unknown RoboticServoControllerType.");
                             break;
                     }
+                    break;
+
+                case CommandType.SideSelection:
+                    //TODO when merge between handtracker and voice is done, complete this section
                     break;
 
                 default:

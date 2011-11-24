@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Globalization;
 
 using log4net;
 
@@ -70,17 +71,10 @@ namespace RoboNui.KinectAdapter
             sre = new SpeechRecognitionEngine(ri.Id);
 
             // Add commands here
-            var activation = new Choices();
-            activation.Add("on");
-            activation.Add("off");
+            
+            sre.LoadGrammar(BuildGrammar(ri.Culture));
 
-            var gb = new GrammarBuilder();
-            gb.Culture = ri.Culture;
-            gb.Append(activation);
-
-            //Load the grammar into the speech recognizer
-            var g = new Grammar(gb);
-            sre.LoadGrammar(g);
+            // Set up the callbacks
             sre.SpeechRecognized += sre_SpeechRecognized;
             sre.SpeechHypothesized += sre_SpeechHypothesized;
 
@@ -93,13 +87,156 @@ namespace RoboNui.KinectAdapter
 
             sre.RecognizeAsync(RecognizeMode.Multiple);
 
-
             log.Info("Speech Recognition enabled.");
+        }
+
+        private Grammar BuildGrammar(CultureInfo ci)
+        {
+            // Prefix
+            var prefix = new GrammarBuilder(new Choices(new string[] { "robo noo ee", "system", "control" }));
+            prefix.Culture = ci;
+
+            // On/Off Command
+            var on = new Choices(new string[] { "on", "enable", "activate" });
+            var on_val = new SemanticResultValue(on, true);
+
+            var off = new Choices(new string[] { "off", "disable", "deactivate" });
+            var off_val = new SemanticResultValue(off, false);
+
+            var onoff = new Choices();
+            onoff.Add(on_val);
+            onoff.Add(off_val);
+            var onoff_key = new SemanticResultKey("onoff", onoff);
+            var onoff_key_val = new SemanticResultValue(onoff_key, "onoff");
+
+            // Robot Selection Command
+            var robot = new GrammarBuilder();
+            var select = new GrammarBuilder(new Choices(new string[] { "select", "use", "" }));
+            robot.Append(select);
+            robot.Append(new Choices(new string[] { "", "robot" }));
+
+            var arm_val = new SemanticResultValue("arm", RoboticServoControllerType.Arm);
+            var mar_val = new SemanticResultValue("marionette", RoboticServoControllerType.Marionette);
+            var rob_cho = new Choices();
+            rob_cho.Add(arm_val);
+            rob_cho.Add(mar_val);
+            var rob_key = new SemanticResultKey("robot", rob_cho);
+            robot.Append(rob_key);
+            var rob_val = new SemanticResultValue(robot, "robot");
+
+            // Side Selection Command
+            var side = new GrammarBuilder();
+            side.Append(select);
+            var postfix = new Choices(new string[] {"", "side", "arm", "hand"} );
+
+            var right = new SemanticResultValue("right", SideSelectionType.Right);
+            var left = new SemanticResultValue("left", SideSelectionType.Left);
+            var rightleft = new Choices();
+            rightleft.Add(right);
+            rightleft.Add(left);
+            var rl_key = new SemanticResultKey("side", rightleft);
+
+            side.Append(rl_key);
+            side.Append(postfix);
+            var side_val = new SemanticResultValue(side, "side");
+            
+            // Controller (User) Selection Command
+            var controller = new GrammarBuilder();
+            controller.Append(select);
+            controller.Append(new Choices(new string[] { "", "controller", "user" }));
+            controller.Append(new Choices(new string[] { "", "index" }));
+
+            var alldigits = new Choices();
+
+            var temp = new SemanticResultValue("zero", 0);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("one", 1);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("two", 2);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("three", 3);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("four", 1);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("five", 2);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("six", 3);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("seven", 1);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("eight", 2);
+            alldigits.Add(temp);
+            temp = new SemanticResultValue("nine", 3);
+            alldigits.Add(temp);
+
+            var d1 = new SemanticResultKey("digit1", alldigits);
+            var d2 = new SemanticResultKey("digit2", alldigits);
+            var d3 = new SemanticResultKey("digit3", alldigits);
+
+            var d2c = new Choices();
+            d2c.Add("");
+            d2c.Add(d2);
+
+            var d3c = new Choices();
+            d3c.Add("");
+            d3c.Add(d3);
+
+            controller.Append(d1);
+            controller.Append(d2c);
+            controller.Append(d3c);
+
+            var con_val = new SemanticResultValue(controller, "controller");
+
+            // Construct the commands grammar
+            var commands = new Choices();
+            commands.Add(onoff_key_val);
+            commands.Add(rob_val);
+            commands.Add(con_val);
+            commands.Add(side_val);
+            var com_key = new SemanticResultKey("command", commands);
+
+            prefix.Append(com_key);
+
+            return new Grammar(prefix);
         }
 
         void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             log.DebugFormat("\nSpeech Recognized: \t{0}", e.Result.Text);
+            var words = e.Result.Words;
+            string com = (string) e.Result.Semantics["command"].Value;
+            switch (com)
+            {
+                case "onoff":
+                    var sc = new StateCommand();
+                    sc.ComType = CommandType.Activation;
+                    sc.Argument = (bool)e.Result.Semantics["onoff"].Value;
+                    log.DebugFormat("Interpreted on/off command {0} from voice!", (bool) sc.Argument);
+                    base.Send(sc);
+                    break;
+                case "robot":
+                    sc = new StateCommand();
+                    sc.ComType = CommandType.RoboticServoControllerSelect;
+                    sc.Argument = (RoboticServoControllerType)e.Result.Semantics["robot"].Value;
+                    log.DebugFormat("Interpreted robot selection {0} from voice!", ((RoboticServoControllerType) sc.Argument).ToString());
+                    base.Send(sc);
+                    break;
+                case "controller":
+                    sc = new StateCommand();
+                    sc.ComType = CommandType.ControllerIDSelect;
+                    int arg = (int)e.Result.Semantics["digit1"].Value;
+                    if (e.Result.Semantics.ContainsKey("digit2"))
+                        arg = arg * 10 + (int)e.Result.Semantics["digit2"].Value;
+                    if (e.Result.Semantics.ContainsKey("digit3"))
+                        arg = arg * 10 + (int)e.Result.Semantics["digit3"].Value;
+                    sc.Argument = arg;
+                    log.DebugFormat("Interpreted controller selection {0} from voice!", sc.Argument);
+                    base.Send(sc);
+                    break;
+                default:
+                    log.Error("Semantic 'command' unrecognized!");
+                    break;
+            }
         }
 
         void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
