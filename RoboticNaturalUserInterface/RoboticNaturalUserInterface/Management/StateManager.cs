@@ -28,6 +28,7 @@ namespace RoboNui.Management
 
         // All Components
         private SkeletalJointMonitor sjm;
+        private HandTracker ht;
         private VoiceControlInterpreter vci;
         private JointAngleTranslator jat;
         private RoboticArmServoController rsc_arm;
@@ -37,7 +38,8 @@ namespace RoboNui.Management
         private IConsumer<AngleSet> _CurrentAngleConsumer;
         private Provider<AngleSet> _CurrentAngleProvider;
         private IConsumer<JointSet> _CurrentJointConsumer;
-        private Provider<JointSet> _CurrentJointProvider;
+        private Provider<JointSet> _CurrentJointProvider1;
+        private Provider<JointSet> _CurrentJointProvider2;
         private IRoboticModel _CurrentRoboticModel;
 
         /**
@@ -63,8 +65,8 @@ namespace RoboNui.Management
                 _Active = value;
                 if (value)
                 {
-                    if (CurrentJointProvider != null)
-                        CurrentJointProvider.Activate();
+                    if (CurrentJointProvider1 != null)
+                        CurrentJointProvider1.Activate();
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Activate();
 
@@ -72,8 +74,8 @@ namespace RoboNui.Management
                 }
                 else
                 {
-                    if (CurrentJointProvider != null)
-                        CurrentJointProvider.Deactivate();
+                    if (CurrentJointProvider1 != null)
+                        CurrentJointProvider1.Deactivate();
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Deactivate();
 
@@ -88,26 +90,58 @@ namespace RoboNui.Management
          * Setting this field will deactivate and clear the previous one and activate and enable the new one.
          * </summary>
          */
-        Provider<JointSet> CurrentJointProvider { 
+        Provider<JointSet> CurrentJointProvider1 { 
             get 
             {
-                return _CurrentJointProvider;
+                return _CurrentJointProvider1;
             }
             set 
             {
-                if (_CurrentJointProvider != null)
+                if (_CurrentJointProvider1 != null)
                 {
-                    _CurrentJointProvider.ClearAllConsumers();
+                    _CurrentJointProvider1.ClearAllConsumers();
                     if (Active)
-                        _CurrentJointProvider.Deactivate();
+                        _CurrentJointProvider1.Deactivate();
                 }
-                _CurrentJointProvider = value;
-                if (_CurrentJointProvider != null)
+                _CurrentJointProvider1 = value;
+                if (_CurrentJointProvider1 != null)
                 {
                     if (_CurrentJointConsumer != null)
-                        _CurrentJointProvider.AddConsumer(_CurrentJointConsumer);
+                        _CurrentJointProvider1.AddConsumer(_CurrentJointConsumer);
                     if (Active)
-                        _CurrentJointProvider.Activate();
+                        _CurrentJointProvider1.Activate();
+                }
+            }
+        }
+
+
+        /**
+         * <summary>
+         * The currently active <see cref="Provider{JointSet}"/> in the system.
+         * Setting this field will deactivate and clear the previous one and activate and enable the new one.
+         * </summary>
+         */
+        Provider<JointSet> CurrentJointProvider2
+        {
+            get
+            {
+                return _CurrentJointProvider2;
+            }
+            set
+            {
+                if (_CurrentJointProvider2 != null)
+                {
+                    _CurrentJointProvider2.ClearAllConsumers();
+                    if (Active)
+                        _CurrentJointProvider2.Deactivate();
+                }
+                _CurrentJointProvider2 = value;
+                if (_CurrentJointProvider2 != null)
+                {
+                    if (_CurrentJointConsumer != null)
+                        _CurrentJointProvider2.AddConsumer(_CurrentJointConsumer);
+                    if (Active)
+                        _CurrentJointProvider2.Activate();
                 }
             }
         }
@@ -127,15 +161,15 @@ namespace RoboNui.Management
             set
             {
                 if (_CurrentJointConsumer != null &&
-                    _CurrentJointProvider != null)
+                    _CurrentJointProvider1 != null)
                 {
-                    _CurrentJointProvider.RemoveConsumer(_CurrentJointConsumer);
+                    _CurrentJointProvider1.RemoveConsumer(_CurrentJointConsumer);
                 }
                 _CurrentJointConsumer = value;
                 if (_CurrentJointConsumer != null &&
-                    _CurrentJointProvider != null)
+                    _CurrentJointProvider1 != null)
                 {
-                    _CurrentJointProvider.AddConsumer(_CurrentJointConsumer);
+                    _CurrentJointProvider1.AddConsumer(_CurrentJointConsumer);
                 }
             }
         }
@@ -212,6 +246,7 @@ namespace RoboNui.Management
             set
             {
                 _CurrentRoboticModel = value;
+                jat.Model = _CurrentRoboticModel;
                 sjm.InterestedJoints = _CurrentRoboticModel.NeededJoints;
             }
         }
@@ -253,7 +288,7 @@ namespace RoboNui.Management
             rsc_arm = null;
             rsc_mar = null;
 
-            CurrentJointProvider = null;
+            CurrentJointProvider1 = null;
             CurrentJointConsumer = null;
             CurrentAngleProvider = null;
             CurrentAngleConsumer = null;
@@ -271,6 +306,7 @@ namespace RoboNui.Management
 
             // Kinect Adapter
             sjm = new SkeletalJointMonitor(runtimeNui);
+            ht = new HandTracker(runtimeNui);
 
             // Robot Adapter
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
@@ -302,9 +338,11 @@ namespace RoboNui.Management
 
             sjm.InterestedJoints = irm.NeededJoints;
             sjm.Period = config.KinectAdapter.Period;
-            CurrentJointProvider = sjm;
+            CurrentJointProvider1 = sjm;
+            ht.Period = config.KinectAdapter.Period;
+            CurrentJointProvider2 = ht;
 
-            jat.Model = irm;
+            CurrentRoboticModel = irm;
             CurrentJointConsumer = jat;
             CurrentAngleProvider = jat;
 
@@ -326,6 +364,7 @@ namespace RoboNui.Management
 
                 case CommandType.ControllerIDSelect:
                     sjm.ControllerTrackID = (int) com.Argument;
+                    ht.ControllerTrackID = (int)com.Argument;
                     break;
 
                 case CommandType.RoboticServoControllerSelect:
