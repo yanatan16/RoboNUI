@@ -63,7 +63,7 @@ namespace RoboNui.KinectAdapter
         /**
          * <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
          */
-        public List<int> PossibleTrackIDs { get; set; }
+        private Dictionary<int, Vector> PossibleTrackIDPositions { get; set; }
 
         /**
          * <summary>Nui runtime for communicating with the Kinect</summary>
@@ -88,7 +88,7 @@ namespace RoboNui.KinectAdapter
             _InterestedJoints = new List<JointID>();
             lastTime = DateTime.MaxValue;
             ControllerTrackID = -1;
-            PossibleTrackIDs = new List<int>();
+            PossibleTrackIDPositions = new Dictionary<int, Vector>();
 
             Runtime rnui = (Runtime)nui;
             lastTime = DateTime.Now;
@@ -134,15 +134,38 @@ namespace RoboNui.KinectAdapter
 
             
             // Update possible ID's every time
-            PossibleTrackIDs.Clear();
+            PossibleTrackIDPositions.Clear();
             foreach (SkeletonData h in frame.Skeletons)
             {
                 if (h.TrackingState == SkeletonTrackingState.Tracked)
-                    PossibleTrackIDs.Add(h.TrackingID);
+                    PossibleTrackIDPositions[h.TrackingID] = h.Position;
             }
             
             // Until control of this has been enabled.
-            ControllerTrackID = PossibleTrackIDs.Max<int>();
+            //ControllerTrackID = PossibleTrackIDs.Max<int>();
+        }
+
+        public int getTrackIDFromAngle(double angle)
+        {
+            double threshold = 0.1;
+            int winner = -1;
+            foreach (var trackIDPosPair in PossibleTrackIDPositions)
+            {
+                double tang = Math.Atan2(trackIDPosPair.Value.X, trackIDPosPair.Value.Y);
+                if (angle - tang < threshold)
+                {
+                    if (winner > -1)
+                    {
+                        double windist = Math.Sqrt(Math.Pow(PossibleTrackIDPositions[winner].X, 2) + Math.Pow(PossibleTrackIDPositions[winner].Y, 2));
+                        double chadist = Math.Sqrt(Math.Pow(trackIDPosPair.Value.X, 2) + Math.Pow(trackIDPosPair.Value.Y, 2));
+                        if (chadist < windist)
+                            winner = trackIDPosPair.Key;
+                    }
+                    else
+                        winner = trackIDPosPair.Key;
+                }
+            }
+            return winner;
         }
     }
 }

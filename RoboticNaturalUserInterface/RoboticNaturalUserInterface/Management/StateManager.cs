@@ -329,8 +329,12 @@ namespace RoboNui.Management
                     break;
 
                 case CommandType.ControllerIDSelect:
-                    sjm.ControllerTrackID = (int) com.Argument;
-                    //TODO when merge between handtracker and voice is done, complete this section
+                    int id = sjm.getTrackIDFromAngle((double) com.Argument);
+                    if (id > -1)
+                    {
+                        sjm.ControllerTrackID = id;
+                        //TODO when merge between handtracker and voice is done, complete this section
+                    }
                     break;
 
                 case CommandType.RoboticServoControllerSelect:

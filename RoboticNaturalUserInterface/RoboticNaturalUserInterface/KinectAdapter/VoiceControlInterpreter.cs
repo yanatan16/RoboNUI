@@ -144,46 +144,7 @@ namespace RoboNui.KinectAdapter
             var controller = new GrammarBuilder();
             controller.Append(select);
             controller.Append(new Choices(new string[] { "", "controller", "user" }));
-            controller.Append(new Choices(new string[] { "", "index" }));
-
-            var alldigits = new Choices();
-
-            var temp = new SemanticResultValue("zero", 0);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("one", 1);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("two", 2);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("three", 3);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("four", 1);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("five", 2);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("six", 3);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("seven", 1);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("eight", 2);
-            alldigits.Add(temp);
-            temp = new SemanticResultValue("nine", 3);
-            alldigits.Add(temp);
-
-            var d1 = new SemanticResultKey("digit1", alldigits);
-            var d2 = new SemanticResultKey("digit2", alldigits);
-            var d3 = new SemanticResultKey("digit3", alldigits);
-
-            var d2c = new Choices();
-            d2c.Add("");
-            d2c.Add(d2);
-
-            var d3c = new Choices();
-            d3c.Add("");
-            d3c.Add(d3);
-
-            controller.Append(d1);
-            controller.Append(d2c);
-            controller.Append(d3c);
+            controller.Append(new Choices(new string[] { "as me", "me" }));
 
             var con_val = new SemanticResultValue(controller, "controller");
 
@@ -224,13 +185,9 @@ namespace RoboNui.KinectAdapter
                 case "controller":
                     sc = new StateCommand();
                     sc.ComType = CommandType.ControllerIDSelect;
-                    int arg = (int)e.Result.Semantics["digit1"].Value;
-                    if (e.Result.Semantics.ContainsKey("digit2"))
-                        arg = arg * 10 + (int)e.Result.Semantics["digit2"].Value;
-                    if (e.Result.Semantics.ContainsKey("digit3"))
-                        arg = arg * 10 + (int)e.Result.Semantics["digit3"].Value;
-                    sc.Argument = arg;
-                    log.DebugFormat("Interpreted controller selection {0} from voice!", sc.Argument);
+                    if (source.SoundSourcePositionConfidence > 0.9)
+                        sc.Argument = source.SoundSourcePosition;
+                    log.DebugFormat("Interpreted controller selection at angle {0} from voice!", sc.Argument);
                     base.Send(sc);
                     break;
                 default:
