@@ -128,7 +128,7 @@ namespace RoboNui.Core
             }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             string str = "AngleSet{ ";
             int i = 0;

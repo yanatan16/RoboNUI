@@ -1,6 +1,7 @@
 ﻿using RoboNui.KinectAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using log4net.Config;
 
 namespace RoboNuiTest
 {
@@ -63,6 +64,13 @@ namespace RoboNuiTest
         //
         #endregion
 
+        
+        //Use ClassInitialize to run code before running the first test in the class
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext tc)
+        {
+            BasicConfigurator.Configure();
+        }
 
         /// <summary>
         ///A test for VoiceControlInterpreter Constructor
@@ -71,7 +79,7 @@ namespace RoboNuiTest
         public void VoiceControlInterpreterConstructorTest()
         {
             VoiceControlInterpreter target = new VoiceControlInterpreter();
-            Console.ReadLine();
+            
         }
     }
 }

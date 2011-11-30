@@ -35,7 +35,7 @@ namespace RoboNui.Core
          */
         public Dictionary<ControllerJoints, Position3d> JointMap { get; set; }
 
-        public string ToString()
+        public override string ToString()
         {
             string str = "JointSet{ ";
             int i = 0;

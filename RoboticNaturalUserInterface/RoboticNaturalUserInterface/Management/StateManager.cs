@@ -68,6 +68,8 @@ namespace RoboNui.Management
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Activate();
 
+                    vci.Activate();
+
                     log.Info("System Activated!");
                 }
                 else
@@ -76,6 +78,8 @@ namespace RoboNui.Management
                         CurrentJointProvider.Deactivate();
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Deactivate();
+
+                    vci.Deactivate();
 
                     log.Info("System Deactivated.");
                 }
@@ -226,15 +230,6 @@ namespace RoboNui.Management
         }
 
         /**
-         * <summary>A list of possible controllers in view of the Kinect.</summary>
-         */
-        public List<int> PossibleControllerIDs
-        {
-            get { return sjm.PossibleTrackIDs; }
-            set { sjm.PossibleTrackIDs = value; }
-        }
-
-        /**
          * <summary>
          * Constructor for the State Manager. Set all current components to null.
          * </summary>
@@ -332,6 +327,7 @@ namespace RoboNui.Management
                     int id = sjm.getTrackIDFromAngle((double) com.Argument);
                     if (id > -1)
                     {
+                        log.InfoFormat("Setting ControllerID to {0}.", id);
                         sjm.ControllerTrackID = id;
                         //TODO when merge between handtracker and voice is done, complete this section
                     }

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="6cb04b42-a715-47a7-b67c-bdf348a85bde" name="Eisen@CRAZYEISEN 2011-11-29 21:55:29" runUser="CRAZYEISEN\Eisen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8e5fc231-a8cb-423c-9521-0eadba8787ac">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Eisen_CRAZYEISEN 2011-11-29 21_55_29">
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\log4net\log4net.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\json\Newtonsoft.Json.Net35.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-11-29T21:55:29.1810967-05:00" queuing="2011-11-29T21:55:29.1970976-05:00" start="2011-11-29T21:55:29.2180988-05:00" finish="2011-11-29T21:55:39.0086588-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="4" executed="4" passed="2" error="1" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="eeddceb7-7d47-fd72-2af9-db464e484902">
+      <Execution id="3f890f6d-0d34-4bac-a936-9bf37a12f6d0" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="VoiceControlInterpreterConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="001da288-f832-5643-40ad-6895e6d64972">
+      <Execution id="d9cf6c53-da4a-4b10-bfc9-5a2b8c55a222" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.VoiceControlInterpreterTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="VoiceControlInterpreterConstructorTest" />
+    </UnitTest>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="c0eca1fb-66d4-bb09-728d-297533670eaf">
+      <DeploymentItems>
+        <DeploymentItem filename="RoboticNaturalUserInterface.exe" />
+      </DeploymentItems>
+      <Execution id="8d4551bd-b4fd-4486-aec3-f47beca892c2" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="JointAngleTranslatorConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="3607432d-474d-0ce1-5eb1-b98786483e85">
+      <Execution id="eae7f924-07d5-47a3-8253-bfae66c5b2ec" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JointAngleTranslatorConstructorTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="001da288-f832-5643-40ad-6895e6d64972" executionId="d9cf6c53-da4a-4b10-bfc9-5a2b8c55a222" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3607432d-474d-0ce1-5eb1-b98786483e85" executionId="eae7f924-07d5-47a3-8253-bfae66c5b2ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0eca1fb-66d4-bb09-728d-297533670eaf" executionId="8d4551bd-b4fd-4486-aec3-f47beca892c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eeddceb7-7d47-fd72-2af9-db464e484902" executionId="3f890f6d-0d34-4bac-a936-9bf37a12f6d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="d9cf6c53-da4a-4b10-bfc9-5a2b8c55a222" testId="001da288-f832-5643-40ad-6895e6d64972" testName="VoiceControlInterpreterConstructorTest" computerName="CRAZYEISEN" duration="00:00:04.5405010" startTime="2011-11-29T21:55:29.2330997-05:00" endTime="2011-11-29T21:55:34.1353801-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d9cf6c53-da4a-4b10-bfc9-5a2b8c55a222">
+      <Output>
+        <StdOut>55 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - RoboNui.KinectAdapter.VoiceControlInterpreter constructed.
+160 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - Using Kinect speech recognizer: Microsoft Server Speech Recognition Language - Kinect (en-US)
+2043 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo
+2527 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu
+2767 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee
+3000 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee system
+3266 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee select
+3744 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee select controller
+3978 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee select controller me
+4545 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Recognized: 	robo nu ee select controller me
+4546 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - Interpreted controller selection from voice, but position confidence low.
+4564 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'd9cf6c53-da4a-4b10-bfc9-5a2b8c55a222'] INFO RoboNui.KinectAdapter.VoiceControlInterpreter (null) - Speech Recognition enabled.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="eae7f924-07d5-47a3-8253-bfae66c5b2ec" testId="3607432d-474d-0ce1-5eb1-b98786483e85" testName="JointAngleTranslatorConstructorTest" computerName="CRAZYEISEN" duration="00:00:00.0115781" startTime="2011-11-29T21:55:34.1443806-05:00" endTime="2011-11-29T21:55:34.1663819-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eae7f924-07d5-47a3-8253-bfae66c5b2ec">
+    </UnitTestResult>
+    <UnitTestResult executionId="8d4551bd-b4fd-4486-aec3-f47beca892c2" testId="c0eca1fb-66d4-bb09-728d-297533670eaf" testName="UpdateTest" computerName="CRAZYEISEN" startTime="2011-11-29T21:55:34.1723822-05:00" endTime="2011-11-29T21:55:38.4796286-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8d4551bd-b4fd-4486-aec3-f47beca892c2">
+      <Output>
+        <ErrorInfo>
+          <Message>The agent process was stopped while the test was running.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3f890f6d-0d34-4bac-a936-9bf37a12f6d0" testId="eeddceb7-7d47-fd72-2af9-db464e484902" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:00.0810887" startTime="2011-11-29T21:55:38.4966295-05:00" endTime="2011-11-29T21:55:38.9216538-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f890f6d-0d34-4bac-a936-9bf37a12f6d0">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.JointAngleTranslatorTest.UpdateTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at RoboNui.Core.JointAngleTranslator.Update(JointSet js) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\Core\JointAngleTranslator.cs:line 108
+   at RoboNuiTest.JointAngleTranslatorTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\JointAngleTranslatorTest.cs:line 107
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

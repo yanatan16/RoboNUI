@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="bfad2f65-7804-4528-bd94-cec986686317" name="Eisen@CRAZYEISEN 2011-11-29 20:29:50" runUser="CRAZYEISEN\Eisen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8e5fc231-a8cb-423c-9521-0eadba8787ac">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Eisen_CRAZYEISEN 2011-11-29 20_29_50">
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\log4net\log4net.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\json\Newtonsoft.Json.Net35.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-11-29T20:29:50.6621902-05:00" queuing="2011-11-29T20:29:50.6951921-05:00" start="2011-11-29T20:29:50.7091929-05:00" finish="2011-11-29T20:29:58.8366578-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="4" executed="4" error="1" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>41 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - RoboNui.RobotAdapter.RoboticArmServoController constructed.
+70 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] ERROR RoboNui.RobotAdapter.RoboticArmServoController (null) - Could not open Servo Controller Port on COM5
+System.IO.IOException: The port 'COM5' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at RoboNui.RobotAdapter.SSC32.SSC32ServoController..ctor(String portName, ICollection`1 channels) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\RobotAdapter\SSC32\ServoController.cs:line 54
+77 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - RoboNui.RobotAdapter.RoboticArmServoController constructed.
+</StdOut>
+    </Output>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="eeddceb7-7d47-fd72-2af9-db464e484902">
+      <Execution id="e6a78670-e181-4810-9807-330efd6251cf" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="VoiceControlInterpreterConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="001da288-f832-5643-40ad-6895e6d64972">
+      <Execution id="b42b7df4-f5d8-450d-ab42-139bbd2e302e" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.VoiceControlInterpreterTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="VoiceControlInterpreterConstructorTest" />
+    </UnitTest>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="c0eca1fb-66d4-bb09-728d-297533670eaf">
+      <DeploymentItems>
+        <DeploymentItem filename="RoboticNaturalUserInterface.exe" />
+      </DeploymentItems>
+      <Execution id="76271d27-c8f8-4d68-9295-a41dc93defd4" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="JointAngleTranslatorConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="3607432d-474d-0ce1-5eb1-b98786483e85">
+      <Execution id="6e794ff4-5fbb-4fe5-9e0b-33ec5477780d" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JointAngleTranslatorConstructorTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="001da288-f832-5643-40ad-6895e6d64972" executionId="b42b7df4-f5d8-450d-ab42-139bbd2e302e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3607432d-474d-0ce1-5eb1-b98786483e85" executionId="6e794ff4-5fbb-4fe5-9e0b-33ec5477780d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0eca1fb-66d4-bb09-728d-297533670eaf" executionId="76271d27-c8f8-4d68-9295-a41dc93defd4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eeddceb7-7d47-fd72-2af9-db464e484902" executionId="e6a78670-e181-4810-9807-330efd6251cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b42b7df4-f5d8-450d-ab42-139bbd2e302e" testId="001da288-f832-5643-40ad-6895e6d64972" testName="VoiceControlInterpreterConstructorTest" computerName="CRAZYEISEN" duration="00:00:03.4793806" startTime="2011-11-29T20:29:50.7691964-05:00" endTime="2011-11-29T20:29:54.5794143-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b42b7df4-f5d8-450d-ab42-139bbd2e302e">
+      <Output>
+        <StdOut>55 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - RoboNui.KinectAdapter.VoiceControlInterpreter constructed.
+163 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - Using Kinect speech recognizer: Microsoft Server Speech Recognition Language - Kinect (en-US)
+1966 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo
+2278 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu
+2497 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee use
+2739 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Hypothesized: 	robo nu ee disable
+3476 [Agent: adapter run thread for test 'VoiceControlInterpreterConstructorTest' with id 'b42b7df4-f5d8-450d-ab42-139bbd2e302e'] DEBUG RoboNui.KinectAdapter.VoiceControlInterpreter (null) - 
+Speech Recognized: 	robo nu ee disable</StdOut>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.VoiceControlInterpreterTest.VoiceControlInterpreterConstructorTest threw exception: 
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: The semantic value in rule 'onoff' was already set and cannot be changed.</Message>
+          <StackTrace>    at Microsoft.Speech.Recognition.RecognizedPhrase.InsertSemanticValueToDictionary(SemanticValue semanticValue, String propertyName, SemanticValue thisSemanticValue, GrammarOptions semanticTag, Collection`1&amp; dupItems)
+   at Microsoft.Speech.Recognition.RecognizedPhrase.RecursiveBuildSemanticProperties(IList`1 words, List`1 properties, RuleNode ruleTree, GrammarOptions semanticTag, Collection`1&amp; dupItems)
+   at Microsoft.Speech.Recognition.RecognizedPhrase.RecursiveBuildSemanticProperties(IList`1 words, List`1 properties, RuleNode ruleTree, GrammarOptions semanticTag, Collection`1&amp; dupItems)
+   at Microsoft.Speech.Recognition.RecognizedPhrase.RecursiveBuildSemanticProperties(IList`1 words, List`1 properties, RuleNode ruleTree, GrammarOptions semanticTag, Collection`1&amp; dupItems)
+   at Microsoft.Speech.Recognition.RecognizedPhrase.CalcSemantics(Grammar grammar)
+   at Microsoft.Speech.Recognition.RecognizedPhrase.get_Semantics()
+   at RoboNui.KinectAdapter.VoiceControlInterpreter.sre_SpeechRecognized(Object sender, SpeechRecognizedEventArgs e) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\KinectAdapter\VoiceControlInterpreter.cs:line 167
+   at Microsoft.Speech.Recognition.SpeechRecognitionEngine.SpeechRecognizedProxy(Object sender, SpeechRecognizedEventArgs e)
+ --- End of inner exception stack trace ---
+    at System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, SignatureStruct&amp; sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Delegate.DynamicInvokeImpl(Object[] args)
+   at Microsoft.Speech.Internal.AsyncWorkItem.Invoke()
+   at Microsoft.Speech.Recognition.RecognizerBase.Recognize(TimeSpan initialSilenceTimeout)
+   at Microsoft.Speech.Recognition.SpeechRecognitionEngine.Recognize()
+   at RoboNui.KinectAdapter.VoiceControlInterpreter..ctor() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\KinectAdapter\VoiceControlInterpreter.cs:line 88
+   at RoboNuiTest.VoiceControlInterpreterTest.VoiceControlInterpreterConstructorTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\VoiceControlInterpreterTest.cs:line 81
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6e794ff4-5fbb-4fe5-9e0b-33ec5477780d" testId="3607432d-474d-0ce1-5eb1-b98786483e85" testName="JointAngleTranslatorConstructorTest" computerName="CRAZYEISEN" startTime="2011-11-29T20:29:54.6044157-05:00" endTime="2011-11-29T20:29:58.0866149-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e794ff4-5fbb-4fe5-9e0b-33ec5477780d">
+      <Output>
+        <ErrorInfo>
+          <Message>The agent process was stopped while the test was running.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="76271d27-c8f8-4d68-9295-a41dc93defd4" testId="c0eca1fb-66d4-bb09-728d-297533670eaf" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:00.0726855" startTime="2011-11-29T20:29:58.1126164-05:00" endTime="2011-11-29T20:29:58.7116506-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="76271d27-c8f8-4d68-9295-a41dc93defd4">
+      <Output>
+        <StdOut>110 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] INFO RoboNui.RobotAdapter.RoboticArmServoController (null) - Sent movement command to Servo Controller.
+112 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command #0P1738#1P1738#2P1738#3P1738#4P1738#5P1738T1000
+114 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP0
+118 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP1
+118 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP2
+118 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP3
+118 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP4
+118 [Agent: adapter run thread for test 'UpdateTest' with id '76271d27-c8f8-4d68-9295-a41dc93defd4'] DEBUG RoboNui.RobotAdapter.RoboticArmServoController (null) - Send Command QP5</StdOut>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;RoboNui.Core.AngleSet&gt;. Actual:&lt;RoboNui.Core.AngleSet&gt;. </Message>
+          <StackTrace>   at RoboNuiTest.RoboticArmServoControllerTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\RoboticArmServoControllerTest.cs:line 121
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e6a78670-e181-4810-9807-330efd6251cf" testId="eeddceb7-7d47-fd72-2af9-db464e484902" testName="UpdateTest" computerName="CRAZYEISEN" duration="00:00:00.0216823" startTime="2011-11-29T20:29:58.7206512-05:00" endTime="2011-11-29T20:29:58.7506529-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e6a78670-e181-4810-9807-330efd6251cf">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RoboNuiTest.JointAngleTranslatorTest.UpdateTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at RoboNui.Core.JointAngleTranslator.Update(JointSet js) in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\Core\JointAngleTranslator.cs:line 108
+   at RoboNuiTest.JointAngleTranslatorTest.UpdateTest() in C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\JointAngleTranslatorTest.cs:line 107
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

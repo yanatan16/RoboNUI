@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="d6680116-272b-46d3-a2bf-dc55de171027" name="Eisen@CRAZYEISEN 2011-11-29 20:43:55" runUser="CRAZYEISEN\Eisen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8e5fc231-a8cb-423c-9521-0eadba8787ac">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Eisen_CRAZYEISEN 2011-11-29 20_43_55">
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\log4net\log4net.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboticNaturalUserInterface\bin\Debug\RoboticNaturalUserInterface.exe" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\plugin\json\Newtonsoft.Json.Net35.dll" />
+      <DeploymentItem filename="C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\MessagingUtilities\bin\Debug\Utilities.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-11-29T20:43:55.7085241-05:00" queuing="2011-11-29T20:43:57.2406118-05:00" start="2011-11-29T20:43:57.3786197-05:00" finish="2011-11-29T20:53:40.9749995-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="4" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="3" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="CRAZYEISEN" outcome="Error" timestamp="2011-11-29T20:53:40.9719993-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="eeddceb7-7d47-fd72-2af9-db464e484902">
+      <Execution id="c97a5feb-9c4b-47c9-978f-87964f17ff75" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="VoiceControlInterpreterConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="001da288-f832-5643-40ad-6895e6d64972">
+      <Execution id="81837887-bed2-4686-be55-f4e7c8830d3e" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.VoiceControlInterpreterTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="VoiceControlInterpreterConstructorTest" />
+    </UnitTest>
+    <UnitTest name="UpdateTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="c0eca1fb-66d4-bb09-728d-297533670eaf">
+      <DeploymentItems>
+        <DeploymentItem filename="RoboticNaturalUserInterface.exe" />
+      </DeploymentItems>
+      <Execution id="44866f9a-f669-4e5b-8b1a-2b1a84ffe8e8" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.RoboticArmServoControllerTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UpdateTest" />
+    </UnitTest>
+    <UnitTest name="JointAngleTranslatorConstructorTest" storage="c:\users\eisen\code\robonui\repo\roboticnaturaluserinterface\robonuitest\bin\debug\robonuitest.dll" id="3607432d-474d-0ce1-5eb1-b98786483e85">
+      <Execution id="097a4df0-ff30-4554-a120-affbc5bbf4d2" />
+      <TestMethod codeBase="C:/Users/Eisen/Code/RoboNUI/repo/RoboticNaturalUserInterface/RoboNuiTest/bin/Debug/RoboNuiTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RoboNuiTest.JointAngleTranslatorTest, RoboNuiTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JointAngleTranslatorConstructorTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="001da288-f832-5643-40ad-6895e6d64972" executionId="81837887-bed2-4686-be55-f4e7c8830d3e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3607432d-474d-0ce1-5eb1-b98786483e85" executionId="097a4df0-ff30-4554-a120-affbc5bbf4d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0eca1fb-66d4-bb09-728d-297533670eaf" executionId="44866f9a-f669-4e5b-8b1a-2b1a84ffe8e8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eeddceb7-7d47-fd72-2af9-db464e484902" executionId="c97a5feb-9c4b-47c9-978f-87964f17ff75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="81837887-bed2-4686-be55-f4e7c8830d3e" testId="001da288-f832-5643-40ad-6895e6d64972" testName="VoiceControlInterpreterConstructorTest" computerName="CRAZYEISEN" duration="00:09:43.4483713" startTime="2011-11-29T20:43:57.5256281-05:00" endTime="2011-11-29T20:53:40.9739994-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="81837887-bed2-4686-be55-f4e7c8830d3e">
+    </UnitTestResult>
+    <UnitTestResult executionId="097a4df0-ff30-4554-a120-affbc5bbf4d2" testId="3607432d-474d-0ce1-5eb1-b98786483e85" testName="JointAngleTranslatorConstructorTest" computerName="CRAZYEISEN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="097a4df0-ff30-4554-a120-affbc5bbf4d2">
+    </UnitTestResult>
+    <UnitTestResult executionId="44866f9a-f669-4e5b-8b1a-2b1a84ffe8e8" testId="c0eca1fb-66d4-bb09-728d-297533670eaf" testName="UpdateTest" computerName="CRAZYEISEN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="44866f9a-f669-4e5b-8b1a-2b1a84ffe8e8">
+    </UnitTestResult>
+    <UnitTestResult executionId="c97a5feb-9c4b-47c9-978f-87964f17ff75" testId="eeddceb7-7d47-fd72-2af9-db464e484902" testName="UpdateTest" computerName="CRAZYEISEN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c97a5feb-9c4b-47c9-978f-87964f17ff75">
+    </UnitTestResult>
+  </Results>
+</TestRun>

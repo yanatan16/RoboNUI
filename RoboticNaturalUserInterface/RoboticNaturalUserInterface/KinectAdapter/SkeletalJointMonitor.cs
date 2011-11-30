@@ -75,6 +75,8 @@ namespace RoboNui.KinectAdapter
          */
         private DateTime lastTime;
 
+        private bool reset = false;
+
         /**
          * <summary> Constructor of this class. This starts up the Nui.Runtime and initializes the class fields. </summary>
          */
@@ -127,20 +129,30 @@ namespace RoboNui.KinectAdapter
                     }
                 }
 
-                log.Debug("Publishing " + jset.JointMap.Count + " joints.");
-                Send(jset);
+                if (jset.JointMap.Count > 0)
+                {
+                    log.DebugFormat("Publishing {0} joints.", jset.JointMap.Count);
+                    Send(jset);
+                    reset = false;
+                }
+                else if (!reset)
+                {
+                    log.Debug("Resetting joints.");
+                    Send(jset);
+                    reset = true;
+                }
+
+                // Update possible ID's every time
+                PossibleTrackIDPositions.Clear();
+                foreach (SkeletonData h in frame.Skeletons)
+                {
+                    if (h.TrackingState == SkeletonTrackingState.Tracked)
+                        PossibleTrackIDPositions[h.TrackingID] = h.Position;
+                }
+
                 lastTime = DateTime.Now;
             }
 
-            
-            // Update possible ID's every time
-            PossibleTrackIDPositions.Clear();
-            foreach (SkeletonData h in frame.Skeletons)
-            {
-                if (h.TrackingState == SkeletonTrackingState.Tracked)
-                    PossibleTrackIDPositions[h.TrackingID] = h.Position;
-            }
-            
             // Until control of this has been enabled.
             //ControllerTrackID = PossibleTrackIDs.Max<int>();
         }

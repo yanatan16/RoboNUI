@@ -93,10 +93,13 @@ namespace RoboNui.KinectAdapter
         private Grammar BuildGrammar(CultureInfo ci)
         {
             // Prefix
-            var prefix = new GrammarBuilder(new Choices(new string[] { "robo noo ee", "system", "control" }));
+            var prefix = new GrammarBuilder(new Choices(new string[] { "robo nu ee", "control" }));
             prefix.Culture = ci;
 
             // On/Off Command
+            var onoff_statement = new GrammarBuilder();
+            onoff_statement.Append("system");
+
             var on = new Choices(new string[] { "on", "enable", "activate" });
             var on_val = new SemanticResultValue(on, true);
 
@@ -108,15 +111,15 @@ namespace RoboNui.KinectAdapter
             onoff.Add(off_val);
             var onoff_key = new SemanticResultKey("onoff", onoff);
             var onoff_key_val = new SemanticResultValue(onoff_key, "onoff");
+            onoff_statement.Append(onoff_key_val);
 
             // Robot Selection Command
             var robot = new GrammarBuilder();
-            var select = new GrammarBuilder(new Choices(new string[] { "select", "use", "" }));
+            var select = new GrammarBuilder(new Choices(new string[] { "select", "use" }));
             robot.Append(select);
-            robot.Append(new Choices(new string[] { "", "robot" }));
 
-            var arm_val = new SemanticResultValue("arm", RoboticServoControllerType.Arm);
-            var mar_val = new SemanticResultValue("marionette", RoboticServoControllerType.Marionette);
+            var arm_val = new SemanticResultValue("arm", "Arm");
+            var mar_val = new SemanticResultValue("marionette", "Mar");
             var rob_cho = new Choices();
             rob_cho.Add(arm_val);
             rob_cho.Add(mar_val);
@@ -127,10 +130,10 @@ namespace RoboNui.KinectAdapter
             // Side Selection Command
             var side = new GrammarBuilder();
             side.Append(select);
-            var postfix = new Choices(new string[] {"", "side", "arm", "hand"} );
+            var postfix = new Choices(new string[] {"side", "arm", "hand"} );
 
-            var right = new SemanticResultValue("right", SideSelectionType.Right);
-            var left = new SemanticResultValue("left", SideSelectionType.Left);
+            var right = new SemanticResultValue("right", "Right");
+            var left = new SemanticResultValue("left", "Left");
             var rightleft = new Choices();
             rightleft.Add(right);
             rightleft.Add(left);
@@ -143,14 +146,14 @@ namespace RoboNui.KinectAdapter
             // Controller (User) Selection Command
             var controller = new GrammarBuilder();
             controller.Append(select);
-            controller.Append(new Choices(new string[] { "", "controller", "user" }));
+            controller.Append(new Choices(new string[] { "controller", "user" }));
             controller.Append(new Choices(new string[] { "as me", "me" }));
 
             var con_val = new SemanticResultValue(controller, "controller");
 
             // Construct the commands grammar
             var commands = new Choices();
-            commands.Add(onoff_key_val);
+            commands.Add(onoff_statement);
             commands.Add(rob_val);
             commands.Add(con_val);
             commands.Add(side_val);
@@ -165,30 +168,42 @@ namespace RoboNui.KinectAdapter
         {
             log.DebugFormat("\nSpeech Recognized: \t{0}", e.Result.Text);
             var words = e.Result.Words;
-            string com = (string) e.Result.Semantics["command"].Value;
-            switch (com)
+            SemanticValue command = e.Result.Semantics["command"];
+            switch ((string) command.Value)
             {
                 case "onoff":
                     var sc = new StateCommand();
                     sc.ComType = CommandType.Activation;
-                    sc.Argument = (bool)e.Result.Semantics["onoff"].Value;
-                    log.DebugFormat("Interpreted on/off command {0} from voice!", (bool) sc.Argument);
+                    bool temp = (bool) command["onoff"].Value;
+                    if (temp)
+                        sc.Argument = true;
+                    else
+                        sc.Argument = false;
+                    log.DebugFormat("Interpreted on/off command {0} from voice!", (bool)sc.Argument);
                     base.Send(sc);
                     break;
                 case "robot":
                     sc = new StateCommand();
                     sc.ComType = CommandType.RoboticServoControllerSelect;
-                    sc.Argument = (RoboticServoControllerType)e.Result.Semantics["robot"].Value;
+                    string val = (string)command["robot"].Value;
+                    if (val == "Arm")
+                        sc.Argument = RoboticServoControllerType.Arm;
+                    else
+                        sc.Argument = RoboticServoControllerType.Marionette;
                     log.DebugFormat("Interpreted robot selection {0} from voice!", ((RoboticServoControllerType) sc.Argument).ToString());
                     base.Send(sc);
                     break;
                 case "controller":
                     sc = new StateCommand();
                     sc.ComType = CommandType.ControllerIDSelect;
-                    if (source.SoundSourcePositionConfidence > 0.9)
+                    if (source.SoundSourcePositionConfidence > 0.5)
+                    {
                         sc.Argument = source.SoundSourcePosition;
-                    log.DebugFormat("Interpreted controller selection at angle {0} from voice!", sc.Argument);
-                    base.Send(sc);
+                        log.DebugFormat("Interpreted controller selection at angle {0} from voice!", sc.Argument);
+                        base.Send(sc);
+                    }
+                    else
+                        log.DebugFormat("Interpreted controller selection from voice, but position confidence low. ({0},{1})", source.SoundSourcePosition, source.SoundSourcePositionConfidence);
                     break;
                 default:
                     log.Error("Semantic 'command' unrecognized!");
@@ -198,7 +213,7 @@ namespace RoboNui.KinectAdapter
 
         void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
-            log.DebugFormat("\nSpeech Hypothesized: \t{0}", e.Result.Text);
+            //log.DebugFormat("\nSpeech Hypothesized: \t{0}", e.Result.Text);
         }
     }
 }
