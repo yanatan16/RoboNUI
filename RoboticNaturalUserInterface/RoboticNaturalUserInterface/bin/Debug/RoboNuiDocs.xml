@@ -202,9 +202,6 @@
         <member name="P:RoboNui.Management.StateManager.CurrentControllerID">
             <summary>The current human controller</summary>
         </member>
-        <member name="P:RoboNui.Management.StateManager.PossibleControllerIDs">
-            <summary>A list of possible controllers in view of the Kinect.</summary>
-        </member>
         <member name="T:RoboNui.RecordPlayback.Playback">
             <summary>
             This class reads in stored angle data for robotic servos and forwards them to the <see cref="T:RoboNui.Messaging.IConsumer"/> denoted.
@@ -292,6 +289,11 @@
         <member name="T:RoboNui.Management.RoboticServoControllerType">
             <summary>
             Enumeration of types of servo controllers
+            </summary>
+        </member>
+        <member name="T:RoboNui.Management.SideSelectionType">
+            <summary>
+            Enumeration of types of sides
             </summary>
         </member>
         <member name="T:RoboNui.Management.StateCommand">
@@ -1011,9 +1013,9 @@
         <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.ControllerTrackID">
             <summary>The current controller's <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/>.
             
-            Selected from the <see cref="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs"/></summary>
+            Selected from the <see cref="!:PossibleTrackIDs"/></summary>
         </member>
-        <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDs">
+        <member name="P:RoboNui.KinectAdapter.SkeletalJointMonitor.PossibleTrackIDPositions">
             <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
         </member>
     </members>

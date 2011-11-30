@@ -14,7 +14,8 @@ namespace RoboNui.Management
     {
         Activation,
         ControllerIDSelect,
-        RoboticServoControllerSelect
+        RoboticServoControllerSelect,
+        SideSelection
     }
 
     /**
@@ -26,6 +27,17 @@ namespace RoboNui.Management
     {
         Arm,
         Marionette
+    }
+
+    /**
+     * <summary>
+     * Enumeration of types of sides
+     * </summary>
+     */
+    enum SideSelectionType
+    {
+        Right,
+        Left
     }
 
     /**

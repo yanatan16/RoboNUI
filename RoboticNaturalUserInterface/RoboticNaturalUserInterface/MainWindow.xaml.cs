@@ -86,7 +86,7 @@ namespace RoboNui
 
         private void Window_Loaded(object sender, EventArgs e)
         {
-            nui = new Runtime();
+            nui = Runtime.Kinects[0];
 
             log.Info("Initializing RoboNui Application.");
 
