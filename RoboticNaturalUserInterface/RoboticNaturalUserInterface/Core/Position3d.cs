@@ -274,7 +274,7 @@ namespace RoboNui.Core
             return x * (1/a);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return "[" + x + "," + y + "," + z + "]";
         }

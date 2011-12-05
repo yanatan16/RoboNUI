@@ -63,12 +63,14 @@ namespace RoboNui.KinectAdapter
         /**
          * <summary>A list of possible <see cref="F:Microsoft.Research.Kinect.Nui.SkeletonData.TrackID"/> to choose <see cref="F:ControllerTrackID"/> from.</summary>
          */
-        public List<int> PossibleTrackIDs { get; set; }
+        private Dictionary<int, Vector> PossibleTrackIDPositions { get; set; }
 
         /**
          * <summary>The last time the joints were published</summary>
          */
         private DateTime lastTime;
+
+        private bool reset = false;
 
         /**
          * <summary> Constructor of this class. This starts up the Nui.Runtime and initializes the class fields. </summary>
@@ -83,7 +85,7 @@ namespace RoboNui.KinectAdapter
             _InterestedJoints = new List<JointID>();
             lastTime = DateTime.MaxValue;
             ControllerTrackID = -1;
-            PossibleTrackIDs = new List<int>();
+            PossibleTrackIDPositions = new Dictionary<int, Vector>();
 
             Runtime rnui = (Runtime)nui;
             lastTime = DateTime.Now;
@@ -122,22 +124,55 @@ namespace RoboNui.KinectAdapter
                     }
                 }
 
-                log.Debug("Publishing " + jset.JointMap.Count + " joints.");
-                Send(jset);
+                if (jset.JointMap.Count > 0)
+                {
+                    log.DebugFormat("Publishing {0} joints.", jset.JointMap.Count);
+                    Send(jset);
+                    reset = false;
+                }
+                else if (!reset)
+                {
+                    log.Debug("Resetting joints.");
+                    Send(jset);
+                    reset = true;
+                }
+
+                // Update possible ID's every time
+                PossibleTrackIDPositions.Clear();
+                foreach (SkeletonData h in frame.Skeletons)
+                {
+                    if (h.TrackingState == SkeletonTrackingState.Tracked)
+                        PossibleTrackIDPositions[h.TrackingID] = h.Position;
+                }
+
                 lastTime = DateTime.Now;
             }
 
-            
-            // Update possible ID's every time
-            PossibleTrackIDs.Clear();
-            foreach (SkeletonData h in frame.Skeletons)
-            {
-                if (h.TrackingState == SkeletonTrackingState.Tracked)
-                    PossibleTrackIDs.Add(h.TrackingID);
-            }
-            
             // Until control of this has been enabled.
-            ControllerTrackID = PossibleTrackIDs.Max<int>();
+            //ControllerTrackID = PossibleTrackIDs.Max<int>();
+        }
+
+        public int getTrackIDFromAngle(double angle)
+        {
+            double threshold = 0.1;
+            int winner = -1;
+            foreach (var trackIDPosPair in PossibleTrackIDPositions)
+            {
+                double tang = Math.Atan2(trackIDPosPair.Value.X, trackIDPosPair.Value.Y);
+                if (angle - tang < threshold)
+                {
+                    if (winner > -1)
+                    {
+                        double windist = Math.Sqrt(Math.Pow(PossibleTrackIDPositions[winner].X, 2) + Math.Pow(PossibleTrackIDPositions[winner].Y, 2));
+                        double chadist = Math.Sqrt(Math.Pow(trackIDPosPair.Value.X, 2) + Math.Pow(trackIDPosPair.Value.Y, 2));
+                        if (chadist < windist)
+                            winner = trackIDPosPair.Key;
+                    }
+                    else
+                        winner = trackIDPosPair.Key;
+                }
+            }
+            return winner;
         }
     }
 }

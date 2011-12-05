@@ -62,7 +62,6 @@ namespace RoboNui.RobotAdapter
 
             UseRightArm = true;
 
-            FingerScale = 1;
             keptHand = new Position3d();
             keptTopArm = new Position3d();
         }

@@ -70,6 +70,8 @@ namespace RoboNui.Management
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Activate();
 
+                    vci.Activate();
+
                     log.Info("System Activated!");
                 }
                 else
@@ -78,6 +80,8 @@ namespace RoboNui.Management
                         CurrentJointProvider1.Deactivate();
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Deactivate();
+
+                    vci.Deactivate();
 
                     log.Info("System Deactivated.");
                 }
@@ -261,15 +265,6 @@ namespace RoboNui.Management
         }
 
         /**
-         * <summary>A list of possible controllers in view of the Kinect.</summary>
-         */
-        public List<int> PossibleControllerIDs
-        {
-            get { return sjm.PossibleTrackIDs; }
-            set { sjm.PossibleTrackIDs = value; }
-        }
-
-        /**
          * <summary>
          * Constructor for the State Manager. Set all current components to null.
          * </summary>
@@ -307,6 +302,7 @@ namespace RoboNui.Management
             // Kinect Adapter
             sjm = new SkeletalJointMonitor(runtimeNui);
             ht = new HandTracker(runtimeNui);
+            vci = new VoiceControlInterpreter();
 
             // Robot Adapter
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
@@ -346,6 +342,9 @@ namespace RoboNui.Management
             CurrentJointConsumer = jat;
             CurrentAngleProvider = jat;
 
+            // Set up State Command interfaces
+            vci.AddConsumer(this);
+
             // And...GO!
             Active = true;
         }
@@ -363,23 +362,34 @@ namespace RoboNui.Management
                     break;
 
                 case CommandType.ControllerIDSelect:
-                    sjm.ControllerTrackID = (int) com.Argument;
-                    ht.ControllerTrackID = (int)com.Argument;
+                    int id = sjm.getTrackIDFromAngle((double) com.Argument);
+                    if (id > -1)
+                    {
+                        log.InfoFormat("Setting ControllerID to {0}.", id);
+                        sjm.ControllerTrackID = id;
+                        //TODO when merge between handtracker and voice is done, complete this section
+                    }
                     break;
 
                 case CommandType.RoboticServoControllerSelect:
                     switch ((RoboticServoControllerType)com.Argument)
                     {
                         case RoboticServoControllerType.Arm:
+                            jat.Model = new RoboticArmModel();
                             CurrentAngleConsumer = rsc_arm;
                             break;
                         case RoboticServoControllerType.Marionette:
+                            jat.Model = new RoboticMarionetteModel();
                             CurrentAngleConsumer = rsc_mar;
                             break;
                         default:
                             log.Warn("RoboticServoControllerSelect has unknown RoboticServoControllerType.");
                             break;
                     }
+                    break;
+
+                case CommandType.SideSelection:
+                    //TODO when merge between handtracker and voice is done, complete this section
                     break;
 
                 default:

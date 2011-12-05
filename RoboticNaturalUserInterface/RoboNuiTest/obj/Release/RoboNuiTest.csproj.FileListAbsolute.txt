@@ -1,0 +1,14 @@
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\RoboNuiTest.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\RoboNuiTest.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\log4net.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\Newtonsoft.Json.Net35.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\RoboticNaturalUserInterface.exe
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\Utilities.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\Utilities.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\RoboticNaturalUserInterface.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\log4net.xml
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\Newtonsoft.Json.Net35.pdb
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\bin\Release\Newtonsoft.Json.Net35.xml
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\obj\Release\RoboNuiTest.dll
+C:\Users\Eisen\Code\RoboNUI\repo\RoboticNaturalUserInterface\RoboNuiTest\obj\Release\RoboNuiTest.pdb
