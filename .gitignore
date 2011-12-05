@@ -1,0 +1,4 @@
+RoboticNaturalUserInterface/*/obj/*
+RoboticNaturalUserInterface/*/bin/*
+RoboticNaturalUserInterface/TestResults/*
+*.swp
