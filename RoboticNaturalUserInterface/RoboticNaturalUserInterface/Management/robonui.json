@@ -19,11 +19,11 @@
 
 	"KinectAdapter" :
 	{
-		"Period" : 500
+		"Period" : 250
 	},
 
 	"Core" : 
 	{
-		
+		"UseVoice": 1	
 	}
 }

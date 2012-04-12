@@ -110,7 +110,7 @@ namespace RoboNui.RobotAdapter.SSC32
         protected byte[] sendCommand(ServoCommandGroup com)
         {
             string command = com.CommandString();
-            log.Debug("Send Command " + command);
+            //log.Debug("Send Command " + command);
 
             if (!inactive)
             {

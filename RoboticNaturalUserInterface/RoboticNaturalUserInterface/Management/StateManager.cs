@@ -70,7 +70,7 @@ namespace RoboNui.Management
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Activate();
 
-                    vci.Activate();
+                    //vci.Activate();
 
                     log.Info("System Activated!");
                 }
@@ -81,7 +81,7 @@ namespace RoboNui.Management
                     if (CurrentAngleProvider != null)
                         CurrentAngleProvider.Deactivate();
 
-                    vci.Deactivate();
+                    //vci.Deactivate();
 
                     log.Info("System Deactivated.");
                 }
@@ -302,7 +302,7 @@ namespace RoboNui.Management
             // Kinect Adapter
             sjm = new SkeletalJointMonitor(runtimeNui);
             ht = new HandTracker(runtimeNui);
-            vci = new VoiceControlInterpreter();
+            //vci = new VoiceControlInterpreter();
 
             // Robot Adapter
             rsc_arm = new RoboticArmServoController(config.RobotAdapter.Arm.Port, config.RobotAdapter.Arm.Channels, config.RobotAdapter.Arm.Speed);
@@ -332,6 +332,11 @@ namespace RoboNui.Management
                 CurrentAngleConsumer = rsc_mar;
             }
 
+            if (config.Core.UseVoice == 0)
+            {
+                CurrentControllerID = -1;
+            }
+
             sjm.InterestedJoints = irm.NeededJoints;
             sjm.Period = config.KinectAdapter.Period;
             CurrentJointProvider1 = sjm;
@@ -343,7 +348,7 @@ namespace RoboNui.Management
             CurrentAngleProvider = jat;
 
             // Set up State Command interfaces
-            vci.AddConsumer(this);
+            //vci.AddConsumer(this);
 
             // And...GO!
             Active = true;

@@ -113,7 +113,7 @@ namespace RoboNui.KinectAdapter
 
                 foreach (SkeletonData human in frame.Skeletons)
                 {
-                    if (human.TrackingID == ControllerTrackID && human.TrackingState == SkeletonTrackingState.Tracked)
+                    if (human.TrackingState == SkeletonTrackingState.Tracked && (human.TrackingID == ControllerTrackID || ControllerTrackID == -1))
                     {
                         foreach (JointID jid in _InterestedJoints)
                         {
@@ -126,7 +126,7 @@ namespace RoboNui.KinectAdapter
 
                 if (jset.JointMap.Count > 0)
                 {
-                    log.DebugFormat("Publishing {0} joints.", jset.JointMap.Count);
+                    //log.DebugFormat("Publishing {0} joints.", jset.JointMap.Count);
                     Send(jset);
                     reset = false;
                 }

@@ -95,7 +95,7 @@ namespace RoboNui.KinectAdapter
 
         void ht_DepthFrameReady(object sender, ImageFrameReadyEventArgs e)
         {
-            if (lastTime.AddMilliseconds(Period) < DateTime.Now)
+            if (lastTime < DateTime.Now.Subtract(new TimeSpan(0,0,0,0,(int)Period)))
             {
                 Process(e.ImageFrame.Image, hand.Position);
                 lastTime = DateTime.Now;

@@ -96,7 +96,7 @@ namespace RoboNui.Management
          */
         public struct _Core
         {
-
+            public int UseVoice;
         }
 
         /**

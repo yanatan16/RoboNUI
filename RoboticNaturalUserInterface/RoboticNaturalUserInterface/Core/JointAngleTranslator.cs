@@ -105,9 +105,8 @@ namespace RoboNui.Core
          */
         public override void Update(JointSet js)
         {
-            log.Debug("Updated JointSet. Translating to AngleSet and Sending");
+            //log.Debug("Updated JointSet. Translating to AngleSet and Sending");
 
-            AngleSet angles;
             if (js.JointMap.Count > 0)
             {
                 if (Model != null)
@@ -120,7 +119,7 @@ namespace RoboNui.Core
                 }
             }
             else
-                angles = Model.Reset();
+                base.Send(Model.Reset());
 
             
         }

@@ -53,11 +53,13 @@ namespace RoboNui.RobotAdapter
          */
         public AngleSet Reset()
         {
+            log.Debug("RESET!");
             AngleSet angles = new AngleSet();
             angles.AngleMap.Add(RoboticAngle.HeadLift, 0);
             angles.AngleMap.Add(RoboticAngle.LeftArmLift, 0);
             angles.AngleMap.Add(RoboticAngle.RightArmLift, 0);
             angles.AngleMap.Add(RoboticAngle.RearLift, 0);
+            angles.AngleMap.Add(RoboticAngle.CurtainOpen, Math.PI);
             return angles;
         }
 
@@ -74,25 +76,26 @@ namespace RoboNui.RobotAdapter
             double handLeftAngle = -Math.Atan2(lefthand.y, -lefthand.x);
             double handRightAngle = -Math.Atan2(righthand.y, righthand.x);
 
-            Position3d legs = (2 * js.JointMap[ControllerJoints.HipCenter] - js.JointMap[ControllerJoints.KneeLeft] - js.JointMap[ControllerJoints.KneeRight]) / 2;
-            Position3d torso = -js.JointMap[ControllerJoints.HipCenter] - js.JointMap[ControllerJoints.Head];
-            //legs.x = 0;
-            //torso.x = 0;
-            double bendAngle = legs.angle(torso) - Math.PI / 2;
-            double headAngle = bendAngle * 4;
+            Position3d hip = js.JointMap[ControllerJoints.HipCenter];
+            Position3d head = js.JointMap[ControllerJoints.Head];
+            double dely = head.y - hip.y;
+            double delz = Math.Max(0,hip.z - head.z);
+            double bendAngle = Math.Atan2(delz, dely);
+            
+            double bendPct = Math.PI/4 - (bendAngle - Math.PI/2) / (Math.PI/2);
+            double headAngle = bendAngle * Math.PI * 2 - Math.PI;
             double rearAngle = -headAngle;
 
-            log.Debug("legs: " + legs.ToString());
-            log.Debug("torso: " + torso.ToString());
-            log.Debug("bendAngle(" + bendAngle + ") headAngle(" + headAngle + ")");
+            log.ErrorFormat("bend: {0}", bendAngle);
             
             AngleSet angles = new AngleSet();
             angles.AngleMap.Add(RoboticAngle.HeadLift, headAngle);
             angles.AngleMap.Add(RoboticAngle.LeftArmLift, handLeftAngle);
             angles.AngleMap.Add(RoboticAngle.RightArmLift, handRightAngle);
             angles.AngleMap.Add(RoboticAngle.RearLift, rearAngle);
-            
-            log.Debug("Translating JointSet to AngleSet: as(" + angles.ToString() + ")");
+            angles.AngleMap.Add(RoboticAngle.CurtainOpen, -Math.PI);
+
+            //log.Debug("Translating JointSet to AngleSet: as(" + angles.ToString() + ")");
 
             return angles;
         }
