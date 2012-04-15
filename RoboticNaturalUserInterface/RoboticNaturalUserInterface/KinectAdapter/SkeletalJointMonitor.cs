@@ -117,9 +117,12 @@ namespace RoboNui.KinectAdapter
                     {
                         foreach (JointID jid in _InterestedJoints)
                         {
-                            Joint j = human.Joints[jid];
-                            Position3d pos = new Position3d(j.Position.X, j.Position.Y, j.Position.Z);
-                            jset.JointMap[(ControllerJoints)jid] = pos;
+                            if (jid < JointID.Count)
+                            {
+                                Joint j = human.Joints[jid];
+                                Position3d pos = new Position3d(j.Position.X, j.Position.Y, j.Position.Z);
+                                jset.JointMap[(ControllerJoints)jid] = pos;
+                            }
                         }
                     }
                 }

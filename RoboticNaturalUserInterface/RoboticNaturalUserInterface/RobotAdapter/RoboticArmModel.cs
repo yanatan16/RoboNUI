@@ -49,7 +49,6 @@ namespace RoboNui.RobotAdapter
             neededJointsRight.Add(ControllerJoints.WristRight);
             neededJointsRight.Add(ControllerJoints.HandRight);
             neededJointsRight.Add(ControllerJoints.Fingertip);
-            neededJointsRight.Add(ControllerJoints.Fingertip);
 
             neededJointsLeft = new List<ControllerJoints>();
             neededJointsLeft.Add(ControllerJoints.ShoulderCenter);
@@ -57,7 +56,6 @@ namespace RoboNui.RobotAdapter
             neededJointsLeft.Add(ControllerJoints.ElbowLeft);
             neededJointsLeft.Add(ControllerJoints.WristLeft);
             neededJointsLeft.Add(ControllerJoints.HandLeft);
-            neededJointsLeft.Add(ControllerJoints.Fingertip);
             neededJointsLeft.Add(ControllerJoints.Fingertip);
 
             UseRightArm = true;

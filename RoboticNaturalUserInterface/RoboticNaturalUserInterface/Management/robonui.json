@@ -4,7 +4,7 @@
 {
 	"RobotAdapter" : 
 	{
-		"UseArm" : 0,
+		"UseArm" : 1,
 		"Arm" :
 		{
 			"Port" : "COM5",
@@ -13,7 +13,7 @@
 
 		"Marionette" :
 		{
-			"Port" : "COM3"
+			"Port" : "COM4"
 		},
 	},
 
@@ -23,7 +23,7 @@
 	},
 
 	"Core" : 
-	{
+	{ 
 		"UseVoice": 1	
 	}
 }

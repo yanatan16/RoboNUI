@@ -28,6 +28,8 @@ namespace RoboNui.RobotAdapter
 
         List<double> heights;
 
+        double avghipcenter = 0;
+
         /**
          * <summary>Construct the Robotic Marionette Model</summary>
          * 
@@ -45,6 +47,7 @@ namespace RoboNui.RobotAdapter
             NeededJoints.Add(ControllerJoints.HipCenter);
             NeededJoints.Add(ControllerJoints.KneeLeft);
             NeededJoints.Add(ControllerJoints.KneeRight);
+            avghipcenter = 0;
         }
 
         /**
@@ -60,6 +63,7 @@ namespace RoboNui.RobotAdapter
             angles.AngleMap.Add(RoboticAngle.RightArmLift, 0);
             angles.AngleMap.Add(RoboticAngle.RearLift, 0);
             angles.AngleMap.Add(RoboticAngle.CurtainOpen, Math.PI);
+            avghipcenter = 0;
             return angles;
         }
 
@@ -69,6 +73,9 @@ namespace RoboNui.RobotAdapter
          */
         public AngleSet Translate(JointSet js)
         {
+            double hipdiff = js.JointMap[ControllerJoints.HipCenter].y - avghipcenter;
+            avghipcenter = (avghipcenter + js.JointMap[ControllerJoints.HipCenter].y) / 2;
+
             // Find the height above for each node
             Position3d lefthand = js.JointMap[ControllerJoints.HandLeft] - js.JointMap[ControllerJoints.ShoulderLeft];
             Position3d righthand = js.JointMap[ControllerJoints.HandRight] - js.JointMap[ControllerJoints.ShoulderRight];
@@ -83,10 +90,10 @@ namespace RoboNui.RobotAdapter
             double bendAngle = Math.Atan2(delz, dely);
             
             double bendPct = Math.PI/4 - (bendAngle - Math.PI/2) / (Math.PI/2);
-            double headAngle = bendAngle * Math.PI * 2 - Math.PI;
-            double rearAngle = -headAngle;
+            double headAngle = bendAngle * Math.PI * 2 - Math.PI - hipdiff;
+            double rearAngle = -headAngle - hipdiff;
 
-            log.ErrorFormat("bend: {0}", bendAngle);
+            log.ErrorFormat("handRight: {0}", handRightAngle);
             
             AngleSet angles = new AngleSet();
             angles.AngleMap.Add(RoboticAngle.HeadLift, headAngle);
